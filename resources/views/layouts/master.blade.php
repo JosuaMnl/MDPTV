@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>AdminLTE 3 | Dashboard 2</title>
+    <title>@yield('title')</title>
     <link rel="icon" href="{{ asset('vendors/dist/img/MDP_TV.png') }}">
 
     <link rel="stylesheet"
@@ -15,6 +15,14 @@
     <link rel="stylesheet" href="{{ asset('vendors/plugins/overlayScrollbars/css/OverlayScrollbars.min.css') }}">
 
     <link rel="stylesheet" href="{{ asset('vendors/dist/css/adminlte.min.css?v=3.2.0') }}">
+
+
+    {{-- DataTables --}}
+    <link rel="stylesheet" href="{{ asset('vendors/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
+    <link rel="stylesheet"
+        href="{{ asset('vendors/plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('vendors/plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
+
     <script nonce="2635d354-606f-47f6-beb6-c95193b40239">
         (function(w, d) {
             ! function(a, e, t, r) {
@@ -252,7 +260,7 @@
                             <a href="#" class="nav-link active">
                                 <i class="nav-icon fas fa-tachometer-alt"></i>
                                 <p>
-                                    Dashboard
+                                    Dashboardb
                                     <i class="right fas fa-angle-left"></i>
                                 </p>
                             </a>
@@ -345,12 +353,12 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1 class="m-0">Dashboard v2</h1>
+                            <h1 class="m-0">@yield('title')</h1>
                         </div>
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
                                 <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                <li class="breadcrumb-item active">Dashboard v2</li>
+                                <li class="breadcrumb-item active">@yield('title')</li>
                             </ol>
                         </div>
                     </div>
@@ -361,29 +369,7 @@
             <section class="content">
                 <div class="container-fluid">
 
-                    <div class="card">
-                        <div class="card-header">
-                            <h3 class="card-title">US-Visitors Report</h3>
-                            <div class="card-tools">
-                                <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                                    <i class="fas fa-minus"></i>
-                                </button>
-                                <button type="button" class="btn btn-tool" data-card-widget="remove">
-                                    <i class="fas fa-times"></i>
-                                </button>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <ul>
-                                <li>Lorem.</li>
-                                <li>Lorem, ipsum.</li>
-                                <li>Lorem, ipsum dolor.</li>
-                            </ul>
-                        </div>
-                        <div class="card-footer">
-                            <button class="btn btn-sm btn-info">Preview</button>
-                        </div>
-                    </div>
+                    @yield('content')
 
                 </div>
             </section>
@@ -426,6 +412,36 @@
     {{-- <script src="{{ asset('vendors/dist/js/demo.js') }}"></script> --}}
 
     <script src="{{ asset('vendors/dist/js/pages/dashboard2.js') }}"></script>
+
+    <script src="{{ asset('vendors/plugins/datatables/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('vendors/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
+    <script src="{{ asset('vendors/plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
+    <script src="{{ asset('vendors/plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
+    <script src="{{ asset('vendors/plugins/datatables-buttons/js/dataTables.buttons.min.js') }}"></script>
+    <script src="{{ asset('vendors/plugins/datatables-buttons/js/buttons.bootstrap4.min.js') }}"></script>
+
+    <script src="{{ asset('vendors/plugins/jszip/jszip.min.js') }}"></script>
+    <script src="{{ asset('vendors/plugins/pdfmake/pdfmake.min.js') }}"></script>
+    <script src="{{ asset('vendors/plugins/pdfmake/vfs_fonts.js') }}"></script>
+
+    <script src="{{ asset('vendors/plugins/datatables-buttons/js/buttons.html5.min.js') }}"></script>
+    <script src="{{ asset('vendors/plugins/datatables-buttons/js/buttons.print.min.js') }}"></script>
+    <script src="{{ asset('vendors/plugins/datatables-buttons/js/buttons.colVis.min.js') }}"></script>
+
+
+
+    <script>
+        $(function() {
+                $("#example1").DataTable({
+                    "responsive": true,
+                    "lengthChange": false,
+                    "autoWidth": false,
+                    "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+                }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)')
+            }
+
+        );
+    </script>
 </body>
 
 </html>
