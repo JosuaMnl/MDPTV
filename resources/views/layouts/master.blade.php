@@ -14,7 +14,15 @@
 
     <link rel="stylesheet" href="{{ asset('vendors/plugins/overlayScrollbars/css/OverlayScrollbars.min.css') }}">
 
+    {{-- Date Picker --}}
+    <link rel="stylesheet"
+        href="{{ asset('vendors/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css') }}">
+
+    {{-- Select2 --}}
+    <link rel="stylesheet" href="{{ asset('vendors/plugins/select2/css/select2.min.css') }}">
+
     <link rel="stylesheet" href="{{ asset('vendors/dist/css/adminlte.min.css?v=3.2.0') }}">
+
     <script nonce="2635d354-606f-47f6-beb6-c95193b40239">
         (function(w, d) {
             ! function(a, e, t, r) {
@@ -404,6 +412,30 @@
     {{-- <script src="{{ asset('vendors/dist/js/demo.js') }}"></script> --}}
 
     <script src="{{ asset('vendors/dist/js/pages/dashboard2.js') }}"></script>
+
+    {{-- Date Picker --}}
+
+    <script src="{{ asset('vendors/plugins/moment/moment.min.js') }}"></script>
+    <script src="{{ asset('vendors/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js') }}"></script>
+    <script>
+        $(function() {
+            //Date picker
+            $('#reservationdate').datetimepicker({
+                format: 'L'
+            });
+        });
+    </script>
+
+    {{-- Select2 --}}
+    <script src="{{ asset('vendors/plugins/select2/js/select2.full.min.js') }}"></script>
+
+    <script>
+        $(function() {
+            //Initialize Select2 Elements
+            $('.select2').select2();
+        });
+    </script>
+
 </body>
 
 </html>
