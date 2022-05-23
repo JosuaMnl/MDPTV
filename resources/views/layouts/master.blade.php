@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>AdminLTE 3 | Dashboard 2</title>
+    <title>@yield('title')</title>
     <link rel="icon" href="{{ asset('vendors/dist/img/MDP_TV.png') }}">
 
     <link rel="stylesheet"
@@ -345,12 +345,12 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1 class="m-0">Dashboard v2</h1>
+                            <h1 class="m-0">@yield('title')</h1>
                         </div>
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
                                 <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                <li class="breadcrumb-item active">Dashboard v2</li>
+                                <li class="breadcrumb-item active">@yield('title')</li>
                             </ol>
                         </div>
                     </div>
@@ -361,29 +361,7 @@
             <section class="content">
                 <div class="container-fluid">
 
-                    <div class="card">
-                        <div class="card-header">
-                            <h3 class="card-title">US-Visitors Report</h3>
-                            <div class="card-tools">
-                                <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                                    <i class="fas fa-minus"></i>
-                                </button>
-                                <button type="button" class="btn btn-tool" data-card-widget="remove">
-                                    <i class="fas fa-times"></i>
-                                </button>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <ul>
-                                <li>Lorem.</li>
-                                <li>Lorem, ipsum.</li>
-                                <li>Lorem, ipsum dolor.</li>
-                            </ul>
-                        </div>
-                        <div class="card-footer">
-                            <button class="btn btn-sm btn-info">Preview</button>
-                        </div>
-                    </div>
+                    @yield('content')
 
                 </div>
             </section>
