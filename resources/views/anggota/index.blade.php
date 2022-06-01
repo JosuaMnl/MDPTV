@@ -19,59 +19,33 @@
             <table id="example1" class="table table-bordered table-striped">
                 <thead>
                     <tr>
-                        <th>NPM</th>
                         <th>Nama</th>
                         <th>Email</th>
                         <th>No. WhatsApp</th>
                         <th>Alamat</th>
                         <th>Jenis Kelamin</th>
+                        <th>Angkatan</th>
+                        <th>Status</th>
                         <th>Program Studi</th>
                         <th>Divisi</th>
                         <th>Jabatan</th>
-                        <th>Angkatan</th>
-                        <th>Status</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>2024240001</td>
-                        <td>Marcelo Amazon</td>
-                        <td>marcelo@mhs.mdp.ac.id</td>
-                        <td>0895123456789</td>
-                        <td>Jln. Prabumulih</td>
-                        <td>Laki-Laki</td>
-                        <td>Sistem Informasi</td>
-                        <td>Multimedia</td>
-                        <td>Ketua</td>
-                        <td>2</td>
-                        <td>Aktif</td>
-                    </tr>
-                    <tr>
-                        <td>2024240001</td>
-                        <td>Marcelo Amazon</td>
-                        <td>marcelo@mhs.mdp.ac.id</td>
-                        <td>0895123456789</td>
-                        <td>Jln. Prabumulih</td>
-                        <td>Laki-Laki</td>
-                        <td>Sistem Informasi</td>
-                        <td>Multimedia</td>
-                        <td>Ketua</td>
-                        <td>2</td>
-                        <td>Aktif</td>
-                    </tr>
-                    <tr>
-                        <td>2024240001</td>
-                        <td>Marcelo Amazon</td>
-                        <td>marcelo@mhs.mdp.ac.id</td>
-                        <td>0895123456789</td>
-                        <td>Jln. Prabumulih</td>
-                        <td>Laki-Laki</td>
-                        <td>Sistem Informasi</td>
-                        <td>Multimedia</td>
-                        <td>Ketua</td>
-                        <td>2</td>
-                        <td>Aktif</td>
-                    </tr>
+                    @foreach ($members as $item)
+                        <tr>
+                            <td>{{ $item->nama }}</td>
+                            <td>{{ $item->email }}</td>
+                            <td>{{ $item->no_hp }}</td>
+                            <td>{{ $item->alamat }}</td>
+                            <td>{{ $item->jenis_kelamin }}</td>
+                            <td>{{ $item->angkatan }}</td>
+                            <td>{{ $item->status }}</td>
+                            <td>{{ $item->study_programs->nama_prodi }}</td>
+                            <td>{{ $item->divisions->nama_divisi }}</td>
+                            <td>{{ $item->positions->nama_jabatan }}</td>>
+                        </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>

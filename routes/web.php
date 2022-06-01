@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\MembersController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,6 +18,4 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/anggota', function () {
-    return view('anggota.index');
-});
+Route::resource('anggota', MembersController::class);
