@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DocumentationController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,6 +18,4 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dokumentasi', function () {
-    return view('dokumentasi.index');
-});
+Route::resource('dokumentasi', DocumentationController::class);

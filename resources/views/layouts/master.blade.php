@@ -23,6 +23,11 @@
 
     <link rel="stylesheet" href="{{ asset('vendors/dist/css/adminlte.min.css?v=3.2.0') }}">
 
+    {{-- DataTables --}}
+    <link rel="stylesheet" href="{{ asset('vendors/dist/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('vendors/dist/css/dataTables.bootstrap5.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('vendors/dist/css/responsive.bootstrap5.min.css') }}">
+
     <script nonce="2635d354-606f-47f6-beb6-c95193b40239">
         (function(w, d) {
             ! function(a, e, t, r) {
@@ -414,7 +419,6 @@
     <script src="{{ asset('vendors/dist/js/pages/dashboard2.js') }}"></script>
 
     {{-- Date Picker --}}
-
     <script src="{{ asset('vendors/plugins/moment/moment.min.js') }}"></script>
     <script src="{{ asset('vendors/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js') }}"></script>
     <script>
@@ -433,6 +437,32 @@
         $(function() {
             //Initialize Select2 Elements
             $('.select2').select2();
+        });
+    </script>
+
+    {{-- DataTables --}}
+    <script src="{{ asset('vendors/plugins/dataTables/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('vendors/plugins/datatables-bs5/js/dataTables.bootstrap5.min.js') }}"></script>
+    <script src="{{ asset('vendors/plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
+    <script src="{{ asset('vendors/plugins/datatables-responsive/js/responsive.bootstrap5.min.js') }}"></script>
+
+    <script>
+        $(document).ready(function() {
+            $('#example').DataTable({
+                responsive: {
+                    details: {
+                        display: $.fn.dataTable.Responsive.display.modal({
+                            header: function(row) {
+                                var data = row.data();
+                                return 'Details for ' + data[0] + ' ' + data[1];
+                            }
+                        }),
+                        renderer: $.fn.dataTable.Responsive.renderer.tableAll({
+                            tableClass: 'table'
+                        })
+                    }
+                }
+            });
         });
     </script>
 
