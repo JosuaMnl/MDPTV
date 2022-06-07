@@ -18,4 +18,4 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('dokumentasi', DocumentationController::class);
+Route::resource('documentation', DocumentationController::class);

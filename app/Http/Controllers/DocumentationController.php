@@ -18,7 +18,7 @@ class DocumentationController extends Controller
     {
         //
         $documentations = Documentation::all();
-        return view('dokumentasi.index')->with('documentations', $documentations);
+        return view('documentations.index')->with('documentations', $documentations);
     }
 
     /**
@@ -31,7 +31,7 @@ class DocumentationController extends Controller
         //
         $organizers = Organizers::all();
         $periods = Periods::all();
-        return view('dokumentasi.create')->with('organizers', $organizers)->with('periods', $periods);
+        return view('documentations.create')->with('organizers', $organizers)->with('periods', $periods);
     }
 
     /**
@@ -53,29 +53,26 @@ class DocumentationController extends Controller
             'organizers' => 'required'
         ]);
 
-
-        
         $dokumentasi = new Documentation();
         $dokumentasi->nama_kegiatan = $validasi['nama_kegiatan'];
-        $dokumentasi->tanggal_kegiatan = date('Y/m/d', strtotime($validasi['tanggal_kegiatan']));
+        $dokumentasi->tanggal_kegiatan = $validasi['tanggal_kegiatan'];
         $dokumentasi->lokasi = $validasi['lokasi'];
         $dokumentasi->keterangan = $validasi['keterangan'];
         $dokumentasi->link_dokumentasi = $validasi['link_dokumentasi'];
         $dokumentasi->periods_id = $validasi['periods'];
         $dokumentasi->organizers_id = $validasi['organizers'];
-        // dd($dokumentasi);
         $dokumentasi->save();
 
-        return redirect()->route('dokumentasi.index');
+        return redirect()->route('documentation.index');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Documentation  $documentation
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Documentation $documentation)
     {
         //
     }
@@ -83,34 +80,53 @@ class DocumentationController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Documentation  $documentation
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Documentation $documentation)
     {
         //
+        $organizers = Organizers::all();
+        $periods = Periods::all();
+        return view('documentations.edit')->with('documentations', $documentation)->with('organizers', $organizers)->with('periods', $periods);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Models\Documentation  $documentation
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Documentation $documentation)
     {
         //
+        $validasi = $request->validate([
+            'nama_kegiatan' => 'required',
+            'tanggal_kegiatan' => 'required',
+            'lokasi' => 'required',
+            'keterangan' => 'required',
+            'link_dokumentasi' => 'required',
+            'periods_id' => 'required',
+            'organizers_id' => 'required'
+        ]);
+        
+        Documentation::where('id', $documentation->id)->update($validasi);
+        
+        $request->session()->flash('info', 'Data Dokumentasi berhasil di edit');
+        return redirect()->route('documentation.index');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\Documentation  $documentation
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Documentation $documentation)
     {
         //
+        $documentation->delete();
+        return redirect()->route('documentation.index')->with('info', "Data Dokumentasi berhasil dihapus");
     }
 }

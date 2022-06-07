@@ -425,7 +425,7 @@
         $(function() {
             //Date picker
             $('#reservationdate').datetimepicker({
-                format: 'L'
+                format: 'YYYY-MM-DD'
             });
         });
     </script>
@@ -454,7 +454,7 @@
                         display: $.fn.dataTable.Responsive.display.modal({
                             header: function(row) {
                                 var data = row.data();
-                                return 'Details for ' + data[0] + ' ' + data[1];
+                                return 'Details for ' + data[0];
                             }
                         }),
                         renderer: $.fn.dataTable.Responsive.renderer.tableAll({
@@ -464,6 +464,29 @@
                 }
             });
         });
+    </script>
+
+    {{-- Modal --}}
+    <script>
+        // Generate alamat URL untuk proses hapus data program studi
+        $('.btn-hapus').click(function() {
+            let id = $(this).attr('data-id');
+            $('#formDelete').attr('action', '/documentation/' + id);
+
+            // Get value attribute data-nama-prodi
+            let nama_documentation = $(this).attr('data-nama-documentation');
+
+            // Set text ke div id="mb-konfirmasi"
+            $("#mb-konfirmasi").text("Apakah Anda yakin ingin menghapus data dokumentasi " + nama_documentation +
+                " ?");
+        })
+
+
+
+        // Jika tombol ya ditekan, maka submit form hapus
+        $('#formDelete [type="submit"]').click(function() {
+            $('#formDelete').submit();
+        })
     </script>
 
 </body>
