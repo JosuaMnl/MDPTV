@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Documentation;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -20,5 +21,15 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
+        Documentation::create(
+            ["nama_kegiatan"=>"Test Kegiatan",
+                "tanggal_kegiatan"=>"2022-06-01",
+                "lokasi"=>"Test Lokasi",
+                "keterangan" => "Test Keterangan",
+                "link_dokumentasi"=>"Test Link Dokumentasi",
+                "periods_id"=>3,
+                "organizers_id"=>3
+            ]
+        );
     }
 }
