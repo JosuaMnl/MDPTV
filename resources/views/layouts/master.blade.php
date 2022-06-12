@@ -23,10 +23,16 @@
 
     <link rel="stylesheet" href="{{ asset('vendors/dist/css/adminlte.min.css?v=3.2.0') }}">
 
-    {{-- DataTables --}}
+
+    <link rel="stylesheet" href="{{ asset('vendors/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
+    <link rel="stylesheet"
+        href="{{ asset('vendors/plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('vendors/plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
+
     <link rel="stylesheet" href="{{ asset('vendors/dist/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('vendors/dist/css/dataTables.bootstrap5.min.css') }}">
     <link rel="stylesheet" href="{{ asset('vendors/dist/css/responsive.bootstrap5.min.css') }}">
+
 
     <script nonce="2635d354-606f-47f6-beb6-c95193b40239">
         (function(w, d) {
@@ -418,6 +424,38 @@
 
     <script src="{{ asset('vendors/dist/js/pages/dashboard2.js') }}"></script>
 
+
+    {{-- DataTables --}}
+    <script src="{{ asset('vendors/plugins/datatables/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('vendors/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
+    <script src="{{ asset('vendors/plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
+    <script src="{{ asset('vendors/plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
+    <script src="{{ asset('vendors/plugins/datatables-buttons/js/dataTables.buttons.min.js') }}"></script>
+    <script src="{{ asset('vendors/plugins/datatables-buttons/js/buttons.bootstrap4.min.js') }}"></script>
+
+    <script src="{{ asset('vendors/plugins/jszip/jszip.min.js') }}"></script>
+    <script src="{{ asset('vendors/plugins/pdfmake/pdfmake.min.js') }}"></script>
+    <script src="{{ asset('vendors/plugins/pdfmake/vfs_fonts.js') }}"></script>
+
+    <script src="{{ asset('vendors/plugins/datatables-buttons/js/buttons.html5.min.js') }}"></script>
+    <script src="{{ asset('vendors/plugins/datatables-buttons/js/buttons.print.min.js') }}"></script>
+    <script src="{{ asset('vendors/plugins/datatables-buttons/js/buttons.colVis.min.js') }}"></script>
+
+    {{-- DataTable Button --}}
+    <script>
+        $(function() {
+                $("#example1").DataTable({
+                    "responsive": true,
+                    "lengthChange": false,
+                    "autoWidth": false,
+                    "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+                }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)')
+            }
+
+        );
+    </script>
+
+
     {{-- Date Picker --}}
     <script src="{{ asset('vendors/plugins/moment/moment.min.js') }}"></script>
     <script src="{{ asset('vendors/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js') }}"></script>
@@ -490,5 +528,6 @@
     </script>
 
 </body>
+
 
 </html>
