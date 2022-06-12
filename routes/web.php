@@ -6,6 +6,7 @@ use App\Http\Controllers\OrganizersController;
 use App\Http\Controllers\DivisionsController;
 use App\Http\Controllers\PositionsController;
 use App\Http\Controllers\StudyProgramsController;
+use App\Http\Controllers\ServiceCategoriesController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -29,3 +30,4 @@ Route::resource('organizers', OrganizersController::class);
 Route::resource('divisions', DivisionsController::class);
 Route::resource('positions', PositionsController::class);
 Route::resource('study_programs', StudyProgramsController::class);
+Route::resource('service_categories', ServiceCategoriesController::class);
