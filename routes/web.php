@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\MembersController;
 use App\Http\Controllers\DocumentationController;
+use App\Http\Controllers\OrganizersController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,3 +22,4 @@ Route::get('/', function () {
 
 Route::resource('members', MembersController::class);
 Route::resource('documentation', DocumentationController::class);
+Route::resource('organizers', OrganizersController::class);

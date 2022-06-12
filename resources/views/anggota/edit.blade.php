@@ -125,9 +125,8 @@
                     @enderror
                 </div>
                 <div>
-                    <div>
-                        <button type="submit" class="btn btn-secondary"> Simpan </button>
-                    </div>
+                    <button type="submit" class="btn btn-secondary"> Simpan </button>
+                </div>
             </form>
         </div>
 

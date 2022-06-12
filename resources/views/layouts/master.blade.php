@@ -504,29 +504,6 @@
         });
     </script>
 
-    {{-- Modal --}}
-    <script>
-        // Generate alamat URL untuk proses hapus data program studi
-        $('.btn-hapus').click(function() {
-            let id = $(this).attr('data-id');
-            $('#formDelete').attr('action', '/documentation/' + id);
-
-            // Get value attribute data-nama-prodi
-            let nama_documentation = $(this).attr('data-nama-documentation');
-
-            // Set text ke div id="mb-konfirmasi"
-            $("#mb-konfirmasi").text("Apakah Anda yakin ingin menghapus data dokumentasi " + nama_documentation +
-                " ?");
-        })
-
-
-
-        // Jika tombol ya ditekan, maka submit form hapus
-        $('#formDelete [type="submit"]').click(function() {
-            $('#formDelete').submit();
-        })
-    </script>
-
 </body>
 
 

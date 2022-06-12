@@ -1,12 +1,12 @@
 @extends('layouts.master')
 
-@section('title', 'Data Anggota')
+@section('title', 'Tabel Penyelenggara')
 
 @section('content')
     <div class="card">
         <div class="card-header">
             {{-- <h3 class="card-title">Tabel Data Anggota MDPTV</h3> --}}
-            <a href="{{ url('members/create') }}" class="btn btn-secondary">Tambah</a>
+            <a href="{{ url('organizers/create') }}" class="btn btn-info">Tambah</a>
             <div class="card-tools">
                 <button type="button" class="btn btn-tool" data-card-widget="collapse">
                     <i class="fas fa-minus"></i>
@@ -20,41 +20,25 @@
             <table class="table table-bordered table-striped" id="example1">
                 <thead>
                     <tr>
+                        <th>ID</th>
+                        <th>Penyelenggara</th>
                         <th>Action</th>
-                        <th>Nama</th>
-                        <th>Email</th>
-                        <th>No. WhatsApp</th>
-                        <th>Alamat</th>
-                        <th>Jenis Kelamin</th>
-                        <th>Angkatan</th>
-                        <th>Status</th>
-                        <th>Program Studi</th>
-                        <th>Divisi</th>
-                        <th>Jabatan</th>
                     </tr>
                 </thead>
 
                 <tbody>
-                    @foreach ($members as $item)
+
+                    @foreach ($organizers as $item)
                         <tr>
+                            <td>{{ $item->id }}</td>
+                            <td>{{ $item->penyelenggara }}</td>
                             <td>
-                                <a href="{{ url('members/' . $item->id . '/edit') }}"
+                                <a href="{{ url('organizers/' . $item->id . '/edit') }}"
                                     class="btn btn-sm btn-warning">Edit</a>
                                 <button class="btn btn-sm btn-danger btn-hapus" data-id="{{ $item->id }}"
-                                    data-name-members="{{ $item->nama }}" data-toggle="modal"
+                                    data-name-organizers="{{ $item->penyelenggara }}" data-toggle="modal"
                                     data-target="#deleteModal">Hapus</button>
                             </td>
-                            <td>{{ $item->nama }}</td>
-                            <td>{{ $item->email }}</td>
-                            <td>{{ $item->no_hp }}</td>
-                            <td>{{ $item->alamat }}</td>
-                            <td>{{ $item->jenis_kelamin }}</td>
-                            <td>{{ $item->angkatan }}</td>
-                            <td>{{ $item->status }}</td>
-                            <td>{{ $item->study_programs->nama_prodi }}</td>
-                            <td>{{ $item->divisions->nama_divisi }}</td>
-                            <td>{{ $item->positions->nama_jabatan }}</td>
-
                         </tr>
                     @endforeach
                 </tbody>
@@ -65,7 +49,6 @@
 
         </div>
     </div>
-
     <div class="modal fade" id="deleteModal">
         <div class="modal-dialog">
             <div class="modal-content bg-danger">
@@ -104,15 +87,14 @@
 
         $('.btn-hapus').click(function() {
             let id = $(this).attr('data-id');
-            $('#formDelete').attr('action', '/members/' + id);
+            $('#formDelete').attr('action', '/organizers/' + id);
 
-            let nama = $(this).attr('data-name-members');
-            $('#mb-konfirmasi').text('Apakah anda yakin ingin menghapus data anggota ' + nama + '?');
+            let penyelenggara = $(this).attr('data-name-organizers');
+            $('#mb-konfirmasi').text('Apakah anda yakin ingin menghapus data penyelenggara ' + penyelenggara + '?');
         })
 
         $('#formDelete [type="submit"]').click(function() {
             $('#formDelete').submit();
         });
     </script>
-
 @endsection
