@@ -18,4 +18,4 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('anggota', MembersController::class);
+Route::resource('members', MembersController::class);

@@ -428,6 +428,7 @@
     <script src="{{ asset('vendors/plugins/datatables-buttons/js/buttons.print.min.js') }}"></script>
     <script src="{{ asset('vendors/plugins/datatables-buttons/js/buttons.colVis.min.js') }}"></script>
 
+    {{-- DataTable Button --}}
     <script>
         $(function() {
                 $("#example1").DataTable({
@@ -441,6 +442,5 @@
         );
     </script>
 
-</body>
 
 </html>
