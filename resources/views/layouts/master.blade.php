@@ -27,6 +27,15 @@
     <link rel="stylesheet" href="{{ asset('vendors/dist/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('vendors/dist/css/dataTables.bootstrap5.min.css') }}">
     <link rel="stylesheet" href="{{ asset('vendors/dist/css/responsive.bootstrap5.min.css') }}">
+    {{-- <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css"> --}}
+    {{-- <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.3.0/css/responsive.dataTables.min.css"> --}}
+    <style>
+        body {
+            font-family: "Open Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", Helvetica, Arial, sans-serif;
+        }
+    </style>
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" id="theme-styles">
+
 
     <script nonce="2635d354-606f-47f6-beb6-c95193b40239">
         (function(w, d) {
@@ -466,6 +475,12 @@
         });
     </script>
 
+    <script>
+        $(document).ready(function() {
+            $('#example1').DataTable();
+        });
+    </script>
+
     {{-- Modal --}}
     <script>
         // Generate alamat URL untuk proses hapus data program studi
@@ -481,14 +496,29 @@
                 " ?");
         })
 
-
-
         // Jika tombol ya ditekan, maka submit form hapus
         $('#formDelete [type="submit"]').click(function() {
             $('#formDelete').submit();
         })
     </script>
-
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script>
+        $('.delete-confirm').on('click', function(event) {
+            event.preventDefault();
+            const url = $(this).attr('href');
+            swal({
+                title: 'Are you sure?',
+                text: 'This record and it`s details will be permanantly deleted!',
+                icon: 'warning',
+                buttons: ["Cancel", "Yes!"],
+            }).then(function(value) {
+                if (value) {
+                    window.location.href = url;
+                }
+            });
+        });
+    </script>
+    {{-- <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script> --}}
 </body>
 
 </html>

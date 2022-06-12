@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\DocumentationController;
+use App\Http\Controllers\CooperationsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,3 +20,9 @@ Route::get('/', function () {
 });
 
 Route::resource('documentation', DocumentationController::class);
+
+Route::resource('cooperations', CooperationsController::class);
+
+Route::get('/approved/{id}', [CooperationsController::class,'approved']);
+
+Route::get('/canceled/{id}', [CooperationsController::class,'canceled']);
