@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', 'Tabel Study Programs')
+@section('title', 'Tabel Program Studi')
 
 @section('content')
     <div class="card">
