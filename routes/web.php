@@ -8,6 +8,7 @@ use App\Http\Controllers\PositionsController;
 use App\Http\Controllers\StudyProgramsController;
 use App\Http\Controllers\ServiceCategoriesController;
 use App\Http\Controllers\UserLevelsController;
+use App\Http\Controllers\PeriodsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -33,3 +34,4 @@ Route::resource('positions', PositionsController::class);
 Route::resource('study_programs', StudyProgramsController::class);
 Route::resource('service_categories', ServiceCategoriesController::class);
 Route::resource('user_levels', UserLevelsController::class);
+Route::resource('periods', PeriodsController::class);
