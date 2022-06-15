@@ -316,9 +316,9 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="pages/layout/boxed.html" class="nav-link">
+                                    <a href="{{ url('periods') }}" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p>Periode</p>
+                                        <p>Tabel Periode</p>
                                     </a>
                                 </li>
                             </ul>
