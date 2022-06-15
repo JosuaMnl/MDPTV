@@ -2,9 +2,10 @@
 
 namespace Database\Seeders;
 
-use App\Models\User_levels;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\User_levels;
+
 
 class User_levelsTableSeeder extends Seeder
 {
@@ -17,16 +18,15 @@ class User_levelsTableSeeder extends Seeder
     {
         //
         User_levels::create(
-            ["user_levels"=>"MDP TV"]
+            ["user_levels"=> "MDP TV"]
         );
 
         User_levels::create(
-            ["user_levels"=>"Multimedia"]
+            ["user_levels"=> "Multimedia"]
         );
 
         User_levels::create(
-            ["user_levels"=>"Mitra"]
+            ["user_levels"=> "Mitra"]
         );
-
     }
 }

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\MembersController;
 use App\Http\Controllers\DocumentationController;
+use App\Http\Controllers\CooperationsController;
 use App\Http\Controllers\OrganizersController;
 use App\Http\Controllers\DivisionsController;
 use App\Http\Controllers\PositionsController;
@@ -28,6 +29,9 @@ Route::get('/', function () {
 
 Route::resource('members', MembersController::class);
 Route::resource('documentation', DocumentationController::class);
+Route::resource('cooperations', CooperationsController::class);
+Route::get('/approved/{id}', [CooperationsController::class,'approved']);
+Route::get('/canceled/{id}', [CooperationsController::class,'canceled']);
 Route::resource('organizers', OrganizersController::class);
 Route::resource('divisions', DivisionsController::class);
 Route::resource('positions', PositionsController::class);
