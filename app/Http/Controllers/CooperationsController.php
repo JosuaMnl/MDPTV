@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Cooperations;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CooperationsController extends Controller
 {
@@ -15,8 +16,16 @@ class CooperationsController extends Controller
     public function index()
     {
         //
-        $cooperations = Cooperations::all();
+        if (Auth::user()->user_levels->user_levels === "MDP TV"){
+            $cooperations = Cooperations::all();
+        } else {
+            // $cooperations = Cooperations::all();
+            $cooperations = Cooperations::where('users_id', Auth::user()->id)->get();
+            // $cooperations = DB::select("SELECT * FROM cooperations WHERE cooperations.users_id =". Auth::user()->id);
+        }
+        // dd($cooperations);
         return view('cooperations.index')->with('cooperations', $cooperations);
+        // dd($request->session());
     }
 
     /**
@@ -49,6 +58,7 @@ class CooperationsController extends Controller
     public function show(Cooperations $cooperation)
     {
         //
+        $this->authorize('view', Cooperations::class);
         return view('cooperations.show')->with('cooperations', $cooperation);
     }
 
@@ -73,6 +83,7 @@ class CooperationsController extends Controller
     public function update(Request $request, Cooperations $cooperations)
     {
         //
+        $this->authorize('update', Cooperations::class);
     }
 
     /**
@@ -84,7 +95,7 @@ class CooperationsController extends Controller
     public function destroy(Cooperations $cooperation)
     {
         //
-        dd($cooperation);
+        // dd($cooperation);
         $cooperation->delete();
         
         return redirect()->route('cooperations.index')->with('success', 'Cooperations deleted successfully');

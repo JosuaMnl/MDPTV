@@ -9,7 +9,7 @@ class Cooperations extends Model
 {
     use HasFactory;
     public function organizers(){
-        return $this->belongsTo(Organizers::class);
+        return $this->belongsTo(Organizers::class, 'organizers_id', 'id');
     }
 
     public function users(){
