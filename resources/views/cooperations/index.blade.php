@@ -30,9 +30,13 @@
                     @foreach ($cooperations as $item)
                         <tr>
                             <td>
-                                <a href="{{ url('cooperations/' . $item->id) }}" class="btn btn-sm btn-info">Detail</a>
-                                <a href="{{ url('cooperations/' . $item->id) . '/edit' }}"
-                                    class="btn btn-sm btn-warning">Edit</a>
+                                @can('view', $item)
+                                    <a href="{{ url('cooperations/' . $item->id) }}" class="btn btn-sm btn-info">Detail</a>
+                                @endcan
+                                @can('update', $item)
+                                    <a href="{{ url('cooperations/' . $item->id) . '/edit' }}"
+                                        class="btn btn-sm btn-warning">Edit</a>
+                                @endcan
                             </td>
                             <td>{{ $item->nama_kegiatan }}</td>
                             <td>{{ $item->tanggal_kegiatan }}</td>

@@ -150,8 +150,7 @@
                                 <div class="media-body">
                                     <h3 class="dropdown-item-title">
                                         Brad Diesel
-                                        <span class="float-right text-sm text-danger"><i
-                                                class="fas fa-star"></i></span>
+                                        <span class="float-right text-sm text-danger"><i class="fas fa-star"></i></span>
                                     </h3>
                                     <p class="text-sm">Call me whenever you can...</p>
                                     <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
@@ -232,7 +231,8 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button">
+                    <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#"
+                        role="button">
                         <i class="fas fa-th-large"></i>
                     </a>
                 </li>
@@ -256,7 +256,8 @@
                             alt="User Image">
                     </div>
                     <div class="info">
-                        <a href="#" class="d-block">Marcelos</a>
+                        <a href="#" class="d-block text-decoration-none">{{ Auth::user()->name }} <br>
+                            {{ Auth::user()->user_levels->user_levels }}</a>
                     </div>
                 </div>
 
@@ -277,84 +278,128 @@
                         data-widget="treeview" role="menu" data-accordion="false">
 
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ url('dashboard') }}" class="nav-link">
                                 <i class="nav-icon fas fa-tachometer-alt"></i>
                                 <p>
                                     Dashboard
                                 </p>
                             </a>
                         </li>
+                        @if (Auth::user()->user_levels->user_levels === 'MDP TV')
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    <i class="nav-icon fas fa-copy"></i>
+                                    <p>
+                                        Master
+                                        <i class="fas fa-angle-left right"></i>
+                                        <span class="badge badge-info right txtMaster">
+
+                                        </span>
+                                    </p>
+                                </a>
+                                <ul class="nav nav-treeview">
+                                    <li class="master nav-item">
+                                        <a href="{{ url('service_categories') }}" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Tabel Kategori Layanan</p>
+                                        </a>
+                                    </li>
+                                    <li class="master nav-item">
+                                        <a href="{{ url('positions') }}" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Tabel Jabatan</p>
+                                        </a>
+                                    </li>
+                                    <li class="master nav-item">
+                                        <a href="{{ url('study_programs') }}" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Tabel Program Studi</p>
+                                        </a>
+                                    </li>
+                                    <li class="master nav-item">
+                                        <a href="{{ url('organizers') }}" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Tabel Penyelenggara</p>
+                                        </a>
+                                    </li>
+                                    <li class="master nav-item">
+                                        <a href="{{ url('divisions') }}" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Tabel Divisi</p>
+                                        </a>
+                                    </li>
+                                    <li class="master nav-item">
+                                        <a href="{{ url('periods') }}" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Tabel Periode</p>
+                                        </a>
+                                    </li>
+                                    <li class="master nav-item">
+                                        <a href="{{ url('user_levels') }}" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Tabel Level User</p>
+                                        </a>
+                                    </li>
+                                    <li class="master nav-item">
+                                        <a href="{{ url('users') }}" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Tabel Users</p>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                        @endif
+                        @if (Auth::user()->user_levels->user_levels === 'MDP TV')
+                            <li class="nav-item">
+                                <a href="{{ url('members') }}" class="nav-link">
+                                    <i class="nav-icon fas fa-chart-pie"></i>
+                                    <p>
+                                        Data Anggota
+                                    </p>
+                                </a>
+                            </li>
+                        @endif
+                        @if (Auth::user()->user_levels->user_levels === 'MDP TV' || Auth::user()->user_levels->user_levels === 'Mitra')
+                            <li class="nav-item">
+                                <a href="{{ url('cooperations') }}" class="nav-link">
+                                    <i class="nav-icon fas fa-tree"></i>
+                                    @if (Auth::user()->user_levels->user_levels === 'MDP TV')
+                                        <p>
+                                            Agenda Kerja Sama
+                                        </p>
+                                    @else
+                                        <p>
+                                            Pengajuan Kerja Sama
+                                        </p>
+                                    @endif
+
+                                </a>
+                            </li>
+                        @endif
+                        @if (Auth::user()->user_levels->user_levels === 'MDP TV' || Auth::user()->user_levels->user_levels === 'Multimedia')
+                            <li class="nav-item">
+                                <a href="{{ url('documentation') }}" class="nav-link">
+                                    <i class="nav-icon fas fa-edit"></i>
+                                    <p>
+                                        Dokumentasi
+                                    </p>
+                                </a>
+                            </li>
+                        @endif
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-copy"></i>
-                                <p>
-                                    Master
-                                    <i class="fas fa-angle-left right"></i>
-                                    <span class="badge badge-info right">6</span>
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="{{ url('service_categories') }}" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Tabel Kategori Layanan</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{ url('positions') }}" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Tabel Jabatan</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{ url('study_programs') }}" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Tabel Program Studi</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{ url('organizers') }}" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Tabel Penyelenggara</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{ url('divisions') }}" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Tabel Divisi</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{ url('periods') }}" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Tabel Periode</p>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ url('members') }}" class="nav-link">
-                                <i class="nav-icon fas fa-chart-pie"></i>
-                                <p>
-                                    Data Anggota
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-tree"></i>
-                                <p>
-                                    Agenda Kerja Sama
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ url('documentation') }}" class="nav-link">
-                                <i class="nav-icon fas fa-edit"></i>
-                                <p>
-                                    Dokumentasi
-                                </p>
-                            </a>
+                            <!-- Authentication -->
+                            <form method="POST" action="{{ route('logout') }}" class="nav-link">
+                                @csrf
+
+                                <a class="text-decoration-none" href="route('logout')"
+                                    onclick="event.preventDefault();
+                                                this.closest('form').submit();">
+                                    <i class="nav-icon fas fa-arrow-circle-right"></i>
+                                    <p>
+                                        Log Out
+                                    </p>
+                                </a>
+                            </form>
                         </li>
                     </ul>
                 </nav>
@@ -512,26 +557,13 @@
         });
     </script>
 
-    {{-- Modal --}}
     <script>
-        // Generate alamat URL untuk proses hapus data program studi
-        $('.btn-hapus').click(function() {
-            let id = $(this).attr('data-id');
-            $('#formDelete').attr('action', '/documentation/' + id);
+        var txtMaster = document.getElementsByClassName('txtMaster');
+        var numItems = document.getElementsByClassName('master');
+        var lengthMaster = numItems.length;
 
-            // Get value attribute data-nama-prodi
-            let nama_documentation = $(this).attr('data-nama-documentation');
-
-            // Set text ke div id="mb-konfirmasi"
-            $("#mb-konfirmasi").text("Apakah Anda yakin ingin menghapus data dokumentasi " + nama_documentation +
-                " ?");
-        })
-
-        // Jika tombol ya ditekan, maka submit form hapus
-        $('#formDelete [type="submit"]').click(function() {
-            $('#formDelete').submit();
-        })
+        txtMaster[0].innerHTML = lengthMaster;
     </script>
-
 </body>
+
 </html>
