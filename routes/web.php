@@ -26,6 +26,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('home', function (){
+    return view('layouts.index');
+});
+
+Route::get('Landing_page', function (){
+    return view('layouts.index1');
+});
+
 Route::resource('members', MembersController::class);
 Route::resource('documentation', DocumentationController::class);
 Route::resource('organizers', OrganizersController::class);
