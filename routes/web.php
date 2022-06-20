@@ -29,10 +29,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// Route::get('/dashboard', function () {
-//     return view('dashboard');
-// })->middleware(['auth'])->name('dashboard');
-
 Route::resource('members', MembersController::class)->middleware(['auth']);
 Route::resource('documentation', DocumentationController::class)->middleware(['auth']);
 Route::resource('cooperations', CooperationsController::class)->middleware(['auth']);
@@ -47,5 +43,8 @@ Route::resource('user_levels', UserLevelsController::class)->middleware(['auth']
 Route::resource('periods', PeriodsController::class)->middleware(['auth']);
 Route::resource('users', UserController::class)->middleware(['auth']);
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth']);
+Route::get('landing_page', function (){
+    return view('layouts.index1');
+});
 
 require __DIR__.'/auth.php';
