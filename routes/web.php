@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\MembersController;
 use App\Http\Controllers\DocumentationController;
+use App\Http\Controllers\CooperationsController;
 use App\Http\Controllers\OrganizersController;
 use App\Http\Controllers\DivisionsController;
 use App\Http\Controllers\PositionsController;
@@ -10,6 +11,8 @@ use App\Http\Controllers\ServiceCategoriesController;
 use App\Http\Controllers\UserLevelsController;
 use App\Http\Controllers\PeriodsController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,20 +29,22 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('home', function (){
-    return view('layouts.index');
-});
-
-Route::get('Landing_page', function (){
+Route::resource('members', MembersController::class)->middleware(['auth']);
+Route::resource('documentation', DocumentationController::class)->middleware(['auth']);
+Route::resource('cooperations', CooperationsController::class)->middleware(['auth']);
+Route::get('/approved/{id}', [CooperationsController::class,'approved'])->middleware(['auth']);
+Route::get('/canceled/{id}', [CooperationsController::class,'canceled'])->middleware(['auth']);
+Route::resource('organizers', OrganizersController::class)->middleware(['auth']);
+Route::resource('divisions', DivisionsController::class)->middleware(['auth']);
+Route::resource('positions', PositionsController::class)->middleware(['auth']);
+Route::resource('study_programs', StudyProgramsController::class)->middleware(['auth']);
+Route::resource('service_categories', ServiceCategoriesController::class)->middleware(['auth']);
+Route::resource('user_levels', UserLevelsController::class)->middleware(['auth']);
+Route::resource('periods', PeriodsController::class)->middleware(['auth']);
+Route::resource('users', UserController::class)->middleware(['auth']);
+Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth']);
+Route::get('landing_page', function (){
     return view('layouts.index1');
 });
 
-Route::resource('members', MembersController::class);
-Route::resource('documentation', DocumentationController::class);
-Route::resource('organizers', OrganizersController::class);
-Route::resource('divisions', DivisionsController::class);
-Route::resource('positions', PositionsController::class);
-Route::resource('study_programs', StudyProgramsController::class);
-Route::resource('service_categories', ServiceCategoriesController::class);
-Route::resource('user_levels', UserLevelsController::class);
-Route::resource('periods', PeriodsController::class);
+require __DIR__.'/auth.php';
