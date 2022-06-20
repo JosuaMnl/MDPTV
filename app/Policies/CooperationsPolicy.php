@@ -67,9 +67,10 @@ class CooperationsPolicy
      * @param  \App\Models\Cooperations  $cooperations
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function delete(User $user, Cooperations $cooperations)
+    public function delete(User $user)
     {
         //
+        return $user->user_levels_id === 3;
     }
 
     /**

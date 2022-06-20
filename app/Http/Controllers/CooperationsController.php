@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Cooperations;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Organizers;
+use App\Models\Service_details;
 
 class CooperationsController extends Controller
 {
@@ -36,6 +38,8 @@ class CooperationsController extends Controller
     public function create()
     {
         //
+        $organizers = Organizers::all();
+        return view('cooperations.create')->with('organizers', $organizers);
     }
 
     /**
@@ -47,6 +51,39 @@ class CooperationsController extends Controller
     public function store(Request $request)
     {
         //
+        $validasi = $request->validate([
+                'nama_kegiatan' => 'required',
+                'organizers' => 'required',
+                'tanggal_kegiatan' => 'required',
+                'no_hp' => 'required',
+                'lokasi' => 'required',
+                'surat_izin' => 'required|mimes:pdf,jpg,png|max:10000',
+                'surat_kerjasama' => 'required|mimes:pdf,jpg,png|max:10000'
+        ]);
+
+        $ext1 = $request->surat_izin->getClientOriginalExtension(); 
+        $ext2 = $request->surat_kerjasama->getClientOriginalExtension(); 
+        $nama_file_baru1 = "surat_izin-". time() . "." . $ext1;
+        $nama_file_baru2 = "surat_kerjasama-". time() . "." . $ext2;
+        
+        $request->surat_izin->storeAs('public/files', $nama_file_baru1);
+        $request->surat_kerjasama->storeAs('public/files', $nama_file_baru2);
+
+        $cooperations = Cooperations::create([
+            'nama_kegiatan' => $validasi['nama_kegiatan'],
+            'organizers_id' => $validasi['organizers'],
+            'tanggal_kegiatan' => $validasi['tanggal_kegiatan'],
+            'no_hp' => $validasi['no_hp'],
+            'lokasi' => $validasi['lokasi'],
+            'surat_izin' =>$nama_file_baru1,
+            'surat_kerjasama' =>$nama_file_baru2,
+            'users_id' => Auth::user()->id
+        ]);
+
+        foreach($request->orderServices as $service){
+            $cooperations->services()->attach($service["'service_categories_id'"]);
+        }
+        return redirect()->route('cooperations.index');
     }
 
     /**
@@ -59,7 +96,9 @@ class CooperationsController extends Controller
     {
         //
         $this->authorize('view', Cooperations::class);
-        return view('cooperations.show')->with('cooperations', $cooperation);
+        $service_details = Service_details::where('cooperations_id', $cooperation->id)->get();
+        // dd($service_details);
+        return view('cooperations.show')->with('cooperations', $cooperation)->with('service_details', $service_details);
     }
 
     /**
@@ -68,9 +107,12 @@ class CooperationsController extends Controller
      * @param  \App\Models\Cooperations  $cooperations
      * @return \Illuminate\Http\Response
      */
-    public function edit(Cooperations $cooperations)
+    public function edit(Cooperations $cooperation)
     {
         //
+        $service_details = Service_details::where('cooperations_id', $cooperation->id)->get();
+        $organizers = Organizers::all();
+        return view('cooperations.edit')->with('organizers', $organizers)->with('cooperations', $cooperation)->with('service_details', $service_details);
     }
 
     /**
@@ -80,12 +122,54 @@ class CooperationsController extends Controller
      * @param  \App\Models\Cooperations  $cooperations
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Cooperations $cooperations)
+    public function update(Request $request, Cooperations $cooperation)
     {
         //
+        // dd($cooperations);
+        // dd($cooperation);
         $this->authorize('update', Cooperations::class);
-    }
+        $cooperation = Cooperations::find($cooperation->id);
+        // dd($cooperation->id);
+        $validasi = $request->validate([
+                'nama_kegiatan' => 'required',
+                'organizers' => 'required',
+                'tanggal_kegiatan' => 'required',
+                'no_hp' => 'required',
+                'lokasi' => 'required',
+                'surat_izin' => 'mimes:pdf,jpg,png|max:10000',
+                'surat_kerjasama' => 'mimes:pdf,jpg,png|max:10000'
+        ]);
 
+        // dd(!$request->has('surat_izin'));
+        if($request->has('surat_izin') || $request->has('surat_kerjasama')){
+            $ext1 = $request->surat_izin->getClientOriginalExtension(); 
+            $ext2 = $request->surat_kerjasama->getClientOriginalExtension(); 
+            $rename_file1 = "surat_izin-". time() . "." . $ext1;
+            $rename_file2 = "surat_kerjasama-". time() . "." . $ext2;
+            
+            $request->surat_izin->storeAs('public/files', $rename_file1);
+            $request->surat_kerjasama->storeAs('public/files', $rename_file2);
+
+            $cooperation->update([
+                'nama_kegiatan' => $validasi['nama_kegiatan'],
+                'organizers_id' => $validasi['organizers'],
+                'tanggal_kegiatan' => $validasi['tanggal_kegiatan'],
+                'no_hp' => $validasi['no_hp'],
+                'lokasi' => $validasi['lokasi'],
+                'surat_izin' =>$rename_file1,
+                'surat_kerjasama' =>$rename_file2
+            ]);
+        } else{
+            $cooperation->update([
+                'nama_kegiatan' => $validasi['nama_kegiatan'],
+                'organizers_id' => $validasi['organizers'],
+                'tanggal_kegiatan' => $validasi['tanggal_kegiatan'],
+                'no_hp' => $validasi['no_hp'],
+                'lokasi' => $validasi['lokasi']
+            ]);
+        }
+        return redirect()->back();
+    }
     /**
      * Remove the specified resource from storage.
      *
@@ -96,8 +180,8 @@ class CooperationsController extends Controller
     {
         //
         // dd($cooperation);
+        $this->authorize('delete', Cooperations::class);
         $cooperation->delete();
-        
         return redirect()->route('cooperations.index')->with('success', 'Cooperations deleted successfully');
     }
 

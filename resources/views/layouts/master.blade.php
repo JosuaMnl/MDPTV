@@ -86,6 +86,7 @@
             }(w, d, 0, "script");
         })(window, document);
     </script>
+    @livewireStyles
 </head>
 
 <body
@@ -361,17 +362,19 @@
                         @endif
                         @if (Auth::user()->user_levels->user_levels === 'MDP TV' || Auth::user()->user_levels->user_levels === 'Mitra')
                             <li class="nav-item">
-                                <a href="{{ url('cooperations') }}" class="nav-link">
-                                    <i class="nav-icon fas fa-tree"></i>
-                                    @if (Auth::user()->user_levels->user_levels === 'MDP TV')
+                                @if (Auth::user()->user_levels->user_levels === 'MDP TV')
+                                    <a href="{{ url('cooperations') }}" class="nav-link">
+                                        <i class="nav-icon fas fa-tree"></i>
                                         <p>
                                             Agenda Kerja Sama
                                         </p>
                                     @else
-                                        <p>
-                                            Pengajuan Kerja Sama
-                                        </p>
-                                    @endif
+                                        <a href="{{ url('cooperations/create') }}" class="nav-link">
+                                            <i class="nav-icon fas fa-tree"></i>
+                                            <p>
+                                                Pengajuan Kerja Sama
+                                            </p>
+                                @endif
 
                                 </a>
                             </li>
@@ -564,6 +567,7 @@
 
         txtMaster[0].innerHTML = lengthMaster;
     </script>
+    @livewireScripts
 </body>
 
 </html>

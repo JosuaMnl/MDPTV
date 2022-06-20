@@ -1,9 +1,10 @@
 <x-guest-layout>
     <x-auth-card>
         <x-slot name="logo">
-            <a href="/">
+            <a href="/" class="block mb-3 p-2">
                 <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
             </a>
+            <h1 class="text-lg mt-4 p-2 text-gray-500 text-center">MDP TV | Login</h1>
         </x-slot>
 
         <!-- Session Status -->
@@ -19,8 +20,8 @@
             <div>
                 <x-label for="email" :value="__('Email')" />
 
-                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required
-                    autofocus />
+                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')"
+                    required autofocus />
             </div>
 
             <!-- Password -->

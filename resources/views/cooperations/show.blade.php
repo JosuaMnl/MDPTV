@@ -46,6 +46,16 @@
                     <td>{{ $cooperations->surat_kerjasama }}</td>
                 </tr>
                 <tr>
+                    <td>Layanan yang diminta</td>
+                    <td>
+                        <ul>
+                            @foreach ($service_details as $item)
+                                <li>{{ $item->service_categories->nama_layanan }}</li>
+                            @endforeach
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
                     <td>Action</td>
                     <td>
                         <a class="btn btn-sm btn-success" href="{{ url('approved/' . $cooperations->id) }}">Diterima</a>

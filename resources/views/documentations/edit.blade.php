@@ -50,8 +50,8 @@
                 <div class="form-group">
                     <label>Tanggal Kegiatan</label>
                     <div class="input-group date" id="reservationdate" data-target-input="nearest">
-                        <input type="text" class="form-control datetimepicker-input" name="tanggal_kegiatan" id="tanggal"
-                            data-target="#reservationdate"
+                        <input type="text" class="form-control datetimepicker-input" name="tanggal_kegiatan"
+                            id="tanggal" data-target="#reservationdate"
                             value="{{ old('tanggal_kegiatan') ?? $documentations->tanggal_kegiatan }}" />
                         <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
                             <div class="input-group-text"><i class="fa fa-calendar"></i></div>
