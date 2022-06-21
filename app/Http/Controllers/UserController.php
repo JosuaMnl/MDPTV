@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\User_levels;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
@@ -29,7 +30,8 @@ class UserController extends Controller
     public function create()
     {
         //
-        return view('users.create');
+        $user_levels = User_levels::all();
+        return view('users.create')->with('user_levels', $user_levels);
     }
 
     /**
@@ -43,14 +45,17 @@ class UserController extends Controller
         //
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
+            'user_levels_id' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            
         ]);
 
-        $user = User::create([
+        User::create([
             'name' => $request->name,
+            'user_levels_id' => $request->user_levels_id,
             'email' => $request->email,
-            'password' => Hash::make($request->password),
+            'password' => Hash::make($request->password)
         ]);
 
         return redirect()->route('users.index');

@@ -47,7 +47,10 @@
                     <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
                     <li class="nav-item"><a class="nav-link" href="#webinar">Webinar</a></li>
                     <li class="nav-item"><a class="nav-link" href="#signup">Contact</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Login</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('login') }}">Login</a></li>
+                    @if (Route::has('register'))
+                        <li class="nav-item"><a class="nav-link" href="{{ route('register') }}">Register</a></li>
+                    @endif
                 </ul>
             </div>
         </div>
@@ -73,10 +76,9 @@
                 <div class="col-lg-8">
                     <h2 class="text-white mb-4">MDP TV</h2>
                     <p class="text-white-50">
-                        MDP TV merupakan UKM baru di Universitas MDP ini yang dibangun di tahun 2020.MDP TV di ketuai
+                        MDP TV merupakan sebuah UKM di Universitas MDP ini yang baru dibangun di tahun 2020. MDP TV di
+                        ketuai
                         oleh Marcelo Amazona dan pak Anugerah Widi sebagai pembina.
-                        {{-- <a href="https://startbootstrap.com/theme/grayscale/">the preview page.</a>
-                        The theme is open source, and you can use it for any purpose, personal or commercial. --}}
                     </p>
                 </div>
             </div>
@@ -108,11 +110,9 @@
                         <div class="d-flex h-100">
                             <div class="project-text w-100 my-auto text-center text-lg-left">
                                 <h4 class="text-white">LMG EPS 1</h4>
-                                <p class="mb-0 text-white-50">LMG singkatan dari Live Music good merupakan program baru
-                                    MDP TV yang dimana program ini memberikan acara live music , jadwal program ini
-                                    disore hari karena jam pergantian kelas malam dan pagi dan MC yah sendiri ditangung
-                                    jawabkan Sanila sedangkan bintang tamu dan kru band bakal berbeda beda setiap
-                                    episode</p>
+                                <p class="mb-0 text-white-50">LMG singkatan dari Live Music Good merupakan program baru
+                                    MDP TV yang dimana program ini adalah acara live music. Jadwal program ini dilakukan
+                                    dalam 2 bulan sekali. Bintang tamu dan pemain band akan berbeda setiap episode.</p>
                                 <hr class="d-none d-lg-block mb-0 ms-0" />
                                 <div class="d-grid gap-2 col-6 mx-auto">
                                     <a href="https://www.youtube.com/watch?v=QErYcmmx1AE" target="_blank"
@@ -133,11 +133,10 @@
                         <div class="d-flex h-100">
                             <div class="project-text w-100 my-auto text-center text-lg-right">
                                 <h4 class="text-white ">LMG EPS 2</h4>
-                                <p class="mb-0 text-white-50 ">LMG singkatan dari Live Music good merupakan program baru
-                                    MDP TV yang dimana program ini memberikan acara live music , jadwal program ini
-                                    disore hari karena jam pergantian kelas malam dan pagi dan MC yah sendiri ditangung
-                                    jawabkan Karina sedangkan bintang tamu dan kru band bakal berbeda beda setiap
-                                    episode</p>
+                                <p class="mb-0 text-white-50">LMG singkatan dari Live Music Good merupakan program baru
+                                    MDP TV yang dimana program ini adalah acara live music. Jadwal program ini dilakukan
+                                    dalam 2 bulan sekali. Bintang tamu dan pemain band akan berbeda setiap
+                                    episode.</p>
                                 <hr class="d-none d-lg-block mb-0 me-0" />
                                 <a href="https://youtu.be/Ra-N0CtldX0" target="_blank" class="btn btn-secondary">Link
                                     Youtube</a>
@@ -178,9 +177,6 @@
                     <img src="{{ asset('vendors/dist/gray/assets/img/2.png') }}" class="d-block w-100"
                         alt="...">
                     <div class="carousel-caption d-none d-md-block">
-                        {{-- <h5>
-                            <a href="https://youtu.be/Ra-N0CtldX0" target="_blank">Daftar</a>
-                        </h5> --}}
                         <a href="https://www.youtube.com/watch?v=__1UYWwriuc&t=1805s" target="_blank"
                             class="btn btn-outline-secondary">Link Youtube</a>
                         <p></p>
@@ -208,47 +204,6 @@
                     <h2 class="text-white mb-5">Subscribe to receive updates!</h2>
                     <a href="https://www.youtube.com/c/MDPTVindonesia" target="_blank"
                         class="btn btn-secondary btn-lg btn-block">YOUTUBE</a>
-                    <!-- * * * * * * * * * * * * * * *-->
-                    <!-- * * SB Forms Contact Form * *-->
-                    <!-- * * * * * * * * * * * * * * *-->
-                    <!-- This form is pre-integrated with SB Forms.-->
-                    <!-- To make this form functional, sign up at-->
-                    <!-- https://startbootstrap.com/solution/contact-forms-->
-                    <!-- to get an API token!-->
-                    {{-- <form class="form-signup" id="contactForm" data-sb-form-api-token="API_TOKEN">
-                        <!-- Email address input-->
-                        <div class="row input-group-newsletter">
-                            <div class="col"><input class="form-control" id="emailAddress" type="email"
-                                    placeholder="Enter email address..." aria-label="Enter email address..."
-                                    data-sb-validations="required,email" /></div>
-                            <div class="col-auto"><button class="btn btn-primary disabled" id="submitButton"
-                                    type="submit">Notify Me!</button></div>
-                        </div>
-                        <div class="invalid-feedback mt-2" data-sb-feedback="emailAddress:required">An email is
-                            required.</div>
-                        <div class="invalid-feedback mt-2" data-sb-feedback="emailAddress:email">Email is not valid.
-                        </div>
-                        <!-- Submit success message-->
-                        <!---->
-                        <!-- This is what your users will see when the form-->
-                        <!-- has successfully submitted-->
-                        <div class="d-none" id="submitSuccessMessage">
-                            <div class="text-center mb-3 mt-2 text-white">
-                                <div class="fw-bolder">Form submission successful!</div>
-                                To activate this form, sign up at
-                                <br />
-                                <a
-                                    href="https://startbootstrap.com/solution/contact-forms">https://startbootstrap.com/solution/contact-forms</a>
-                            </div>
-                        </div>
-                        <!-- Submit error message-->
-                        <!---->
-                        <!-- This is what your users will see when there is-->
-                        <!-- an error submitting the form-->
-                        <div class="d-none" id="submitErrorMessage">
-                            <div class="text-center text-danger mb-3 mt-2">Error sending message!</div>
-                        </div>
-                    </form> --}}
                 </div>
             </div>
         </div>
@@ -303,10 +258,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Core theme JS-->
     <script src="{{ asset('vendors/dist/gray/js/scripts.js') }}"></script>
-    <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
-    <!-- * *                               SB Forms JS                               * *-->
-    <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
-    <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+
     <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
 </body>
 

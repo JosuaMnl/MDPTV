@@ -127,6 +127,6 @@ class DocumentationController extends Controller
     {
         //
         $documentation->delete();
-        return redirect()->route('documentation.index')->with('info', "Data Dokumentasi berhasil dihapus");
+        return redirect()->back();
     }
 }

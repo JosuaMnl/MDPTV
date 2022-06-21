@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>@yield('title')</title>
-    <link rel="icon" href="{{ asset('vendors/dist/img/MDP_TV.png') }}">
+    <link rel="icon" href="{{ asset('vendors/dist/img/MDPTV_Logo.png') }}" sizes="50x50">
 
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
