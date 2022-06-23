@@ -18,7 +18,7 @@ class DocumentationController extends Controller
     {
         //
         $documentations = Documentation::all();
-        return view('documentations.index')->with('documentations', $documentations);
+        return view('documentations.index')->with('documentations', $documentations)->with('tables',true);
     }
 
     /**
@@ -31,7 +31,7 @@ class DocumentationController extends Controller
         //
         $organizers = Organizers::all();
         $periods = Periods::all();
-        return view('documentations.create')->with('organizers', $organizers)->with('periods', $periods);
+        return view('documentations.create')->with('organizers', $organizers)->with('periods', $periods)->with('date',true);
     }
 
     /**

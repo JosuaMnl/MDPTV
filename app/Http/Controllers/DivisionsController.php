@@ -16,7 +16,7 @@ class DivisionsController extends Controller
     {
         //
         $divisions = divisions::all();
-        return view('divisions.index')->with('divisions', $divisions);
+        return view('divisions.index')->with('divisions', $divisions)->with('scripts',true);
     }
 
     /**

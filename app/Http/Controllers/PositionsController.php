@@ -16,7 +16,7 @@ class PositionsController extends Controller
     {
         //
         $positions = positions::all();
-        return view('positions.index')->with('positions', $positions);
+        return view('positions.index')->with('positions', $positions)->with('scripts',true);
     }
 
     /**

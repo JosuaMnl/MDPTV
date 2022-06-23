@@ -23,15 +23,24 @@
 
     <link rel="stylesheet" href="{{ asset('vendors/dist/css/adminlte.min.css?v=3.2.0') }}">
 
-
-    <link rel="stylesheet" href="{{ asset('vendors/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
-    <link rel="stylesheet"
-        href="{{ asset('vendors/plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('vendors/plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
-
+    @hasSection('dataTableAnggota')
+        <link rel="stylesheet" href="{{ asset('vendors/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
+        <link rel="stylesheet"
+            href="{{ asset('vendors/plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
+        <link rel="stylesheet"
+            href="{{ asset('vendors/plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
+    @endif
+    {{-- @hasSection('dataTableDokumentasi') --}}
     <link rel="stylesheet" href="{{ asset('vendors/dist/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('vendors/dist/css/dataTables.bootstrap5.min.css') }}">
     <link rel="stylesheet" href="{{ asset('vendors/dist/css/responsive.bootstrap5.min.css') }}">
+    {{-- @endif --}}
+    {{-- @hasSection('isActive')
+            <link rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.3/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css">
+
+    @endif --}}
     {{-- <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css"> --}}
     {{-- <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.3.0/css/responsive.dataTables.min.css"> --}}
     <style>
@@ -41,8 +50,8 @@
     </style>
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" id="theme-styles">
 
-
-
+    {{-- Icon --}}
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <script nonce="2635d354-606f-47f6-beb6-c95193b40239">
         (function(w, d) {
             ! function(a, e, t, r) {
@@ -106,10 +115,10 @@
                             class="fas fa-bars"></i></a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
-                    <a href="#" class="nav-link">Home</a>
+                    <a href="{{ url('/') }}" class="nav-link">Home</a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
-                    <a href="#" class="nav-link">Contact</a>
+                    <a href="{{ url('/#contact') }}" class="nav-link">Contact</a>
                 </li>
             </ul>
 
@@ -137,7 +146,7 @@
                     </div>
                 </li>
 
-                <li class="nav-item dropdown">
+                {{-- <li class="nav-item dropdown">
                     <a class="nav-link" data-toggle="dropdown" href="#">
                         <i class="far fa-comments"></i>
                         <span class="badge badge-danger navbar-badge">3</span>
@@ -198,9 +207,9 @@
                         <div class="dropdown-divider"></div>
                         <a href="#" class="dropdown-item dropdown-footer">See All Messages</a>
                     </div>
-                </li>
+                </li> --}}
 
-                <li class="nav-item dropdown">
+                {{-- <li class="nav-item dropdown">
                     <a class="nav-link" data-toggle="dropdown" href="#">
                         <i class="far fa-bell"></i>
                         <span class="badge badge-warning navbar-badge">15</span>
@@ -236,7 +245,7 @@
                         role="button">
                         <i class="fas fa-th-large"></i>
                     </a>
-                </li>
+                </li> --}}
             </ul>
         </nav>
 
@@ -379,12 +388,22 @@
                                 </a>
                             </li>
                         @endif
-                        @if (Auth::user()->user_levels->user_levels === 'MDP TV' || Auth::user()->user_levels->user_levels === 'Multimedia')
+                        @if (Auth::user()->user_levels->user_levels === 'MDP TV')
                             <li class="nav-item">
                                 <a href="{{ url('documentation') }}" class="nav-link">
                                     <i class="nav-icon fas fa-edit"></i>
                                     <p>
                                         Dokumentasi
+                                    </p>
+                                </a>
+                            </li>
+                        @endif
+                        @if (Auth::user()->user_levels->user_levels === 'Multimedia')
+                            <li class="nav-item">
+                                <a href="{{ url('documentation/create') }}" class="nav-link">
+                                    <i class="nav-icon fas fa-edit"></i>
+                                    <p>
+                                        Tambah Dokumentasi
                                     </p>
                                 </a>
                             </li>
@@ -452,71 +471,123 @@
         </footer>
     </div>
 
-
-
-    <script src="{{ asset('vendors/plugins/jquery/jquery.min.js') }}"></script>
-
-    <script src="{{ asset('vendors/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    {{-- Jquery CDN --}}
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    {{-- Bootstrap JS CDN --}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
 
     <script src="{{ asset('vendors/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js') }}"></script>
 
     <script src="{{ asset('vendors/dist/js/adminlte.js?v=3.2.0') }}"></script>
 
-
-    <script src="{{ asset('vendors/plugins/jquery-mousewheel/jquery.mousewheel.js') }}"></script>
-    <script src="{{ asset('vendors/plugins/raphael/raphael.min.js') }}"></script>
-    <script src="{{ asset('vendors/plugins/jquery-mapael/jquery.mapael.min.js') }}"></script>
-    <script src="{{ asset('vendors/plugins/jquery-mapael/maps/usa_states.min.js') }}"></script>
-
-    <script src="{{ asset('vendors/plugins/chart.js/Chart.min.js') }}"></script>
-
     {{-- <script src="{{ asset('vendors/dist/js/demo.js') }}"></script> --}}
 
-    <script src="{{ asset('vendors/dist/js/pages/dashboard2.js') }}"></script>
+    {{-- <script src="{{ asset('vendors/dist/js/pages/dashboard2.js') }}"></script> --}}
+    @hasSection('isActive')
+        <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
+        <script>
+            $(document).ready(function() {
+                $('#example').DataTable();
+            });
+        </script>
+    @endif
 
+    @hasSection('dataTableAnggota')
+        {{-- DataTables Anggota --}}
+        <script src="{{ asset('vendors/plugins/jquery/jquery.min.js') }}"></script>
+        <script src="{{ asset('vendors/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+        <script src="{{ asset('vendors/plugins/datatables/jquery.dataTables.min.js') }}"></script>
+        <script src="{{ asset('vendors/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
+        <script src="{{ asset('vendors/plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
+        <script src="{{ asset('vendors/plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
+        <script src="{{ asset('vendors/plugins/datatables-buttons/js/dataTables.buttons.min.js') }}"></script>
+        <script src="{{ asset('vendors/plugins/datatables-buttons/js/buttons.bootstrap4.min.js') }}"></script>
 
-    {{-- DataTables --}}
-    <script src="{{ asset('vendors/plugins/datatables/jquery.dataTables.min.js') }}"></script>
-    <script src="{{ asset('vendors/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
-    <script src="{{ asset('vendors/plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
-    <script src="{{ asset('vendors/plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
-    <script src="{{ asset('vendors/plugins/datatables-buttons/js/dataTables.buttons.min.js') }}"></script>
-    <script src="{{ asset('vendors/plugins/datatables-buttons/js/buttons.bootstrap4.min.js') }}"></script>
+        <script src="{{ asset('vendors/plugins/jszip/jszip.min.js') }}"></script>
+        <script src="{{ asset('vendors/plugins/pdfmake/pdfmake.min.js') }}"></script>
+        <script src="{{ asset('vendors/plugins/pdfmake/vfs_fonts.js') }}"></script>
 
-    <script src="{{ asset('vendors/plugins/jszip/jszip.min.js') }}"></script>
-    <script src="{{ asset('vendors/plugins/pdfmake/pdfmake.min.js') }}"></script>
-    <script src="{{ asset('vendors/plugins/pdfmake/vfs_fonts.js') }}"></script>
+        <script src="{{ asset('vendors/plugins/datatables-buttons/js/buttons.html5.min.js') }}"></script>
+        <script src="{{ asset('vendors/plugins/datatables-buttons/js/buttons.print.min.js') }}"></script>
+        <script src="{{ asset('vendors/plugins/datatables-buttons/js/buttons.colVis.min.js') }}"></script>
 
-    <script src="{{ asset('vendors/plugins/datatables-buttons/js/buttons.html5.min.js') }}"></script>
-    <script src="{{ asset('vendors/plugins/datatables-buttons/js/buttons.print.min.js') }}"></script>
-    <script src="{{ asset('vendors/plugins/datatables-buttons/js/buttons.colVis.min.js') }}"></script>
-
-    {{-- DataTable Button --}}
-    <script>
-        $(function() {
+        {{-- DataTable Button --}}
+        <script>
+            $(function() {
                 $("#example1").DataTable({
                     "responsive": true,
                     "lengthChange": false,
                     "autoWidth": false,
-                    "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+                    "buttons": ["csv", "excel", "pdf", "print", "colvis"]
                 }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)')
-            }
-
-        );
-    </script>
-
-
-    {{-- Date Picker --}}
-    <script src="{{ asset('vendors/plugins/moment/moment.min.js') }}"></script>
-    <script src="{{ asset('vendors/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js') }}"></script>
-    <script>
-        $(function() {
-            //Date picker
-            $('#reservationdate').datetimepicker({
-                format: 'YYYY-MM-DD'
             });
+
+            $('.btn-hapus').click(function() {
+                let id = $(this).attr('data-id');
+                $('#formDelete').attr('action', '/members/' + id);
+
+                let nama = $(this).attr('data-name-members');
+                $('#mb-konfirmasi').text('Apakah anda yakin ingin menghapus data anggota ' + nama + '?');
+            })
+
+            $('#formDelete [type="submit"]').click(function() {
+                $('#formDelete').submit();
+            });
+        </script>
+    @endif
+
+    @hasSection('tableDokumentasi')
+        {{-- DataTables Dokumentasi --}}
+        <script src="{{ asset('vendors/plugins/jquery/jquery.min.js') }}"></script>
+        <script src="{{ asset('vendors/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+        <script src="{{ asset('vendors/plugins/dataTables/dokumentasi/jquery.dataTables.min.js') }}"></script>
+        <script src="{{ asset('vendors/plugins/datatables-bs5/js/dataTables.bootstrap5.min.js') }}"></script>
+        <script src="{{ asset('vendors/plugins/datatables-responsive/js/dokumentasi/dataTables.responsive.min.js') }}">
+        </script>
+        <script src="{{ asset('vendors/plugins/datatables-responsive/js/responsive.bootstrap5.min.js') }}"></script>
+
+        <script>
+            $(document).ready(function() {
+                $('#example').DataTable({
+                    responsive: {
+                        details: {
+                            display: $.fn.dataTable.Responsive.display.modal({
+                                header: function(row) {
+                                    var data = row.data();
+                                    return 'Details for ' + data[0];
+                                }
+                            }),
+                            renderer: $.fn.dataTable.Responsive.renderer.tableAll({
+                                tableClass: 'table'
+                            })
+                        }
+                    }
+                });
+            });
+        </script>
+    @endif
+
+    {{-- <script>
+        $(document).ready(function() {
+            $('#example1').DataTable();
         });
-    </script>
+    </script> --}}
+
+    @hasSection('date')
+        {{-- Date Picker --}}
+        <script src="{{ asset('vendors/plugins/moment/moment.min.js') }}"></script>
+        <script src="{{ asset('vendors/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js') }}"></script>
+        <script>
+            $(function() {
+                //Date picker
+                $('#reservationdate').datetimepicker({
+                    format: 'YYYY-MM-DD'
+                });
+            });
+        </script>
+    @endif
+
 
     {{-- Select2 --}}
     <script src="{{ asset('vendors/plugins/select2/js/select2.full.min.js') }}"></script>
@@ -525,38 +596,6 @@
         $(function() {
             //Initialize Select2 Elements
             $('.select2').select2();
-        });
-    </script>
-
-    {{-- DataTables --}}
-    <script src="{{ asset('vendors/plugins/dataTables/jquery.dataTables.min.js') }}"></script>
-    <script src="{{ asset('vendors/plugins/datatables-bs5/js/dataTables.bootstrap5.min.js') }}"></script>
-    <script src="{{ asset('vendors/plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
-    <script src="{{ asset('vendors/plugins/datatables-responsive/js/responsive.bootstrap5.min.js') }}"></script>
-
-    <script>
-        $(document).ready(function() {
-            $('#example').DataTable({
-                responsive: {
-                    details: {
-                        display: $.fn.dataTable.Responsive.display.modal({
-                            header: function(row) {
-                                var data = row.data();
-                                return 'Details for ' + data[0];
-                            }
-                        }),
-                        renderer: $.fn.dataTable.Responsive.renderer.tableAll({
-                            tableClass: 'table'
-                        })
-                    }
-                }
-            });
-        });
-    </script>
-
-    <script>
-        $(document).ready(function() {
-            $('#example1').DataTable();
         });
     </script>
 

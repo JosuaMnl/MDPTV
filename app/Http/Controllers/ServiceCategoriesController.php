@@ -16,7 +16,7 @@ class ServiceCategoriesController extends Controller
     {
         //
         $service_categories = Service_categories::all();
-        return view('service_categories.index')->with('service_categories', $service_categories);
+        return view('service_categories.index')->with('service_categories', $service_categories)->with('scripts',true);
     }
 
     /**

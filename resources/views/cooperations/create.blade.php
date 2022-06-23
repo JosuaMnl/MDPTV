@@ -2,6 +2,8 @@
 
 @section('title', 'Tambah Kerjasama')
 
+@section('date', $date)
+
 @section('content')
     <div class="card">
         <div class="card-header">

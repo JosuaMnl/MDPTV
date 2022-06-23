@@ -2,6 +2,8 @@
 
 @section('title', 'Tabel Periode')
 
+@section('isActive', $scripts)
+
 @section('content')
     <div class="card">
         <div class="card-header">

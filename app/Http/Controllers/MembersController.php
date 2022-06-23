@@ -19,7 +19,7 @@ class MembersController extends Controller
     {
         //
         $members = Members::all();
-        return view('anggota.index')->with('members', $members);
+        return view('anggota.index')->with('members', $members)->with('scripts', true);
     }
 
     /**

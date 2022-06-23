@@ -16,7 +16,7 @@ class OrganizersController extends Controller
     {
         //
         $organizers = Organizers::all();
-        return view('organizers.index')->with('organizers', $organizers);
+        return view('organizers.index')->with('organizers', $organizers)->with('scripts',true);
     }
 
     /**

@@ -16,7 +16,7 @@ class PeriodsController extends Controller
     {
         //
         $periods = Periods::all();
-        return view('periods.index')->with('periods', $periods);
+        return view('periods.index')->with('periods', $periods)->with('scripts', true);
     }
 
     /**

@@ -16,7 +16,7 @@ class StudyProgramsController extends Controller
     {
         //
         $study_programs = study_programs::all();
-        return view('study_programs.index')->with('study_programs', $study_programs);
+        return view('study_programs.index')->with('study_programs', $study_programs)->with('scripts',true);
     }
 
     /**

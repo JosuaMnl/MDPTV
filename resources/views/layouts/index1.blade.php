@@ -46,7 +46,7 @@
                     <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
                     <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
                     <li class="nav-item"><a class="nav-link" href="#webinar">Webinar</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#signup">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ route('login') }}">Login</a></li>
                     @if (Route::has('register'))
                         <li class="nav-item"><a class="nav-link" href="{{ route('register') }}">Register</a></li>
@@ -196,7 +196,7 @@
         </div>
     </section>
     <!-- Signup-->
-    <section class="signup-section" id="signup" style="margin-top: 50px;">
+    <section class="signup-section" id="contact" style="margin-top: 50px;">
         <div class="container px-4 px-lg-5">
             <div class="row gx-4 gx-lg-5">
                 <div class="col-md-10 col-lg-8 mx-auto text-center">

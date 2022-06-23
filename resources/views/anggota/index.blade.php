@@ -2,6 +2,8 @@
 
 @section('title', 'Data Anggota')
 
+@section('dataTableAnggota', $scripts)
+
 @section('content')
     <div class="card">
         <div class="card-header">
@@ -90,29 +92,8 @@
         </div>
     </div>
 
-    <script src="{{ asset('vendors/plugins/jquery/jquery.min.js') }}"></script>
+    {{-- <script src="{{ asset('vendors/plugins/jquery/jquery.min.js') }}"></script> --}}
     {{-- Delete Modal master --}}
-    <script>
-        // var jq = $.noConflict();
-        // jq(document).ready(function() {
-        //     jq(".btn-hapus").click(function() {
-        //         alert("tes");
-        //     });
-        // });
 
-        let btn = $('.btn-hapus')
-
-        $('.btn-hapus').click(function() {
-            let id = $(this).attr('data-id');
-            $('#formDelete').attr('action', '/members/' + id);
-
-            let nama = $(this).attr('data-name-members');
-            $('#mb-konfirmasi').text('Apakah anda yakin ingin menghapus data anggota ' + nama + '?');
-        })
-
-        $('#formDelete [type="submit"]').click(function() {
-            $('#formDelete').submit();
-        });
-    </script>
 
 @endsection

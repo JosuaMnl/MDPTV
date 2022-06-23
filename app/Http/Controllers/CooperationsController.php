@@ -26,7 +26,7 @@ class CooperationsController extends Controller
             // $cooperations = DB::select("SELECT * FROM cooperations WHERE cooperations.users_id =". Auth::user()->id);
         }
         // dd($cooperations);
-        return view('cooperations.index')->with('cooperations', $cooperations);
+        return view('cooperations.index')->with('cooperations', $cooperations)->with('scripts',true);
         // dd($request->session());
     }
 
@@ -39,7 +39,7 @@ class CooperationsController extends Controller
     {
         //
         $organizers = Organizers::all();
-        return view('cooperations.create')->with('organizers', $organizers);
+        return view('cooperations.create')->with('organizers', $organizers)->with('date', true);
     }
 
     /**

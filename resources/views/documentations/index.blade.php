@@ -2,11 +2,15 @@
 
 @section('title', 'Dokumentasi')
 
+@section('tableDokumentasi', $tables)
+
 @section('content')
     <div class="card">
         <div class="card-header">
             {{-- <h3 class="card-title">Halaman @yield('title')</h3> --}}
-            <a href="{{ url('documentation/create') }}" class="btn btn-info">Tambah</a>
+            @if (Auth::user()->user_levels->user_levels === 'MDP TV')
+                <a href="{{ url('documentation/create') }}" class="btn btn-info">Tambah</a>
+            @endif
             <div class="card-tools">
                 <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
                     <i class="fas fa-minus"></i>
