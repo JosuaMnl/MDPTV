@@ -2,6 +2,8 @@
 
 @section('title', 'Kerjasama')
 
+@section('isActive', $scripts)
+
 @section('content')
     <div class="card">
         <div class="card-header">
@@ -15,7 +17,7 @@
             </div>
         </div>
         <div class="card-body">
-            <table id="example" class="table table-striped" style="width:100%">
+            <table id="example" class="table dt-responsive nowrap" style="width:100%">
                 <thead>
                     <tr>
                         <th>Action</th>

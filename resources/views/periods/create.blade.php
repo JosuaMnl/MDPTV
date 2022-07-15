@@ -16,11 +16,6 @@
                     <input type="text" class="form-control" name="tahun_akademik" id="tahun_akademik"
                         placeholder="Masukkan Tahun Akademik">
                 </div>
-                <div class="form-group">
-                    <label for="semester">Semester</label>
-                    <input type="text" class="form-control" name="semester" id="semester" placeholder="Masukkan Semester">
-                </div>
-
                 <button type="submit" class="btn btn-info">Submit</button>
             </form>
         </div>

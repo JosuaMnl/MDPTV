@@ -57,7 +57,7 @@ class UserController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password)
         ]);
-
+        $request->session()->flash('success', 'Data User berhasil di simpan');
         return redirect()->route('users.index');
     }
 
@@ -105,6 +105,6 @@ class UserController extends Controller
     {
         //
         $user->delete();
-        return redirect()->back()->with('info', "Data User $user->name berhasil dihapus");
+        return redirect()->back()->with('success', "Data User $user->name berhasil dihapus");
     }
 }

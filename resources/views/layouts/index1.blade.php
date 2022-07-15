@@ -204,7 +204,7 @@
                 </div>
             </div>
         </section>
-        <section class=" text-center" id="webinar">
+        <section class="text-center" id="webinar">
             <h2 class="text-black mb-8 txt-font">Webinar</h2>
             <hr style="width:20%; margin-left:40% !important; margin-right:40% !important;" />
             <div id="carouselExampleCaptions" class="carousel slide carousel" data-bs-ride="carousel"
@@ -310,20 +310,10 @@
                     <a class="mx-2" href="#!"><i class="fab fa-github"></i></a>
                 </div>
             </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
-                data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions"
-                data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </button>
     </div>
     </section>
     <!-- Signup-->
-    <section class="signup-section" id="contact" style="margin-top: 50px;">
+    <section class="signup-section" id="signup" style="margin-top: 50px;">
         <div class="container px-4 px-lg-5">
             <div class="row gx-4 gx-lg-5">
                 <div class="col-md-10 col-lg-8 mx-auto text-center">

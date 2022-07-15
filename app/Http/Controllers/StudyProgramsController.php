@@ -47,6 +47,7 @@ class StudyProgramsController extends Controller
         $study_programs->nama_prodi = $validateData['nama_prodi'];
 
         $study_programs->save();
+        $request->session()->flash('success', "Data Program Studi $study_programs->nama_prodi berhasil di simpan");
         return redirect()->route('study_programs.index');
     }
 
@@ -88,7 +89,7 @@ class StudyProgramsController extends Controller
         ]);
 
         Study_programs::where('id', $study_program->id)->update($validateData);
-        $request->session()->flash('info', 'Data Program Studi berhasil di ubah');
+        $request->session()->flash('success', 'Data Program Studi berhasil di ubah');
         return redirect()->route('study_programs.index');
     }
 
@@ -102,6 +103,6 @@ class StudyProgramsController extends Controller
     {
         //
         $study_program->delete();
-        return redirect()->route('study_programs.index')->with('info', "Data divisi $study_program->nama_prodi berhasil dihapus");
+        return redirect()->route('study_programs.index')->with('success', "Data Program Studi $study_program->nama_prodi berhasil dihapus");
     }
 }

@@ -31,9 +31,7 @@ class CooperationsPolicy
     public function view(User $user)
     {
         //
-        return in_array($user->user_levels_id, [
-            1
-        ]);
+        return $user->user_levels_id === 6;
     }
 
     /**

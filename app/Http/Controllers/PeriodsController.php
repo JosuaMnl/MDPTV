@@ -40,15 +40,14 @@ class PeriodsController extends Controller
     {
         //
         $validateData = $request->validate([
-            'tahun_akademik' => 'required',
-            'semester' => 'required'
+            'tahun_akademik' => 'required'
         ]);
 
         $periods = new Periods();
         $periods->tahun_akademik = $validateData['tahun_akademik'];
-        $periods->semester = $validateData['semester'];
 
         $periods->save();
+        $request->session()->flash('success', 'Data Periode berhasil di simpan');
         return redirect()->route('periods.index');
     }
 
@@ -86,12 +85,11 @@ class PeriodsController extends Controller
     {
         //
         $validateData = $request->validate([
-            'tahun_akademik' => 'required',
-            'semester' => 'required'
+            'tahun_akademik' => 'required'
         ]);
 
         Periods::where('id', $period->id)->update($validateData);
-        $request->session()->flash('info', 'Data Periode berhasil di ubah');
+        $request->session()->flash('success', 'Data Periode berhasil di edit');
         return redirect()->route('periods.index');
     }
 
@@ -105,6 +103,6 @@ class PeriodsController extends Controller
     {
         //
         $period->delete();
-        return redirect()->route('periods.index')->with('info', "Data divisi $period->tahun_akademik berhasil dihapus");
+        return redirect()->route('periods.index')->with('success', "Data Periode $period->tahun_akademik berhasil dihapus");
     }
 }

@@ -47,6 +47,7 @@ class ServiceCategoriesController extends Controller
         $service_categories->nama_layanan = $validateData['nama_layanan'];
 
         $service_categories->save();
+        $request->session()->flash('success', "Data kategori layanan $service_categories->nama_layanan berhasil di simpan");
         return redirect()->route('service_categories.index');
     }
 
@@ -88,7 +89,7 @@ class ServiceCategoriesController extends Controller
         );
 
         Service_categories::where('id', $service_category->id)->update($validateData);
-        $request->session()->flash('info', 'Data Kategori Layanan berhasil di ubah');
+        $request->session()->flash('success', 'Data Kategori Layanan berhasil di edit');
         return redirect()->route('service_categories.index');
     }
 
@@ -102,6 +103,6 @@ class ServiceCategoriesController extends Controller
     {
         //
         $service_category->delete();
-        return redirect()->route('service_categories.index')->with('info', "Data kategori layanan $service_category->nama_layanan berhasil dihapus");
+        return redirect()->route('service_categories.index')->with('success', "Data kategori layanan $service_category->nama_layanan berhasil dihapus");
     }
 }

@@ -47,9 +47,8 @@ class DivisionsController extends Controller
         $divisions->nama_divisi = $validateData['nama_divisi'];
 
         $divisions->save();
+        $request->session()->flash('success', 'Data Divisi berhasil di simpan');
         return redirect()->route('divisions.index');
-        
-        
     }
 
     /**
@@ -90,7 +89,7 @@ class DivisionsController extends Controller
         ]);
 
         Divisions::where('id', $division->id)->update($validateData);
-        $request->session()->flash('info', 'Data Penyelenggara berhasil di ubah');
+        $request->session()->flash('success', 'Data Penyelenggara berhasil di edit');
         return redirect()->route('divisions.index');
     
     }
@@ -105,6 +104,6 @@ class DivisionsController extends Controller
     {
         //
         $division->delete();
-        return redirect()->route('divisions.index')->with('info', "Data divisi $division->nama_divisi berhasil dihapus");
+        return redirect()->route('divisions.index')->with('success', "Data divisi $division->nama_divisi berhasil dihapus");
     }
 }

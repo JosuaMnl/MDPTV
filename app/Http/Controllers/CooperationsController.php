@@ -38,6 +38,7 @@ class CooperationsController extends Controller
     public function create()
     {
         //
+        $this->authorize('create', Cooperations::class);
         $organizers = Organizers::all();
         return view('cooperations.create')->with('organizers', $organizers)->with('date', true);
     }
@@ -83,6 +84,7 @@ class CooperationsController extends Controller
         foreach($request->orderServices as $service){
             $cooperations->services()->attach($service["'service_categories_id'"]);
         }
+        $request->session()->flash('success', 'Data Kerjasama berhasil di simpan');
         return redirect()->route('cooperations.index');
     }
 
@@ -168,6 +170,7 @@ class CooperationsController extends Controller
                 'lokasi' => $validasi['lokasi']
             ]);
         }
+        $request->session()->flash('success', 'Data Kerjasama berhasil di edit');
         return redirect()->back();
     }
     /**
@@ -182,7 +185,7 @@ class CooperationsController extends Controller
         // dd($cooperation);
         $this->authorize('delete', Cooperations::class);
         $cooperation->delete();
-        return redirect()->route('cooperations.index')->with('success', 'Cooperations deleted successfully');
+        return redirect()->route('cooperations.index')->with('success', 'Data Kerjasama berhasil dihapus');
     }
 
     public function approved($id){
@@ -191,7 +194,7 @@ class CooperationsController extends Controller
 
         $data->save();
 
-        return redirect()->route('cooperations.index');
+        return redirect()->route('cooperations.index')->with('success', 'Kerjasama disetujui');
     }
 
     public function canceled($id){
@@ -200,6 +203,6 @@ class CooperationsController extends Controller
 
         $data->save();
 
-        return redirect()->route('cooperations.index');
+        return redirect()->route('cooperations.index')->with('error', 'Kerjasama ditolak');
     }
 }

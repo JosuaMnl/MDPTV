@@ -8,7 +8,7 @@
     <div class="card">
         <div class="card-header">
             {{-- <h3 class="card-title">Tabel Data Anggota MDPTV</h3> --}}
-            <a href="{{ url('members/create') }}" class="btn btn-secondary">Tambah</a>
+            <a href="{{ url('members/create') }}" class="btn btn-info">Tambah</a>
             <div class="card-tools">
                 <button type="button" class="btn btn-tool" data-card-widget="collapse">
                     <i class="fas fa-minus"></i>
@@ -19,7 +19,7 @@
             </div>
         </div>
         <div class="card-body">
-            <table class="table table-bordered table-striped" id="example1">
+            <table class="table table-bordered table-responsive" id="example1">
                 <thead>
                     <tr>
                         <th>Action</th>
@@ -42,9 +42,13 @@
                             <td>
                                 <a href="{{ url('members/' . $item->id . '/edit') }}"
                                     class="btn btn-sm btn-warning">Edit</a>
-                                <button class="btn btn-sm btn-danger btn-hapus" data-id="{{ $item->id }}"
-                                    data-name-members="{{ $item->nama }}" data-toggle="modal"
-                                    data-target="#deleteModal">Hapus</button>
+                                <form method="POST" action="{{ route('members.destroy', $item->id) }}"
+                                    style="display: inline">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-sm btn-danger show_confirm"
+                                        data-name="{{ $item->nama }}" data-toggle="tooltip" title='Delete'>Delete</button>
+                                </form>
                             </td>
                             <td>{{ $item->nama }}</td>
                             <td>{{ $item->email }}</td>
@@ -56,7 +60,6 @@
                             <td>{{ $item->study_programs->nama_prodi }}</td>
                             <td>{{ $item->divisions->nama_divisi }}</td>
                             <td>{{ $item->positions->nama_jabatan }}</td>
-
                         </tr>
                     @endforeach
                 </tbody>
@@ -68,32 +71,26 @@
         </div>
     </div>
 
-    <div class="modal fade" id="deleteModal">
-        <div class="modal-dialog">
-            <div class="modal-content bg-danger">
-                <form action="" method="post" id="formDelete">
-                    @csrf
-                    @method('DELETE')
-                    <div class="modal-header">
-                        <h4 class="modal-title">Konfirmasi Hapus Data</h4>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body" id="mb-konfirmasi">
-
-                    </div>
-                    <div class="modal-footer justify-content-between">
-                        <button type="button" class="btn btn-outline-light" data-dismiss="modal">Batal</button>
-                        <button type="submit" class="btn btn-outline-light">Ya, Hapus</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-
-    {{-- <script src="{{ asset('vendors/plugins/jquery/jquery.min.js') }}"></script> --}}
-    {{-- Delete Modal master --}}
-
-
+    {{-- Delete Modal --}}
+    @push('modalDelete')
+        <script type="text/javascript">
+            $('.show_confirm').click(function(event) {
+                var form = $(this).closest("form");
+                var name = $(this).data("name");
+                event.preventDefault();
+                swal({
+                        title: 'Apakah Anda yakin ingin menghapus data anggota ' + name + '?',
+                        text: "If you delete this, it will be gone forever.",
+                        icon: "warning",
+                        buttons: true,
+                        dangerMode: true,
+                    })
+                    .then((willDelete) => {
+                        if (willDelete) {
+                            form.submit();
+                        }
+                    });
+            });
+        </script>
+    @endpush
 @endsection

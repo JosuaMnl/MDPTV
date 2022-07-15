@@ -18,12 +18,6 @@
                         placeholder="Masukkan Tahun Akademik"
                         value="{{ old('tahun_akademik') ?? $periods->tahun_akademik }}">
                 </div>
-                <div class="form-group">
-                    <label for="semester">Semester</label>
-                    <input type="text" class="form-control" name="semester" id="semester" placeholder="Masukkan Semester"
-                        value="{{ old('semester') ?? $periods->semester }}">
-                </div>
-
                 <button type="submit" class="btn btn-info">Submit</button>
             </form>
         </div>

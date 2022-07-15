@@ -16,7 +16,7 @@
             </div>
         </div>
         <div class="card-body">
-            <table class="table">
+            <table class="table nowrap" style="width:100%">
                 <tr>
                     <td>Nama Kegiatan</td>
                     <td>{{ $cooperations->nama_kegiatan }}</td>

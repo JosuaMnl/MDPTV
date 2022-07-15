@@ -15,15 +15,17 @@
                 @csrf
                 <div class="form-group">
                     <label for="periods">Periode</label>
-                    <select name="periods" id="periode" class="form-control" readonly="readonly">
-                        <option value="{{ $periods[0]->id }}">{{ $periods[0]->tahun_akademik }}</option>
+                    <select name="periods" id="periode" class="form-control">
+                        <option value="">Pilih Tahun Akademik</option>
+                        @foreach ($periods as $item)
+                            <option value="{{ $item->id }}">
+                                {{ $item->tahun_akademik }}</option>
+                        @endforeach
                     </select>
                 </div>
                 <div class="form-group">
-                    <label for="periods">Semester</label>
-                    <select name="periods" id="semester" class="form-control" readonly="readonly">
-                        <option value="{{ $periods[0]->id }}">{{ $periods[0]->semester }}</option>
-                    </select>
+                    <label for="semester">Semester</label>
+                    <input type="text" name="semester" id="semester" class="form-control">
                 </div>
                 <div class="form-group">
                     <label>Penyelenggara</label>

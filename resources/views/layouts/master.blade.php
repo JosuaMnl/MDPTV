@@ -23,6 +23,18 @@
 
     <link rel="stylesheet" href="{{ asset('vendors/dist/css/adminlte.min.css?v=3.2.0') }}">
 
+    {{-- Toastr --}}
+    <link rel="stylesheet" type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+
+
+    @hasSection('isActive')
+        <link rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.3/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css">
+        <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.3.0/css/responsive.bootstrap5.min.css">
+    @endif
+
     @hasSection('dataTableAnggota')
         <link rel="stylesheet" href="{{ asset('vendors/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
         <link rel="stylesheet"
@@ -30,25 +42,17 @@
         <link rel="stylesheet"
             href="{{ asset('vendors/plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
     @endif
-    {{-- @hasSection('dataTableDokumentasi') --}}
-    <link rel="stylesheet" href="{{ asset('vendors/dist/css/bootstrap.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('vendors/dist/css/dataTables.bootstrap5.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('vendors/dist/css/responsive.bootstrap5.min.css') }}">
-    {{-- @endif --}}
-    {{-- @hasSection('isActive')
-            <link rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.3/css/bootstrap.min.css">
-        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css">
+    @hasSection('tableDokumentasi')
+        <link rel="stylesheet" href="{{ asset('vendors/dist/css/bootstrap.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('vendors/dist/css/dataTables.bootstrap5.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('vendors/dist/css/responsive.bootstrap5.min.css') }}">
+    @endif
 
-    @endif --}}
-    {{-- <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css"> --}}
-    {{-- <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.3.0/css/responsive.dataTables.min.css"> --}}
     <style>
         body {
             font-family: "Open Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", Helvetica, Arial, sans-serif;
         }
     </style>
-    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" id="theme-styles">
 
     {{-- Icon --}}
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
@@ -96,6 +100,7 @@
         })(window, document);
     </script>
     @livewireStyles
+    @stack('alertStyle')
 </head>
 
 <body
@@ -145,7 +150,6 @@
                         </form>
                     </div>
                 </li>
-
                 {{-- <li class="nav-item dropdown">
                     <a class="nav-link" data-toggle="dropdown" href="#">
                         <i class="far fa-comments"></i>
@@ -249,10 +253,9 @@
             </ul>
         </nav>
 
-
         <aside class="main-sidebar sidebar-dark-danger elevation-4">
 
-            <a href="index3.html" class="brand-link">
+            <a href="#" class="brand-link">
                 <img src="{{ asset('vendors/dist/img/MDP_TV.png') }}" alt="MDPTV Logo"
                     class="brand-image img-circle elevation-3" style="opacity: .8">
                 <span class="brand-text font-weight-light">MDP TV</span>
@@ -262,8 +265,9 @@
 
                 <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                     <div class="image">
-                        <img src="{{ asset('vendors/dist/img/user2-160x160.jpg') }}" class="img-circle elevation-2"
-                            alt="User Image">
+                        {{-- <img src="{{ asset('vendors/dist/img/user2-160x160.jpg') }}" class="img-circle elevation-2"
+                            alt="User Image"> --}}
+                        <i class="fa fa-user-circle fa-2x mt-2 py-1"></i>
                     </div>
                     <div class="info">
                         <a href="#" class="d-block text-decoration-none">{{ Auth::user()->name }} <br>
@@ -362,7 +366,7 @@
                         @if (Auth::user()->user_levels->user_levels === 'MDP TV')
                             <li class="nav-item">
                                 <a href="{{ url('members') }}" class="nav-link">
-                                    <i class="nav-icon fas fa-chart-pie"></i>
+                                    <i class="nav-icon fas fa-users"></i>
                                     <p>
                                         Data Anggota
                                     </p>
@@ -373,7 +377,7 @@
                             <li class="nav-item">
                                 @if (Auth::user()->user_levels->user_levels === 'MDP TV')
                                     <a href="{{ url('cooperations') }}" class="nav-link">
-                                        <i class="nav-icon fas fa-tree"></i>
+                                        <i class="nav-icon fas fa-handshake"></i>
                                         <p>
                                             Agenda Kerja Sama
                                         </p>
@@ -416,7 +420,7 @@
                                 <a class="text-decoration-none" href="route('logout')"
                                     onclick="event.preventDefault();
                                                 this.closest('form').submit();">
-                                    <i class="nav-icon fas fa-arrow-circle-right"></i>
+                                    <i class="nav-icon fas fa-sign-out-alt"></i>
                                     <p>
                                         Log Out
                                     </p>
@@ -466,26 +470,61 @@
 
 
         <footer class="main-footer">
-            <strong>Copyright &copy; 2019-2022 <a href="#">MDP TV</a>.</strong>
+            <strong>Copyright &copy; 2019-2022 <a href="{{ url('/') }}">MDP TV</a>.</strong>
             All rights reserved.
         </footer>
     </div>
 
-    {{-- Jquery CDN --}}
-    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-    {{-- Bootstrap JS CDN --}}
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ asset('vendors/plugins/jquery/jquery.min.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+    <script>
+        @if (Session::has('success'))
+            toastr.options = {
+                "closeButton": true,
+                "progressBar": true,
+            }
+            toastr.success("{{ session('success') }}");
+        @endif
+
+        @if (Session::has('error'))
+            toastr.options = {
+                "closeButton": true,
+                "progressBar": true
+            }
+            toastr.error("{{ session('error') }}");
+        @endif
+
+        @if (Session::has('info'))
+            toastr.options = {
+                "closeButton": true,
+                "progressBar": true
+            }
+            toastr.info("{{ session('info') }}");
+        @endif
+
+        @if (Session::has('warning'))
+            toastr.options = {
+                "closeButton": true,
+                "progressBar": true
+            }
+            toastr.warning("{{ session('warning') }}");
+        @endif
+    </script>
+    <script src="{{ asset('vendors/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 
     <script src="{{ asset('vendors/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js') }}"></script>
 
     <script src="{{ asset('vendors/dist/js/adminlte.js?v=3.2.0') }}"></script>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js"></script>
     {{-- <script src="{{ asset('vendors/dist/js/demo.js') }}"></script> --}}
 
     {{-- <script src="{{ asset('vendors/dist/js/pages/dashboard2.js') }}"></script> --}}
     @hasSection('isActive')
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
         <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
         <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
+        <script src="https://cdn.datatables.net/responsive/2.3.0/js/dataTables.responsive.min.js"></script>
+        <script src="https://cdn.datatables.net/responsive/2.3.0/js/responsive.bootstrap5.min.js"></script>
         <script>
             $(document).ready(function() {
                 $('#example').DataTable();
@@ -493,10 +532,10 @@
         </script>
     @endif
 
+    @stack('modalDelete')
+
     @hasSection('dataTableAnggota')
         {{-- DataTables Anggota --}}
-        <script src="{{ asset('vendors/plugins/jquery/jquery.min.js') }}"></script>
-        <script src="{{ asset('vendors/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
         <script src="{{ asset('vendors/plugins/datatables/jquery.dataTables.min.js') }}"></script>
         <script src="{{ asset('vendors/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
         <script src="{{ asset('vendors/plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
@@ -522,25 +561,11 @@
                     "buttons": ["csv", "excel", "pdf", "print", "colvis"]
                 }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)')
             });
-
-            $('.btn-hapus').click(function() {
-                let id = $(this).attr('data-id');
-                $('#formDelete').attr('action', '/members/' + id);
-
-                let nama = $(this).attr('data-name-members');
-                $('#mb-konfirmasi').text('Apakah anda yakin ingin menghapus data anggota ' + nama + '?');
-            })
-
-            $('#formDelete [type="submit"]').click(function() {
-                $('#formDelete').submit();
-            });
         </script>
     @endif
 
     @hasSection('tableDokumentasi')
         {{-- DataTables Dokumentasi --}}
-        <script src="{{ asset('vendors/plugins/jquery/jquery.min.js') }}"></script>
-        <script src="{{ asset('vendors/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
         <script src="{{ asset('vendors/plugins/dataTables/dokumentasi/jquery.dataTables.min.js') }}"></script>
         <script src="{{ asset('vendors/plugins/datatables-bs5/js/dataTables.bootstrap5.min.js') }}"></script>
         <script src="{{ asset('vendors/plugins/datatables-responsive/js/dokumentasi/dataTables.responsive.min.js') }}">
@@ -568,12 +593,6 @@
         </script>
     @endif
 
-    {{-- <script>
-        $(document).ready(function() {
-            $('#example1').DataTable();
-        });
-    </script> --}}
-
     @hasSection('date')
         {{-- Date Picker --}}
         <script src="{{ asset('vendors/plugins/moment/moment.min.js') }}"></script>
@@ -587,7 +606,6 @@
             });
         </script>
     @endif
-
 
     {{-- Select2 --}}
     <script src="{{ asset('vendors/plugins/select2/js/select2.full.min.js') }}"></script>

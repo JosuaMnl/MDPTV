@@ -47,6 +47,7 @@ class DocumentationController extends Controller
             'nama_kegiatan' => 'required',
             'tanggal_kegiatan' => 'required',
             'lokasi' => 'required',
+            'semester' => 'required',
             'keterangan' => 'required',
             'link_dokumentasi' => 'required',
             'periods' => 'required',
@@ -57,12 +58,14 @@ class DocumentationController extends Controller
         $dokumentasi->nama_kegiatan = $validasi['nama_kegiatan'];
         $dokumentasi->tanggal_kegiatan = $validasi['tanggal_kegiatan'];
         $dokumentasi->lokasi = $validasi['lokasi'];
+        $dokumentasi->semester = $validasi['semester'];
         $dokumentasi->keterangan = $validasi['keterangan'];
         $dokumentasi->link_dokumentasi = $validasi['link_dokumentasi'];
         $dokumentasi->periods_id = $validasi['periods'];
         $dokumentasi->organizers_id = $validasi['organizers'];
         $dokumentasi->save();
 
+        $request->session()->flash('success', "Data Dokumentasi $dokumentasi->nama_kegiatan berhasil disimpan");
         return redirect()->route('documentation.index');
     }
 
@@ -105,6 +108,7 @@ class DocumentationController extends Controller
             'nama_kegiatan' => 'required',
             'tanggal_kegiatan' => 'required',
             'lokasi' => 'required',
+            'semester' => 'required',
             'keterangan' => 'required',
             'link_dokumentasi' => 'required',
             'periods_id' => 'required',
@@ -113,7 +117,7 @@ class DocumentationController extends Controller
         
         Documentation::where('id', $documentation->id)->update($validasi);
         
-        $request->session()->flash('info', 'Data Dokumentasi berhasil di edit');
+        $request->session()->flash('success', "Data Dokumentasi $documentation->nama_kegiatan berhasil di edit");
         return redirect()->route('documentation.index');
     }
 
@@ -127,6 +131,6 @@ class DocumentationController extends Controller
     {
         //
         $documentation->delete();
-        return redirect()->back();
+        return redirect()->back()->with('success', "Data Dokumentasi $documentation->nama_kegiatan berhasil dihapus");
     }
 }

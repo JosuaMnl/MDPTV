@@ -2,6 +2,8 @@
 
 @section('title', 'Tabel Users')
 
+@section('isActive', $scripts)
+
 @section('content')
     <div class="card">
         <div class="card-header">
@@ -17,7 +19,7 @@
             </div>
         </div>
         <div class="card-body">
-            <table class="table table-bordered table-striped" id="example1">
+            <table id="example" class="table dt-responsive nowrap" style="width:100%">
                 <thead>
                     <tr>
                         <th>ID</th>
@@ -36,9 +38,13 @@
                             <td>{{ $item->email }}</td>
                             <td>{{ $item->user_levels->user_levels }}</td>
                             <td>
-                                <button class="btn btn-sm btn-danger btn-hapus" data-id="{{ $item->id }}"
-                                    data-name-users="{{ $item->name }}" data-toggle="modal"
-                                    data-target="#deleteModal">Hapus</button>
+                                <form method="POST" action="{{ route('users.destroy', $item->id) }}"
+                                    style="display: inline">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-sm btn-danger show_confirm"
+                                        data-name="{{ $item->name }}" data-toggle="tooltip" title='Delete'>Delete</button>
+                                </form>
                             </td>
                         </tr>
                     @endforeach
@@ -50,44 +56,27 @@
 
         </div>
     </div>
-    <div class="modal fade" id="deleteModal">
-        <div class="modal-dialog">
-            <div class="modal-content bg-danger">
-                <form action="" method="post" id="formDelete">
-                    @csrf
-                    @method('DELETE')
-                    <div class="modal-header">
-                        <h4 class="modal-title">Konfirmasi Hapus Data</h4>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body" id="mb-konfirmasi">
 
-                    </div>
-                    <div class="modal-footer justify-content-between">
-                        <button type="button" class="btn btn-outline-light" data-dismiss="modal">Batal</button>
-                        <button type="submit" class="btn btn-outline-light">Ya, Hapus</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-
-    <script src="{{ asset('vendors/plugins/jquery/jquery.min.js') }}"></script>
-
-    {{-- Delete Modal master --}}
-    <script>
-        $('.btn-hapus').click(function() {
-            let id = $(this).attr('data-id');
-            $('#formDelete').attr('action', '/users/' + id);
-
-            let users = $(this).attr('data-name-users');
-            $('#mb-konfirmasi').text('Apakah anda yakin ingin menghapus data User ' + users + '?');
-        })
-
-        $('#formDelete [type="submit"]').click(function() {
-            $('#formDelete').submit();
-        });
-    </script>
+    {{-- Delete Modal --}}
+    @push('modalDelete')
+        <script type="text/javascript">
+            $('.show_confirm').click(function(event) {
+                var form = $(this).closest("form");
+                var name = $(this).data("name");
+                event.preventDefault();
+                swal({
+                        title: 'Apakah Anda yakin ingin menghapus data user' + name + '?',
+                        text: "If you delete this, it will be gone forever.",
+                        icon: "warning",
+                        buttons: true,
+                        dangerMode: true,
+                    })
+                    .then((willDelete) => {
+                        if (willDelete) {
+                            form.submit();
+                        }
+                    });
+            });
+        </script>
+    @endpush
 @endsection

@@ -47,6 +47,7 @@ class PositionsController extends Controller
         $positions->nama_jabatan = $validateData['nama_jabatan'];
 
         $positions->save();
+        $request->session()->flash('success', "Data Jabatan $positions->nama_jabatan berhasil di simpan");
         return redirect()->route('positions.index');
     }
 
@@ -88,7 +89,7 @@ class PositionsController extends Controller
         ]);
 
         Positions::where('id', $position->id)->update($validateData);
-        $request->session()->flash('info', 'Data Posisi berhasil di ubah');
+        $request->session()->flash('success', 'Data Jabatan berhasil di ubah');
         return redirect()->route('positions.index');
     }
 
@@ -102,6 +103,6 @@ class PositionsController extends Controller
     {
         //
         $position->delete();
-        return redirect()->route('positions.index')->with('info', "Data divisi $position->nama_jabatan berhasil dihapus");
+        return redirect()->route('positions.index')->with('success', "Data Jabatan $position->nama_jabatan berhasil dihapus");
     }
 }

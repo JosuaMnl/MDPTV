@@ -47,6 +47,7 @@ class OrganizersController extends Controller
         $organizers->penyelenggara = $validateData['penyelenggara'];
 
         $organizers->save();
+        $request->session()->flash('success', 'Data Penyelenggara berhasil di simpan');
         return redirect()->route('organizers.index');
     }
 
@@ -88,7 +89,7 @@ class OrganizersController extends Controller
         ]);
 
         Organizers::where('id', $organizer->id)->update($validateData);
-        $request->session()->flash('info', 'Data Penyelenggara berhasil di ubah');
+        $request->session()->flash('success', 'Data Penyelenggara berhasil di edit');
         return redirect()->route('organizers.index');
     }
 
@@ -102,6 +103,6 @@ class OrganizersController extends Controller
     {
         //
         $organizer->delete();
-        return redirect()->route('organizers.index')->with('info', "Data penyelenggara $organizer->penyelenggara berhasil dihapus");
+        return redirect()->route('organizers.index')->with('success', "Data Penyelenggara $organizer->penyelenggara berhasil dihapus");
     }
 }
