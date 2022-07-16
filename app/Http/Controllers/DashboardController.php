@@ -18,7 +18,7 @@ class DashboardController extends Controller
             return view('cooperations.index')->with('cooperations', $cooperations);
         } elseif(Auth::user()->user_levels->user_levels === "Multimedia") {
             $documentations = Documentation::all();
-            return view('documentations.index')->with('documentations', $documentations);
+            return view('documentations.index')->with('documentations', $documentations)->with('tables',true);
         } else {
             $jumlahAnggota = DB::select("SELECT COUNT(*) AS 'jumlah' FROM members")[0]->jumlah;
             $jumlahKerjaSama = DB::select("SELECT COUNT(*) AS 'jumlah' FROM cooperations")[0]->jumlah;

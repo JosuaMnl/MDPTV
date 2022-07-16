@@ -18,7 +18,7 @@ class DocumentationController extends Controller
     {
         //
         $documentations = Documentation::all();
-        return view('documentations.index')->with('documentations', $documentations)->with('tables',true);
+        return view('documentations.index')->with('documentations', $documentations)->with('tables', true);
     }
 
     /**
