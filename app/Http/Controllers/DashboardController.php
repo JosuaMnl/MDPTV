@@ -15,7 +15,7 @@ class DashboardController extends Controller
     
         if (Auth::user()->user_levels->user_levels === "Mitra"){
             $cooperations = Cooperations::where('users_id', Auth::user()->id)->get();
-            return view('cooperations.index')->with('cooperations', $cooperations);
+            return view('cooperations.index')->with('cooperations', $cooperations)->with('scripts',true);
         } elseif(Auth::user()->user_levels->user_levels === "Multimedia") {
             $documentations = Documentation::all();
             return view('documentations.index')->with('documentations', $documentations)->with('tables',true);

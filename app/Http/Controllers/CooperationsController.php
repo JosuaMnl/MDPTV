@@ -40,7 +40,7 @@ class CooperationsController extends Controller
         //
         $this->authorize('create', Cooperations::class);
         $organizers = Organizers::all();
-        return view('cooperations.create')->with('organizers', $organizers)->with('date', true);
+        return view('cooperations.create')->with('organizers', $organizers)->with('date', true)->with('scripts',true);
     }
 
     /**

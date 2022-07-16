@@ -4,6 +4,8 @@
 
 @section('date', $date)
 
+@section('createCooperation', $scripts)
+
 @section('content')
     <div class="card">
         <div class="card-header">
