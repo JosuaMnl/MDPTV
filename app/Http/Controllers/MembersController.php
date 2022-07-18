@@ -18,6 +18,7 @@ class MembersController extends Controller
     public function index()
     {
         //
+        $this->authorize('viewAny', Members::class);
         $members = Members::all();
         return view('members.index')->with('members', $members)->with('scripts', true);
     }
@@ -45,6 +46,7 @@ class MembersController extends Controller
     public function store(Request $request)
     {
         //
+        $this->authorize('create', Members::class);
         $validateData =$request->validate([
             'nama' => 'required',
             'email' => 'required',
@@ -110,6 +112,7 @@ class MembersController extends Controller
     public function update(Request $request, Members $member)
     {
         //
+        $this->authorize('update', Members::class);
         $validateData =$request->validate([
             'nama' => 'required',
             'email' => 'required',
@@ -137,7 +140,7 @@ class MembersController extends Controller
     public function destroy(Members $member)
     {
         //
-        //dd($member);
+        $this->authorize('delete', Members::class);
         $member->delete();
         return redirect()->route('members.index')->with('success', "Data Anggota $member->nama berhasil dihapus");
     }

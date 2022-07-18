@@ -15,6 +15,7 @@ class PositionsController extends Controller
     public function index()
     {
         //
+        $this->authorize('viewAny', Positions::class);
         $positions = positions::all();
         return view('positions.index')->with('positions', $positions)->with('scripts',true);
     }
@@ -39,6 +40,7 @@ class PositionsController extends Controller
     public function store(Request $request)
     {
         //
+        $this->authorize('create', Positions::class);
         $validateData = $request->validate([
             'nama_jabatan' => 'required'
         ]);
@@ -84,6 +86,7 @@ class PositionsController extends Controller
     public function update(Request $request, Positions $position)
     {
         //
+        $this->authorize('update', Positions::class);
         $validateData =$request->validate([
             'nama_jabatan' => 'required'
         ]);
@@ -102,6 +105,7 @@ class PositionsController extends Controller
     public function destroy(Positions $position)
     {
         //
+        $this->authorize('delete', Positions::class);
         $position->delete();
         return redirect()->route('positions.index')->with('success', "Data Jabatan $position->nama_jabatan berhasil dihapus");
     }

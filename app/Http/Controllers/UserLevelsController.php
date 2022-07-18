@@ -15,6 +15,7 @@ class UserLevelsController extends Controller
     public function index()
     {
         //
+        $this->authorize('viewAny', User_levels::class);
         $user_levels = User_levels::all();
         return view('user_levels.index')->with('user_levels', $user_levels)->with('scripts',true);
     }
@@ -39,6 +40,7 @@ class UserLevelsController extends Controller
     public function store(Request $request)
     {
         //
+        $this->authorize('create', User_levels::class);
         $validateData = $request->validate([
             'user_levels' => 'required'
         ]);
@@ -84,6 +86,7 @@ class UserLevelsController extends Controller
     public function update(Request $request, User_levels $user_level)
     {
         //
+        $this->authorize('update', User_levels::class);
         $validateData =$request->validate([
             'user_levels' => 'required'
         ]);
@@ -102,6 +105,7 @@ class UserLevelsController extends Controller
     public function destroy(User_levels $user_level)
     {
         //
+        $this->authorize('delete', User_levels::class);
         $user_level->delete();
         return redirect()->route('user_levels.index')->with('success', "Data $user_level->user_levels berhasil dihapus");
     }

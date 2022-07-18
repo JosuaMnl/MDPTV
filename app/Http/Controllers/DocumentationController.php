@@ -17,6 +17,7 @@ class DocumentationController extends Controller
     public function index()
     {
         //
+        $this->authorize('viewAny', Documentation::class);
         $documentations = Documentation::all();
         return view('documentations.index')->with('documentations', $documentations)->with('tables', true);
     }
@@ -43,6 +44,7 @@ class DocumentationController extends Controller
     public function store(Request $request)
     {
         //
+        $this->authorize('create', Documentation::class);
         $validasi = $request->validate([
             'nama_kegiatan' => 'required',
             'tanggal_kegiatan' => 'required',
@@ -104,6 +106,7 @@ class DocumentationController extends Controller
     public function update(Request $request, Documentation $documentation)
     {
         //
+        $this->authorize('update', Documentation::class);
         $validasi = $request->validate([
             'nama_kegiatan' => 'required',
             'tanggal_kegiatan' => 'required',
@@ -130,6 +133,7 @@ class DocumentationController extends Controller
     public function destroy(Documentation $documentation)
     {
         //
+        $this->authorize('delete', Documentation::class);
         $documentation->delete();
         return redirect()->back()->with('success', "Data Dokumentasi $documentation->nama_kegiatan berhasil dihapus");
     }

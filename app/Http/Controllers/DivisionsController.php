@@ -15,6 +15,7 @@ class DivisionsController extends Controller
     public function index()
     {
         //
+        $this->authorize('viewAny', Divisions::class);
         $divisions = divisions::all();
         return view('divisions.index')->with('divisions', $divisions)->with('scripts',true);
     }
@@ -39,6 +40,7 @@ class DivisionsController extends Controller
     public function store(Request $request)
     {
         //
+        $this->authorize('create', Divisions::class);
         $validateData = $request->validate([
             'nama_divisi' => 'required'
         ]);
@@ -84,6 +86,7 @@ class DivisionsController extends Controller
     public function update(Request $request, Divisions $division)
     {
         //
+        $this->authorize('update', Divisions::class);
         $validateData =$request->validate([
             'nama_divisi' => 'required'
         ]);
@@ -103,6 +106,7 @@ class DivisionsController extends Controller
     public function destroy(Divisions $division)
     {
         //
+        $this->authorize('delete', Divisions::class);
         $division->delete();
         return redirect()->route('divisions.index')->with('success', "Data divisi $division->nama_divisi berhasil dihapus");
     }

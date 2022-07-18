@@ -15,6 +15,7 @@ class PeriodsController extends Controller
     public function index()
     {
         //
+        $this->authorize('viewAny', Periods::class);
         $periods = Periods::all();
         return view('periods.index')->with('periods', $periods)->with('scripts', true);
     }
@@ -39,6 +40,7 @@ class PeriodsController extends Controller
     public function store(Request $request)
     {
         //
+        $this->authorize('create', Periods::class);
         $validateData = $request->validate([
             'tahun_akademik' => 'required'
         ]);
@@ -84,6 +86,7 @@ class PeriodsController extends Controller
     public function update(Request $request, Periods $period)
     {
         //
+        $this->authorize('update', Periods::class);
         $validateData = $request->validate([
             'tahun_akademik' => 'required'
         ]);
@@ -102,6 +105,7 @@ class PeriodsController extends Controller
     public function destroy(Periods $period)
     {
         //
+        $this->authorize('delete', Periods::class);
         $period->delete();
         return redirect()->route('periods.index')->with('success', "Data Periode $period->tahun_akademik berhasil dihapus");
     }

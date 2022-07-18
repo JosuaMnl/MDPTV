@@ -2,11 +2,11 @@
 
 namespace App\Policies;
 
-use App\Models\Cooperations;
+use App\Models\Study_programs;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class CooperationsPolicy
+class Study_programsPolicy
 {
     use HandlesAuthorization;
 
@@ -19,20 +19,19 @@ class CooperationsPolicy
     public function viewAny(User $user)
     {
         //
-        return in_array($user->user_levels->user_levels, ['MDP TV', 'Mitra']);
+        return $user->user_levels->user_levels === "MDP TV";
     }
 
     /**
      * Determine whether the user can view the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Cooperations  $cooperations
+     * @param  \App\Models\Study_programs  $studyPrograms
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function view(User $user)
+    public function view(User $user, Study_programs $studyPrograms)
     {
         //
-        return $user->user_levels->user_levels === "MDP TV";
     }
 
     /**
@@ -44,43 +43,43 @@ class CooperationsPolicy
     public function create(User $user)
     {
         //
-        return $user->user_levels->user_levels === "Mitra";
+        return $user->user_levels->user_levels === "MDP TV";
     }
 
     /**
      * Determine whether the user can update the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Cooperations  $cooperations
+     * @param  \App\Models\Study_programs  $studyPrograms
      * @return \Illuminate\Auth\Access\Response|bool
      */
     public function update(User $user)
     {
         //
-        return $user->user_levels->user_levels === "Mitra";
+        return $user->user_levels->user_levels === "MDP TV";
     }
 
     /**
      * Determine whether the user can delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Cooperations  $cooperations
+     * @param  \App\Models\Study_programs  $studyPrograms
      * @return \Illuminate\Auth\Access\Response|bool
      */
     public function delete(User $user)
     {
         //
-        return $user->user_levels->user_levels === "Mitra";
+        return $user->user_levels->user_levels === "MDP TV";
     }
 
     /**
      * Determine whether the user can restore the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Cooperations  $cooperations
+     * @param  \App\Models\Study_programs  $studyPrograms
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function restore(User $user, Cooperations $cooperations)
+    public function restore(User $user, Study_programs $studyPrograms)
     {
         //
     }
@@ -89,10 +88,10 @@ class CooperationsPolicy
      * Determine whether the user can permanently delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Cooperations  $cooperations
+     * @param  \App\Models\Study_programs  $studyPrograms
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function forceDelete(User $user, Cooperations $cooperations)
+    public function forceDelete(User $user, Study_programs $studyPrograms)
     {
         //
     }

@@ -43,6 +43,7 @@ Route::resource('user_levels', UserLevelsController::class)->middleware(['auth']
 Route::resource('periods', PeriodsController::class)->middleware(['auth']);
 Route::resource('users', UserController::class)->middleware(['auth']);
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth']);
+Route::get('/download/{file}', [CooperationsController::class, 'download'])->middleware(['auth']);
 // Route::get('landing_page', function (){
 //     return view('layouts.index1');
 // });

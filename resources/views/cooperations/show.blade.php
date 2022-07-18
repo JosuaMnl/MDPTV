@@ -18,6 +18,14 @@
         <div class="card-body">
             <table class="table nowrap" style="width:100%">
                 <tr>
+                    <td>Nama Mitra</td>
+                    <td>{{ $cooperations->users->name }}</td>
+                </tr>
+                <tr>
+                    <td>Email</td>
+                    <td>{{ $cooperations->users->email }}</td>
+                </tr>
+                <tr>
                     <td>Nama Kegiatan</td>
                     <td>{{ $cooperations->nama_kegiatan }}</td>
                 </tr>
@@ -39,11 +47,21 @@
                 </tr>
                 <tr>
                     <td>Surat Izin</td>
-                    <td>{{ $cooperations->surat_izin }}</td>
+                    <td>
+                        <a href="{{ asset('storage/files/' . $cooperations->surat_izin) }}"><button
+                                class="btn btn-info btn-sm">Lihat</button></a>
+                        <a href="{{ url('/download', $cooperations->surat_izin) }}"><button
+                                class="btn btn-secondary btn-sm">Download</button></a>
+                    </td>
                 </tr>
                 <tr>
                     <td>Surat Kerjasama</td>
-                    <td>{{ $cooperations->surat_kerjasama }}</td>
+                    <td>
+                        <a href="{{ asset('storage/files/' . $cooperations->surat_kerjasama) }}"><button
+                                class="btn btn-info btn-sm">Lihat</button></a>
+                        <a href="{{ url('/download', $cooperations->surat_kerjasama) }}"><button
+                                class="btn btn-secondary btn-sm">Download</button></a>
+                    </td>
                 </tr>
                 <tr>
                     <td>Layanan yang diminta</td>

@@ -18,6 +18,7 @@ class UserController extends Controller
     public function index()
     {
         //
+        $this->authorize('viewAny', User::class);
         $users = User::all();
         return view('users.index')->with('users', $users)->with('scripts',true);
     }
@@ -43,6 +44,7 @@ class UserController extends Controller
     public function store(Request $request)
     {
         //
+        $this->authorize('create', User::class);
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'user_levels_id' => ['required', 'string', 'max:255'],
@@ -104,6 +106,7 @@ class UserController extends Controller
     public function destroy(User $user)
     {
         //
+        $this->authorize('delete', User::class);
         $user->delete();
         return redirect()->back()->with('success', "Data User $user->name berhasil dihapus");
     }

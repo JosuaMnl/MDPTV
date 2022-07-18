@@ -15,6 +15,7 @@ class OrganizersController extends Controller
     public function index()
     {
         //
+        $this->authorize('viewAny', Organizers::class);
         $organizers = Organizers::all();
         return view('organizers.index')->with('organizers', $organizers)->with('scripts',true);
     }
@@ -39,6 +40,7 @@ class OrganizersController extends Controller
     public function store(Request $request)
     {
         //
+        $this->authorize('create', Organizers::class);
         $validateData = $request->validate([
             'penyelenggara' => 'required'
         ]);
@@ -84,6 +86,7 @@ class OrganizersController extends Controller
     public function update(Request $request, Organizers $organizer)
     {
         //
+        $this->authorize('update', Organizers::class);
         $validateData =$request->validate([
             'penyelenggara' => 'required'
         ]);
@@ -102,6 +105,7 @@ class OrganizersController extends Controller
     public function destroy(Organizers $organizer)
     {
         //
+        $this->authorize('delete', Organizers::class);
         $organizer->delete();
         return redirect()->route('organizers.index')->with('success', "Data Penyelenggara $organizer->penyelenggara berhasil dihapus");
     }

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Organizers;
 use App\Models\Service_details;
+use Illuminate\Support\Facades\Storage;
 
 class CooperationsController extends Controller
 {
@@ -18,6 +19,7 @@ class CooperationsController extends Controller
     public function index()
     {
         //
+        $this->authorize('viewAny', Cooperations::class);
         if (Auth::user()->user_levels->user_levels === "MDP TV"){
             $cooperations = Cooperations::all();
         } else {
@@ -84,7 +86,7 @@ class CooperationsController extends Controller
         foreach($request->orderServices as $service){
             $cooperations->services()->attach($service["'service_categories_id'"]);
         }
-        $request->session()->flash('success', 'Data Kerjasama berhasil di simpan');
+        $request->session()->flash('success', "Data Kerjasama $cooperations->nama_kegiatan berhasil di simpan");
         return redirect()->route('cooperations.index');
     }
 
@@ -99,7 +101,6 @@ class CooperationsController extends Controller
         //
         $this->authorize('view', Cooperations::class);
         $service_details = Service_details::where('cooperations_id', $cooperation->id)->get();
-        // dd($service_details);
         return view('cooperations.show')->with('cooperations', $cooperation)->with('service_details', $service_details);
     }
 
@@ -127,8 +128,6 @@ class CooperationsController extends Controller
     public function update(Request $request, Cooperations $cooperation)
     {
         //
-        // dd($cooperations);
-        // dd($cooperation);
         $this->authorize('update', Cooperations::class);
         $cooperation = Cooperations::find($cooperation->id);
         // dd($cooperation->id);
@@ -182,7 +181,6 @@ class CooperationsController extends Controller
     public function destroy(Cooperations $cooperation)
     {
         //
-        // dd($cooperation);
         $this->authorize('delete', Cooperations::class);
         $cooperation->delete();
         return redirect()->route('cooperations.index')->with('success', 'Data Kerjasama berhasil dihapus');
@@ -204,5 +202,9 @@ class CooperationsController extends Controller
         $data->save();
 
         return redirect()->route('cooperations.index')->with('error', 'Kerjasama ditolak');
+    }
+
+    public function download(Request $request, $file){
+        return response()->download(public_path('storage/files/'. $file));
     }
 }
