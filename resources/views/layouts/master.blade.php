@@ -471,7 +471,7 @@
 
     @hasSection('tableDokumentasi')
         {{-- DataTables Dokumentasi --}}
-        <script src="{{ asset('vendors/plugins/dataTables/dokumentasi/jquery.dataTables.min.js') }}"></script>
+        <script src="{{ asset('vendors/plugins/datatables/dokumentasi/jquery.dataTables.min.js') }}"></script>
         <script src="{{ asset('vendors/plugins/datatables-bs5/js/dataTables.bootstrap5.min.js') }}"></script>
         <script src="{{ asset('vendors/plugins/datatables-responsive/js/dokumentasi/dataTables.responsive.min.js') }}">
         </script>

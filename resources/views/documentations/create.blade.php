@@ -15,7 +15,8 @@
                 @csrf
                 <div class="form-group">
                     <label for="periods">Periode</label>
-                    <select name="periods" id="periode" class="form-control">
+                    <select name="periods" id="periode" class="form-control select2 select2-danger"
+                        data-dropdown-css-class="select2-danger" style="width: 100%;">
                         <option value="">Pilih Tahun Akademik</option>
                         @foreach ($periods as $item)
                             <option value="{{ $item->id }}">
