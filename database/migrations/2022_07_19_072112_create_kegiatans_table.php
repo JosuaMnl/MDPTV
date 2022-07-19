@@ -13,10 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('periods', function (Blueprint $table) {
+        Schema::create('kegiatans', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->char('tahun_akademik', 9);
+            $table->string('foto',255);
+            $table->string('nama_kegiatan', 45);
+            $table->text('deskripsi');
+            $table->text('link');
         });
     }
 
@@ -27,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('periods');
+        Schema::dropIfExists('kegiatans');
     }
 };

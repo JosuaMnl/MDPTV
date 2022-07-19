@@ -2,10 +2,10 @@
 
 namespace Database\Seeders;
 
-use App\Models\Members;
-use App\Models\Documentation;
+use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
@@ -22,29 +22,11 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
-
-        Members::create(
-            ["nama"=>"Muhammad Irfan",
-                "email"=>"test@example.com",
-                "no_hp"=>"0831212312313",
-                "alamat"=>"Jalan Alam",
-                "jenis_kelamin"=>"L",
-                "angkatan"=>1,
-                "status"=>"aktif",
-                "study_programs_id"=>1,
-                "divisions_id"=>1,
-                "positions_id"=>6
-             ]
-          );
-        Documentation::create(
-            ["nama_kegiatan"=>"Test Kegiatan",
-                "tanggal_kegiatan"=>"2022-06-01",
-                "lokasi"=>"Test Lokasi",
-                "keterangan" => "Test Keterangan",
-                "link_dokumentasi"=>"Test Link Dokumentasi",
-                "periods_id"=>3,
-                "organizers_id"=>3
-            ]
-        );
+        User::create([
+            'name' => 'Marcelo Amazona',
+            'user_levels_id' => '1',
+            'email' => 'amazonamarcelo@mhs.mdp.ac.id',
+            'password' => Hash::make('12345678')
+        ]);
     }
 }

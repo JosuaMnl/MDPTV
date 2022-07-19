@@ -17,8 +17,7 @@ class PeriodsTableSeeder extends Seeder
     {
         //
         Periods::create(
-            ["tahun_akademik"=>"2022/2023",
-                "semester"=>4
+            ["tahun_akademik"=>"2022/2023"
             ]
         );
     }

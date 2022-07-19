@@ -4,7 +4,7 @@
 
 @section('date', $date)
 
-@section('createCooperation', $scripts)
+@section('bootstrap', $scripts)
 
 @section('content')
     <div class="card">

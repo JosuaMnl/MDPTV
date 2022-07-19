@@ -12,7 +12,9 @@ use App\Http\Controllers\UserLevelsController;
 use App\Http\Controllers\PeriodsController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\KegiatansController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\WebinarsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,7 +28,7 @@ use App\Http\Controllers\UserController;
 */
 
 Route::get('/', function () {
-    return view('layouts.index1');
+    return view('layouts.landing-page');
 });
 
 Route::resource('members', MembersController::class)->middleware(['auth']);
@@ -41,6 +43,8 @@ Route::resource('study_programs', StudyProgramsController::class)->middleware(['
 Route::resource('service_categories', ServiceCategoriesController::class)->middleware(['auth']);
 Route::resource('user_levels', UserLevelsController::class)->middleware(['auth']);
 Route::resource('periods', PeriodsController::class)->middleware(['auth']);
+Route::resource('kegiatans', KegiatansController::class)->middleware(['auth']);
+Route::resource('webinars', WebinarsController::class)->middleware(['auth']);
 Route::resource('users', UserController::class)->middleware(['auth']);
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth']);
 Route::get('/download/{file}', [CooperationsController::class, 'download'])->middleware(['auth']);

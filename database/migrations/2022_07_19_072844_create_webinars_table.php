@@ -13,10 +13,16 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('periods', function (Blueprint $table) {
+        Schema::create('webinars', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->char('tahun_akademik', 9);
+            $table->string('foto',255);
+            $table->string('nama_webinar', 45);
+            $table->date('tanggal');
+            $table->string('lokasi', 256);
+            $table->integer('biaya');
+            $table->text('deskripsi');
+            $table->text('link');
         });
     }
 
@@ -27,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('periods');
+        Schema::dropIfExists('webinars');
     }
 };
