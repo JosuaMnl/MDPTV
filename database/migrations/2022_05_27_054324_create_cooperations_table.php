@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('lokasi', 256);
             $table->string('surat_izin', 256);
             $table->string('surat_kerjasama', 256);
-            $table->enum('status', ['Disetujui', 'Ditolak', 'Sedang Proses']);
+            $table->enum('status', ['Disetujui', 'Ditolak', 'Sedang Proses'])->default('Sedang Proses');
             $table->foreignId('organizers_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
             $table->foreignId('users_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
         });
