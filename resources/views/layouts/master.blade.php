@@ -299,6 +299,26 @@
                         @endif
                         @if (Auth::user()->user_levels->user_levels === 'MDP TV')
                             <li class="nav-item">
+                                <a href="{{ url('kegiatans') }}" class="nav-link">
+                                    <i class="nav-icon fas fa-images"></i>
+                                    <p>
+                                        Kegiatan MDP TV
+                                    </p>
+                                </a>
+                            </li>
+                        @endif
+                        @if (Auth::user()->user_levels->user_levels === 'MDP TV')
+                            <li class="nav-item">
+                                <a href="{{ url('webinars') }}" class="nav-link">
+                                    <i class="nav-icon fas fa-video"></i>
+                                    <p>
+                                        Webinar
+                                    </p>
+                                </a>
+                            </li>
+                        @endif
+                        @if (Auth::user()->user_levels->user_levels === 'MDP TV')
+                            <li class="nav-item">
                                 <a href="{{ url('documentation') }}" class="nav-link">
                                     <i class="nav-icon fas fa-edit"></i>
                                     <p>

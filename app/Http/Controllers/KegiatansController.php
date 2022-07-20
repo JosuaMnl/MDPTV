@@ -15,6 +15,7 @@ class KegiatansController extends Controller
     public function index()
     {
         //
+        $this->authorize('viewAny', Kegiatans::class);
         $kegiatans = Kegiatans::all();
         return view('kegiatans.index')->with('kegiatans', $kegiatans)->with('scripts', true);
     }
@@ -39,6 +40,7 @@ class KegiatansController extends Controller
     public function store(Request $request)
     {
         //
+        $this->authorize('create', Kegiatans::class);
         $validasiData = $request->validate([
             'foto' => 'required|mimes:jpg,png,jpeg|max:10000',
             'nama_kegiatan' => 'required',
@@ -93,6 +95,7 @@ class KegiatansController extends Controller
     public function update(Request $request, Kegiatans $kegiatan)
     {
         //
+        $this->authorize('update', Kegiatans::class);
         $kegiatan = Kegiatans::find($kegiatan->id);
         $validasiData = $request->validate([
             'foto' => 'mimes:jpg,png,jpeg|max:10000',
@@ -130,6 +133,7 @@ class KegiatansController extends Controller
     public function destroy(Kegiatans $kegiatan)
     {
         //
+        $this->authorize('delete', Kegiatans::class);
         $kegiatan->delete();
         return redirect()->route('kegiatans.index')->with('success', 'Data Kegiatan berhasil dihapus');
     }
