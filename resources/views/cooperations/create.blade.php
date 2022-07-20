@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', 'Tambah Kerjasama')
+@section('title', 'Tambah Kerja sama')
 
 @section('date', $date)
 

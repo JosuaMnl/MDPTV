@@ -3,7 +3,7 @@
 @section('title', 'Tambah Studi Program')
 
 @section('content')
-    <div class="card card-info">
+    <div class="card">
         <div class="card-header">
             <h3 class="card-title">Tambah Studi Program</h3>
         </div>

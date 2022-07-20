@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('nama_kegiatan', 125);
             $table->date('tanggal_kegiatan');
             $table->string('lokasi', 125);
+            $table->integer('semester');
             $table->text('keterangan');
             $table->string('link_dokumentasi', 256);
             $table->foreignId('periods_id')->constrained()->onDelete('cascade')->onUpdate('cascade');

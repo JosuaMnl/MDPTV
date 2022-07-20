@@ -7,7 +7,7 @@
 @section('bootstrap', $scripts)
 
 @section('content')
-    <div class="card card-info">
+    <div class="card">
         <div class="card-header">
             <h3 class="card-title">Tambah Webinar</h3>
         </div>

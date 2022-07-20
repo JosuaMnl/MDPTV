@@ -3,7 +3,7 @@
 @section('title', 'Edit User Levels')
 
 @section('content')
-    <div class="card card-info">
+    <div class="card">
         <div class="card-header">
             <h3 class="card-title">Ubah User Levels</h3>
         </div>
