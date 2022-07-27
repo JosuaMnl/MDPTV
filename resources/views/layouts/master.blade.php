@@ -44,8 +44,7 @@
         <link rel="stylesheet" href="{{ asset('vendors/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
         <link rel="stylesheet"
             href="{{ asset('vendors/plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
-        <link rel="stylesheet"
-            href="{{ asset('vendors/plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('vendors/plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
     @endif
     @hasSection('tableDokumentasi')
         <link rel="stylesheet" href="{{ asset('vendors/dist/css/bootstrap.min.css') }}">
@@ -395,7 +394,7 @@
 
 
         <footer class="main-footer">
-            <strong>Copyright &copy; 2019-2022 <a href="{{ url('/') }}">MDP TV</a>.</strong>
+            <strong>Copyright &copy; 2020-2022 <a href="{{ url('/') }}">MDP TV</a>.</strong>
             All rights reserved.
         </footer>
     </div>

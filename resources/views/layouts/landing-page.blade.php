@@ -86,7 +86,7 @@
             /* Hidden by default */
             position: fixed;
             /* Stay in place */
-            z-index: 1;
+            z-index: 999999999;
             /* Sit on top */
             padding-top: 2vw;
             padding-bottom: 2vw;
@@ -99,7 +99,7 @@
             /* Full height */
             overflow: auto;
             /* Enable scroll if needed */
-            background-color: rgb(0, 0, 0);
+            /* background-color: rgb(0, 0, 0); */
             /* Fallback color */
             background-color: rgba(0, 0, 0, 0.568);
             /* Black w/ opacity */
@@ -259,7 +259,7 @@
         <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
             <div class="container px-4 px-lg-5">
                 {{-- <a class="navbar-brand" href="#page-top">MDP TV</a> --}}
-                <a class="navbar-brand" href="#page-top"><img class="navbar-icon" id="logoMdp"
+                <a class="navbar-brand" href="{{ url('/') }}#page-top"><img class="navbar-icon" id="logoMdp"
                         src="{{ asset('vendors/dist/img/MDP_TV.png') }}" width="100" height="auto"></a>
                 <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
@@ -269,10 +269,10 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto">
-                        <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#webinar">Webinar</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#signup">Contact</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ url('/') }}#about">About</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ url('/') }}#projects">Kegiatan</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ url('/') }}#webinar">Webinar</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ url('/') }}#signup">Contact</a></li>
                         <li class="nav-item"><a class="nav-link" href="{{ route('login') }}">Login</a></li>
                         @if (Route::has('register'))
                             <li class="nav-item"><a class="nav-link" href="{{ route('register') }}">Register</a></li>
@@ -281,288 +281,87 @@
                 </div>
             </div>
         </nav>
-        <!-- Masthead-->
-        <header class="masthead">
-            <div class="container px-4 px-lg-5 d-flex h-100 align-items-center justify-content-center">
-                <div class="d-flex justify-content-center">
-                    <div class="text-center">
-                        <h1 class="mx-auto my-0 text-uppercase"><span class="auto-typed"></span></h1>
-                        <h2 class="text-white-50 mx-auto mt-2 mb-5">Innovation Without Limit</h2>
-                        <a class="btn btn-secondary" href="#about">Get Started</a>
-                    </div>
-                </div>
-            </div>
-        </header>
-        <!-- About-->
-        <section class="about-section text-center" id="about">
-            <div class="container px-4 px-lg-5">
-                <div class="row gx-4 gx-lg-5 justify-content-center">
-                    <div class="col-lg-8">
-                        <h2 class="text-white mb-4"><span class="auto-typed1"></span></h2>
-                        <p class="text-white-50">
-                            MDP TV merupakan sebuah UKM di Universitas MDP ini yang baru dibangun di tahun 2020. MDP TV
-                            di
-                            ketuai
-                            oleh Marcelo Amazona dan pak Anugerah Widi sebagai pembina.
-                        </p>
-                    </div>
-                </div>
-                <img class="img-fluid" src="{{ asset('vendors/dist/gray/assets/img/ipad1.png') }}" alt="..." />
-            </div>
-        </section>
-        <!-- Projects-->
-        <section class="projects-section bg-light py-4 m-2" id="projects">
-            <div class="container px-4 px-lg-5">
-                <div class="row gx-0 mb-5 mb-lg-0 justify-content-center">
-                    <div class="col-lg-6"><img class="img-fluid efek-imgs"
-                            src="{{ asset('vendors/dist/gray/assets/img/lmgeps1.png') }}" alt="..." />
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="bg-black text-center h-100 project">
-                            <div class="d-flex h-100">
-                                <div class="project-text w-100 my-auto text-center text-lg-left">
-                                    <h4 class="text-white">LMG EPS 1</h4>
-                                    <p class="mb-0 text-white-50">LMG singkatan dari Live Music Good merupakan program
-                                        baru
-                                        MDP TV yang dimana program ini adalah acara live music. Jadwal program ini
-                                        dilakukan
-                                        dalam 2 bulan sekali. Bintang tamu dan pemain band akan berbeda setiap episode.
-                                    </p>
-                                    <hr class="d-none d-lg-block mb-0 ms-0" />
-                                    {{-- <div class="d-grid gap-2 col-6 mx-auto"> --}}
-                                    <a href="https://www.youtube.com/watch?v=QErYcmmx1AE" target="_blank"
-                                        class="btn btn-secondary">Link
-                                        Youtube</a>
-                                    {{-- </div> --}}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Project Two Row-->
-                <div class="row gx-0 justify-content-center">
-                    <div class="col-lg-6"><img class="img-fluid efek-imgs"
-                            src="{{ asset('vendors/dist/gray/assets/img/lmgeps2.png') }}" alt="..." /></div>
-                    <div class="col-lg-6 order-lg-first">
-                        <div class="bg-black text-center h-100 project">
-                            <div class="d-flex h-100">
-                                <div class="project-text w-100 my-auto text-center text-lg-right">
-                                    <h4 class="text-white ">LMG EPS 2</h4>
-                                    <p class="mb-0 text-white-50">LMG singkatan dari Live Music Good merupakan program
-                                        baru
-                                        MDP TV yang dimana program ini adalah acara live music. Jadwal program ini
-                                        dilakukan
-                                        dalam 2 bulan sekali. Bintang tamu dan pemain band akan berbeda setiap
-                                        episode.</p>
-                                    <hr class="d-none d-lg-block mb-0 me-0" />
-                                    <a href="https://youtu.be/Ra-N0CtldX0" target="_blank"
-                                        class="btn btn-secondary">Link
-                                        Youtube</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="text-center mt-3 py-2 px-2">
-                    <button class="btn btn-info btn-lg" onclick="location='#'">For More</button>
-                </div>
-            </div>
-        </section>
-        {{-- <section class="section-cardCS text-center m-2 py-4" id="webinar">
-            @foreach ($prodi as $item)
-                <div class="cardCS colCS-12">
-                    <img src="{{ asset('storage/' . $item->foto) }}" alt="webinar" class="cardCS__img colCS-6">
-                    <div class="cardCS__details colCS-6">
-                        <div class="cardCS__header">
-                            <h1>{{ $item->nama_prodi }}</h1>
-                        </div>
-                        <div class="cardCS__text">
-                            <div class="colCS-12">
-                                <ul>
-                                    <li><i class="fa-solid fa-calendar fa-1x icon"></i>20 Agustus 2022</li>
-                                    <li><i class="fa-solid fa-location-dot fa-1x icon"></i>youtube MDPTV</li>
-                                    <li><i class="fa-solid fa-wallet fa-1x icon"></i>20k</li>
-                                </ul>
-                                <a class="btn-details" data-bs-toggle="modal" data-bs-target="#myModal"
-                                    data-bs-prodi="{{ $item->nama_prodi }}"
-                                    data-bs-foto="{{ asset('storage/' . $item->foto) }}">Details</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            @endforeach
-        </section> --}}
-        {{-- <section class="text-center m-2 py-4" id="webinar">
-            <h2 class="text-black mb-6 txt-font">Webinar</h2>
-            <hr style="width:20%; margin: 0 auto;margin-bottom: 15px;border: 2px solid black" />
-            <div class="section-cardCS" id="webinar">
-                <div class="cardCS colCS-12">
-                    <img src="{{ asset('storage/1.png') }}" alt="webinar" class="cardCS__img colCS-6">
-                    <div class="cardCS__details colCS-6">
-                        <div class="cardCS__header">
-                            <h1>Webinar</h1>
-                            <h2>Memahami dasar UI/UX Design Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                                Architecto perspiciatis sint possimus delectus quas tempora adipisci soluta cum, debitis
-                                nostrum sunt totam amet ratione aliquam culpa, quos accusamus reiciendis! Omnis.</h2>
-                        </div>
-                        <div class="cardCS__text">
-                            <div class="cardCS__details colCS-12">
-                                <ul>
-                                    <li><i class="fa-solid fa-calendar fa-1x icon"></i>20 agustus 2022</li>
-                                    <li><i class="fa-solid fa-location-dot fa-1x icon"></i>youtube MDPTV</li>
-                                    <li><i class="fa-solid fa-wallet fa-1x icon"></i>20k</li>
-                                </ul>
-                                <a href="#popup" class="btn-details">Details</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
 
-                <div class="cardCS colCS-12">
-                    <img src="{{ asset('storage/2.png') }}" alt="webinar" class="cardCS__img colCS-6">
-                    <div class="cardCS__details colCS-6">
-                        <div class="cardCS__header">
-                            <h1>Webinar</h1>
-                            <h2>Memahami dasar UI/UX Design</h2>
-                        </div>
-                        <div class="cardCS__text">
-                            <div class="cardCS__details colCS-12">
-                                <ul>
-                                    <li><i class="fa-solid fa-calendar fa-1x icon"></i>20 agustus 2022</li>
-                                    <li><i class="fa-solid fa-location-dot fa-1x icon"></i>youtube MDPTV</li>
-                                    <li><i class="fa-solid fa-wallet fa-1x icon"></i>20k</li>
-                                </ul>
-                                <a href="#popup" class="btn-details">Details</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+        <div>
+            @yield('landing-page-content')
+        </div>
 
-                <div class="cardCS colCS-12">
-                    <img src="{{ asset('storage/1.png') }}" alt="webinar" class="cardCS__img colCS-6">
-                    <div class="cardCS__details colCS-6">
-                        <div class="cardCS__header">
-                            <h1>Webinar</h1>
-                            <h2>Memahami dasar UI/UX Design </h2>
-                        </div>
-                        <div class="cardCS__text">
-                            <div class="cardCS__details colCS-12">
-                                <ul>
-                                    <li><i class="fa-solid fa-calendar fa-1x icon"></i>20 agustus 2022</li>
-                                    <li><i class="fa-solid fa-location-dot fa-1x icon"></i>youtube MDPTV</li>
-                                    <li><i class="fa-solid fa-wallet fa-1x icon"></i>20k</li>
-                                </ul>
-                                <a href="#popup" class="btn-details">Details</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="popup" id="popup">
-                <div class="popup__content">
-                    <div class="popup__img">
-                        <img src="{{ asset('storage/1.png') }}" alt="" srcset="">
-                        <a href="#webinar" class="popup__close">&times;</a>
-                    </div>
-                    <div class="popup__header">
-                        <h1>Webinar</h1>
-                        <h2>Memahami dasar UI/UX Design</h2>
-                    </div>
-                    <div class="popup__text">
-                        <div class="bt1npopup__details">
-                            <p class="para">
-                                Hai sobat MDP TV!! kali ini ada acara baru loh dari MDPTV yaitu acara "Menyapa Dalam
-                                Podcast" Pada acara ini kami mengulik beberapa motivator atau influencer yang bisa
-                                menjadi
-                                pegangan kita untuk berkarya kedepannya. Jadi jangan lupa saksikan di Youtube MDP TV!!!!
-                                Stay tuned!!
-                            </p>
-                        </div>
-                    </div>
-                    <a href="" class="bt1n popup__btn">watch now</a>
-                </div>
-            </div>
-        </section> --}}
-        <section class="signup-section py-4" id="signup" style="margin-top: 50px;">
-            <div class="container px-4 px-lg-5">
-                <div class="row gx-4 gx-lg-5">
-                    <div class="col-md-10 col-lg-8 mx-auto text-center">
-                        <i class="far fa-paper-plane fa-2x mb-2 text-white"></i>
-                        <h2 class="text-white mb-4">Subscribe to receive updates!</h2>
-                        <a href="https://www.youtube.com/c/MDPTVindonesia" target="_blank"
-                            class="btn btn-secondary btn-lg btn-block">YOUTUBE</a>
-                    </div>
-                </div>
-            </div>
-            <div class="d-flex justify-content-center maps-wrapper mt-4 efek-imgs">
-                <iframe class="map"
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3984.4458698056055!2d104.7618922148427!3d-2.9736922978342513!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e3b766d817f6461%3A0x706e9b5b5569067!2sJl.%20Rajawali%20No.14%2C%209%20Ilir%2C%20Kec.%20Ilir%20Tim.%20II%2C%20Kota%20Palembang%2C%20Sumatera%20Selatan%2030113!5e0!3m2!1sid!2sid!4v1655812362164!5m2!1sid!2sid"
-                    width="800" height="400" style="border:0;" allowfullscreen="" loading="lazy"
-                    referrerpolicy="no-referrer-when-downgrade">
-                </iframe>
-            </div>
-        </section>
-        <!-- Contact-->
-        <section class="contact-section bg-black py-5">
-            <div class="container px-4 px-lg-5">
-                <div class="row gx-4 gx-lg-5">
-                    <div class="col-md-4 mb-3 mb-md-0">
-                        <div class="card py-4 h-100">
-                            <div class="card-body text-center">
-                                <i class="fas fa-map-marked-alt text-primary mb-2"></i>
-                                <h4 class="text-uppercase m-0">Address</h4>
-                                <hr class="my-4 mx-auto" />
-                                <div class="small text-black-50">Jl. Rajawali 14, 30113 Palembang - Sumatera Selatan
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 mb-3 mb-md-0">
-                        <div class="card py-4 h-100">
-                            <div class="card-body text-center">
-                                <i class="fas fa-envelope text-primary mb-2"></i>
-                                <h4 class="text-uppercase m-0">Email</h4>
-                                <hr class="my-4 mx-auto" />
-                                <div class="small text-black-50"><a href="#!">mdptv@mhs.mdp.ac.id</a></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 mb-3 mb-md-0">
-                        <div class="card py-4 h-100">
-                            <div class="card-body text-center">
-                                <i class="fas fa-mobile-alt text-primary mb-2"></i>
-                                <h4 class="text-uppercase m-0">Phone</h4>
-                                <hr class="my-4 mx-auto" />
-                                <div class="small text-black-50">+62 895-0148-8103</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="social d-flex justify-content-center">
-                    <a class="mx-2" href="#!"><i class="fab fa-twitter"></i></a>
-                    <a class="mx-2" href="#!"><i class="fab fa-facebook-f"></i></a>
-                    <a class="mx-2" href="#!"><i class="fab fa-github"></i></a>
-                </div>
-            </div>
-        </section>
         <!-- Footer-->
         <footer class="footer bg-black small text-center text-white-50">
             <div class="container px-4 px-lg-5">Copyright &copy; 2020-2022 MDP TV. All rights reserved.</div>
         </footer>
+
+        {{-- Modal Details --}}
+        <div class="modalCS" id="modalKU">
+            <!-- Modal content -->
+            <div class="modalCS-content">
+                <div class="modalCS-body">
+                    <div>
+                        <img class="modal-foto" id="modalFoto" src="" alt="Foto">
+                        <span class="closeCS">&times;</span>
+                    </div>
+                    <div style="padding: 5px 10px">
+                        <h2 class="modalCS-title" style="text-align: center;"></h2>
+                        <p class="deskripsi"></p>
+                        <a class="btn btn-sm btn-secondary text-center d-block"
+                            style="width: 50%; margin:0px auto; font-size: 16px;" id="linkWebinar" href="#">Link
+                            Youtube</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->
         <script src="{{ asset('vendors/dist/gray/js/scripts.js') }}"></script>
 
-        <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
-
-        <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+        {{-- <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script> --}}
 
         <script src="{{ asset('vendors/plugins/jquery/jquery.min.js') }}"></script>
 
-        <script src="{{ asset('plugins/jquery-ui/jquery-ui.min.js') }}"></script>
+        {{-- Set Data to Modal --}}
+        <script>
+            $(document).ready(function() {
+                $(document).on('click', '.btn-details', function() {
+                    let prodi = $(this).attr('data-bs-kegiatan');
+                    let foto = $(this).attr('data-bs-foto');
+                    let deskripsi = $(this).attr('data-bs-deskripsi');
+                    let link = $(this).attr('data-bs-link');
+                    $('.modalCS-title').text(prodi);
+                    $("#modalFoto").attr("src", foto);
+                    $(".deskripsi").text(deskripsi);
+                    $("#linkWebinar").attr("href", link);
+                })
+            })
+        </script>
 
+        {{-- Show Modal --}}
+        <script>
+            // Get the modalCS
+            var modal = document.getElementById("modalKU");
+            var span = document.getElementsByClassName("closeCS")[0];
+
+            $(".btn-details").on("click", function(event) {
+                modal.style.display = "block";
+            });
+
+            // When the user clicks on <span> (x), close the modal
+            span.onclick = function() {
+                modal.style.display = "none";
+            }
+
+            // When the user clicks anywhere outside of the modal, close it
+            window.onclick = function(event) {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                }
+            }
+        </script>
+
+        {{-- Text Animation --}}
+        <script src="{{ asset('plugins/jquery-ui/jquery-ui.min.js') }}"></script>
+        <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
         <script>
             var typed = new Typed(".auto-typed", {
                 strings: ["MDP TV"],
@@ -602,6 +401,8 @@
                 })
             });
         </script>
+
+
 </body>
 
 </html>

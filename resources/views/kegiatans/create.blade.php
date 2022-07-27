@@ -1,15 +1,14 @@
 @extends('layouts.master')
 
-@section('title', 'Tambah Kegiatan')
+@section('title', 'Tambah Kegiatan MDP TV')
 
 @section('bootstrap', $scripts)
 
 @section('content')
     <div class="card">
         <div class="card-header">
-            <h3 class="card-title">Tambah Kegiatan</h3>
+            <h3 class="card-title">Tambah Kegiatan MDP TV</h3>
         </div>
-
         <div class="card-body">
             <form action="{{ route('kegiatans.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf

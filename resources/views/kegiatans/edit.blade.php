@@ -1,13 +1,13 @@
 @extends('layouts.master')
 
-@section('title', 'Edit Kegiatan')
+@section('title', 'Edit Kegiatan MDP TV')
 
 @section('bootstrap', $scripts)
 
 @section('content')
     <div class="card">
         <div class="card-header">
-            <h3 class="card-title">Edit Kegiatan</h3>
+            <h3 class="card-title">Edit Kegiatan MDP TV</h3>
         </div>
 
         <div class="card-body">

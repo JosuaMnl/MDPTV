@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', 'Tabel Webinar')
+@section('title', 'Webinar')
 
 @section('isActive', $scripts)
 

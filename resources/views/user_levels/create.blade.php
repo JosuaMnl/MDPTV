@@ -11,6 +11,16 @@
         <div class="card-body">
             <form action="{{ route('user_levels.store') }}" method="POST">
                 @csrf
+                @if ($errors->any())
+                    <div class="alert
+                    alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
                 <div class="form-group">
                     <label for="user_levels">User Levels</label>
                     <input type="text" class="form-control" name="user_levels" id="user_levels"

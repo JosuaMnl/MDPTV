@@ -10,7 +10,6 @@ body{
 }
 
 /* Icon */
-
 .icon {
     padding: 2px 18px 0px 2px;
 }
@@ -351,10 +350,17 @@ padding: 10px 0;
     }
     
     .cardCS__details ul li {
-    width: 100%;
-    text-align: left;
-    font-size:2vw;
-    padding: 3px 0;
+        width: 100%;
+        text-align: left;
+        font-size:2vw;
+        padding: 3px 0;
+    }
+
+    .cardCS__details p {
+        width: 100%;
+        text-align: left;
+        font-size: 2vw;
+        padding: 3px 0;
     }
     
     .cardCS__details ul li:not(:last-child){

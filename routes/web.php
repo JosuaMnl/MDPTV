@@ -13,6 +13,7 @@ use App\Http\Controllers\PeriodsController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\KegiatansController;
+use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WebinarsController;
 
@@ -27,9 +28,9 @@ use App\Http\Controllers\WebinarsController;
 |
 */
 
-Route::get('/', function () {
-    return view('layouts.landing-page');
-});
+Route::get('/', [LandingPageController::class, 'index']);
+Route::get('/kegiatan', [LandingPageController::class, 'kegiatanPage']);
+Route::get('/webinar', [LandingPageController::class, 'webinarPage']);
 
 Route::resource('members', MembersController::class)->middleware(['auth']);
 Route::resource('documentation', DocumentationController::class)->middleware(['auth']);

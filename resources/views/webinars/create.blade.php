@@ -38,7 +38,7 @@
                     <label>Tanggal Webinar</label>
                     <div class="input-group date" id="reservationdate" data-target-input="nearest">
                         <input type="text" class="form-control datetimepicker-input" name="tanggal" id="tanggal"
-                            data-target="#reservationdate" />
+                            data-target="#reservationdate" placeholder="YYYY-MM-DD" />
                         <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
                             <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                         </div>
@@ -46,11 +46,13 @@
                 </div>
                 <div class="form-group">
                     <label for="lokasi">Lokasi Webinar</label>
-                    <input type="text" name="lokasi" id="lokasi" class="form-control">
+                    <input type="text" name="lokasi" id="lokasi" class="form-control"
+                        placeholder="Masukkan Lokasi Webinar">
                 </div>
                 <div class="form-group">
                     <label for="biaya">Biaya</label>
-                    <input type="text" name="biaya" id="biaya" class="form-control">
+                    <input type="text" name="biaya" id="biaya" class="form-control"
+                        placeholder="Masukkan Biaya Webinar">
                 </div>
                 <div class="form-group">
                     <label>Deskripsi</label>

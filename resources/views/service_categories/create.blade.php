@@ -11,6 +11,16 @@
         <div class="card-body">
             <form action="{{ route('service_categories.store') }}" method="POST">
                 @csrf
+                @if ($errors->any())
+                    <div class="alert
+                    alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
                 <div class="form-group">
                     <label for="nama_layanan">Nama Layanan</label>
                     <input type="text" class="form-control" name="nama_layanan" id="nama_layanan"

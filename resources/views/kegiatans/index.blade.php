@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', 'Tabel Kegiatan')
+@section('title', 'Kegiatan MDP TV')
 
 @section('isActive', $scripts)
 

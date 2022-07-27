@@ -43,7 +43,7 @@
                             <td>{{ $item->lokasi }}</td>
                             <td>{{ $item->semester }}</td>
                             <td>{{ $item->keterangan }}</td>
-                            <td>{{ $item->link_dokumentasi }}</td>
+                            <td><a href="{{ $item->link_dokumentasi }}">Link</a></td>
                             <td>{{ $item->organizers->penyelenggara }}</td>
                             <td>
                                 <a href="{{ url('documentation/' . $item->id . '/edit') }}"
