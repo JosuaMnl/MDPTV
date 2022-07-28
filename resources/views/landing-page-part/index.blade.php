@@ -32,51 +32,95 @@
     </section>
     <!-- Projects-->
     <section class="projects-section bg-light py-4 m-2" id="projects">
-        @php
-            
-        @endphp
         <h2 class="text-black mb-6 text-center">Kegiatan</h2>
         <hr style="width:20%; margin: 0 auto;margin-bottom: 15px;border: 2px solid black" />
         <div class="container px-4 px-lg-5">
-            <div class="row gx-0 mb-5 mb-lg-0 justify-content-center">
-                <div class="col-lg-6"><img class="img-fluid efek-imgs"
-                        src="{{ asset('vendors/dist/gray/assets/img/lmgeps1.png') }}" alt="..." />
-                </div>
-                <div class="col-lg-6">
-                    <div class="bg-black text-center h-100 project">
-                        <div class="d-flex h-100">
-                            <div class="project-text w-100 my-auto text-center text-lg-left">
-                                <h4 class="text-white">{{ $kegiatan[1]->nama_kegiatan }}</h4>
-                                <p class="mb-0 text-white-50">{{ $kegiatan[1]->deskripsi }}
-                                </p>
-                                <hr class="d-none d-lg-block mb-0 ms-0" />
-                                {{-- <div class="d-grid gap-2 col-6 mx-auto"> --}}
-                                <a href="{{ $kegiatan[1]->link }}" target="_blank" class="btn btn-secondary">Link
-                                    Youtube</a>
-                                {{-- </div> --}}
+            @if ($kegiatan->count() === 0)
+                <div class="row gx-0 mb-5 mb-lg-0 justify-content-center">
+                    <div class="col-lg-6"><img class="img-fluid efek-imgs"
+                            src="{{ asset('vendors/dist/gray/img/lmgeps1.png') }}" alt="..." />
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="bg-black text-center h-100 project">
+                            <div class="d-flex h-100">
+                                <div class="project-text w-100 my-auto text-center text-lg-left">
+                                    <h4 class="text-white">LMG EPS 1</h4>
+                                    <p class="mb-0 text-white-50">LMG singkatan dari Live Music Good merupakan program baru
+                                        MDP TV yang dimana program ini adalah acara live music. Jadwal program ini dilakukan
+                                        dalam 2 bulan sekali. Bintang tamu dan pemain band akan berbeda setiap episode.
+                                    </p>
+                                    <hr class="d-none d-lg-block mb-0 ms-0" />
+                                    {{-- <div class="d-grid gap-2 col-6 mx-auto"> --}}
+                                    <a href="https://www.youtube.com/watch?v=QErYcmmx1AE" target="_blank"
+                                        class="btn btn-secondary">Link
+                                        Youtube</a>
+                                    {{-- </div> --}}
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <!-- Project Two Row-->
-            <div class="row gx-0 justify-content-center">
-                <div class="col-lg-6"><img class="img-fluid efek-imgs"
-                        src="{{ asset('vendors/dist/gray/assets/img/lmgeps2.png') }}" alt="..." /></div>
-                <div class="col-lg-6 order-lg-first">
-                    <div class="bg-black text-center h-100 project">
-                        <div class="d-flex h-100">
-                            <div class="project-text w-100 my-auto text-center text-lg-right">
-                                <h4 class="text-white ">{{ $kegiatan[0]->nama_kegiatan }}</h4>
-                                <p class="mb-0 text-white-50">{{ $kegiatan[0]->deskripsi }}</p>
-                                <hr class="d-none d-lg-block mb-0 me-0" />
-                                <a href="{{ $kegiatan[0]->link }}" target="_blank" class="btn btn-secondary">Link
-                                    Youtube</a>
+                <!-- Project Two Row-->
+                <div class="row gx-0 justify-content-center">
+                    <div class="col-lg-6"><img class="img-fluid efek-imgs"
+                            src="{{ asset('vendors/dist/gray/img/lmgeps2.png') }}" alt="..." /></div>
+                    <div class="col-lg-6 order-lg-first">
+                        <div class="bg-black text-center h-100 project">
+                            <div class="d-flex h-100">
+                                <div class="project-text w-100 my-auto text-center text-lg-right">
+                                    <h4 class="text-white ">LMG EPS 2</h4>
+                                    <p class="mb-0 text-white-50">LMG singkatan dari Live Music Good merupakan program baru
+                                        MDP TV yang dimana program ini adalah acara live music. Jadwal program ini dilakukan
+                                        dalam 2 bulan sekali. Bintang tamu dan pemain band akan berbeda setiap episode.</p>
+                                    <hr class="d-none d-lg-block mb-0 me-0" />
+                                    <a href="https://youtu.be/Ra-N0CtldX0" target="_blank" class="btn btn-secondary">Link
+                                        Youtube</a>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            @else
+                <div class="row gx-0 mb-5 mb-lg-0 justify-content-center">
+                    <div class="col-lg-6"><img class="img-fluid efek-imgs"
+                            src="{{ asset('storage/foto/' . $kegiatan[1]->foto) }}" alt="..." />
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="bg-black text-center h-100 project">
+                            <div class="d-flex h-100">
+                                <div class="project-text w-100 my-auto text-center text-lg-left">
+                                    <h4 class="text-white">{{ $kegiatan[1]->nama_kegiatan }}</h4>
+                                    <p class="mb-0 text-white-50">{{ $kegiatan[1]->deskripsi }}
+                                    </p>
+                                    <hr class="d-none d-lg-block mb-0 ms-0" />
+                                    {{-- <div class="d-grid gap-2 col-6 mx-auto"> --}}
+                                    <a href="{{ $kegiatan[1]->link }}" target="_blank" class="btn btn-secondary">Link
+                                        Youtube</a>
+                                    {{-- </div> --}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Project Two Row-->
+                <div class="row gx-0 justify-content-center">
+                    <div class="col-lg-6"><img class="img-fluid efek-imgs"
+                            src="{{ asset('storage/foto/' . $kegiatan[0]->foto) }}" alt="..." /></div>
+                    <div class="col-lg-6 order-lg-first">
+                        <div class="bg-black text-center h-100 project">
+                            <div class="d-flex h-100">
+                                <div class="project-text w-100 my-auto text-center text-lg-right">
+                                    <h4 class="text-white ">{{ $kegiatan[0]->nama_kegiatan }}</h4>
+                                    <p class="mb-0 text-white-50">{{ $kegiatan[0]->deskripsi }}</p>
+                                    <hr class="d-none d-lg-block mb-0 me-0" />
+                                    <a href="{{ $kegiatan[0]->link }}" target="_blank" class="btn btn-secondary">Link
+                                        Youtube</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @endif
             <div class="text-center mt-3 py-2 px-2">
                 <button class="btn btn-sm btn-info" onclick="location='{{ url('kegiatan') }}'">For More</button>
             </div>
@@ -87,36 +131,121 @@
         <hr style="width:20%; margin: 0 auto;margin-bottom: 15px;border: 2px solid black" />
         <div class="section-cardCS">
             @foreach ($webinar as $item)
-                <div class="cardCS colCS-12">
-                    <img src="{{ asset('storage/foto/' . $item->foto) }}" alt="webinar" class="cardCS__img colCS-6">
-                    <div class="cardCS__details colCS-6">
-                        <div class="cardCS__header">
-                            <h1>{{ $item->nama_webinar }}</h1>
-                        </div>
-                        <div class="cardCS__text">
-                            <div class="colCS-12">
-                                <ul>
-                                    <li><i
-                                            class="fa-solid fa-calendar fa-1x icon"></i>{{ date('d F Y', strtotime($item->tanggal)) }}
-                                    </li>
-                                    <li><i class="fa-solid fa-location-dot fa-1x icon"></i>{{ $item->lokasi }}</li>
-                                    <li><i class="fa-solid fa-wallet fa-1x icon"></i>
-                                        @if ($item->biaya === 0)
+                @if ($webinar->count() === 0)
+                    <div class="cardCS colCS-12">
+                        <img src="{{ asset('vendors/dist/img/webinar-1.png') }}" alt="webinar"
+                            class="cardCS__img colCS-6">
+                        <div class="cardCS__details colCS-6">
+                            <div class="cardCS__header">
+                                <h1>Ada Apa dengan UI/UX</h1>
+                            </div>
+                            <div class="cardCS__text">
+                                <div class="colCS-12">
+                                    <ul>
+                                        <li><i class="fa-solid fa-calendar fa-1x icon"></i>20 July 2022
+                                        </li>
+                                        <li><i class="fa-solid fa-location-dot fa-1x icon"></i>Ruang Podcast</li>
+                                        <li><i class="fa-solid fa-wallet fa-1x icon"></i>
                                             Rp. -
-                                        @else
-                                            Rp. {{ number_format($item->biaya, 0, '', '.') }}
-                                        @endif
-                                    </li>
-                                </ul>
-                                <a class="btn-details" data-bs-toggle="modalCS" data-bs-target="#modalKU"
-                                    data-bs-kegiatan="{{ $item->nama_webinar }}"
-                                    data-bs-foto="{{ asset('storage/foto/' . $item->foto) }}"
-                                    data-bs-deskripsi="{{ $item->deskripsi }}"
-                                    data-bs-link="{{ $item->link }}">Details</a>
+                                        </li>
+                                    </ul>
+
+                                    <a class="btn-details" data-bs-toggle="modalCS" data-bs-target="#modalKU"
+                                        data-bs-kegiatan="Ada Apa dengan UI/UX"
+                                        data-bs-foto="{{ asset('vendors/dist/img/webinar-1.png') }}"
+                                        data-bs-deskripsi="Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem odit consequatur dolor eius, dignissimos expedita reiciendis et molestias quidem totam?"
+                                        data-bs-link="#">Details</a>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                    <div class="cardCS colCS-12">
+                        <img src="{{ asset('vendors/dist/img/webinar-4.png') }}" alt="webinar"
+                            class="cardCS__img colCS-6">
+                        <div class="cardCS__details colCS-6">
+                            <div class="cardCS__header">
+                                <h1>UI/UX Design</h1>
+                            </div>
+                            <div class="cardCS__text">
+                                <div class="colCS-12">
+                                    <ul>
+                                        <li><i class="fa-solid fa-calendar fa-1x icon"></i>30 August 2022
+                                        </li>
+                                        <li><i class="fa-solid fa-location-dot fa-1x icon"></i>Ruang Podcast</li>
+                                        <li><i class="fa-solid fa-wallet fa-1x icon"></i>
+                                            Rp. -
+                                        </li>
+                                    </ul>
+
+                                    <a class="btn-details" data-bs-toggle="modalCS" data-bs-target="#modalKU"
+                                        data-bs-kegiatan="UI/UX Design"
+                                        data-bs-foto="{{ asset('vendors/dist/img/webinar-4.png') }}"
+                                        data-bs-deskripsi="Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem odit consequatur dolor eius, dignissimos expedita reiciendis et molestias quidem totam?"
+                                        data-bs-link="#">Details</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cardCS colCS-12">
+                        <img src="{{ asset('vendors/dist/img/webinar-5.png') }}" alt="webinar"
+                            class="cardCS__img colCS-6">
+                        <div class="cardCS__details colCS-6">
+                            <div class="cardCS__header">
+                                <h1>Keamanan Data dalam E-Commerce</h1>
+                            </div>
+                            <div class="cardCS__text">
+                                <div class="colCS-12">
+                                    <ul>
+                                        <li><i class="fa-solid fa-calendar fa-1x icon"></i>25 August 2022
+                                        </li>
+                                        <li><i class="fa-solid fa-location-dot fa-1x icon"></i>Ruang Podcast</li>
+                                        <li><i class="fa-solid fa-wallet fa-1x icon"></i>
+                                            Rp. -
+                                        </li>
+                                    </ul>
+
+                                    <a class="btn-details" data-bs-toggle="modalCS" data-bs-target="#modalKU"
+                                        data-bs-kegiatan="Keamanan Data dalam E-Commerce"
+                                        data-bs-foto="{{ asset('vendors/dist/img/webinar-5.png') }}"
+                                        data-bs-deskripsi="Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem odit consequatur dolor eius, dignissimos expedita reiciendis et molestias quidem totam?"
+                                        data-bs-link="#">Details</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @else
+                    <div class="cardCS colCS-12">
+                        <img src="{{ asset('storage/foto/' . $item->foto) }}" alt="webinar"
+                            class="cardCS__img colCS-6">
+                        <div class="cardCS__details colCS-6">
+                            <div class="cardCS__header">
+                                <h1>{{ $item->nama_webinar }}</h1>
+                            </div>
+                            <div class="cardCS__text">
+                                <div class="colCS-12">
+                                    <ul>
+                                        <li><i
+                                                class="fa-solid fa-calendar fa-1x icon"></i>{{ date('d F Y', strtotime($item->tanggal)) }}
+                                        </li>
+                                        <li><i class="fa-solid fa-location-dot fa-1x icon"></i>{{ $item->lokasi }}</li>
+                                        <li><i class="fa-solid fa-wallet fa-1x icon"></i>
+                                            @if ($item->biaya === 0)
+                                                Rp. -
+                                            @else
+                                                Rp. {{ number_format($item->biaya, 0, '', '.') }}
+                                            @endif
+                                        </li>
+                                    </ul>
+                                    <a class="btn-details" data-bs-toggle="modalCS" data-bs-target="#modalKU"
+                                        data-bs-kegiatan="{{ $item->nama_webinar }}"
+                                        data-bs-foto="{{ asset('storage/foto/' . $item->foto) }}"
+                                        data-bs-deskripsi="{{ $item->deskripsi }}"
+                                        data-bs-link="{{ $item->link }}">Details</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endif
             @endforeach
         </div>
         <div class="text-center mt-3 py-2 px-2">
