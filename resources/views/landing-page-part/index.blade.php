@@ -131,121 +131,36 @@
         <hr style="width:20%; margin: 0 auto;margin-bottom: 15px;border: 2px solid black" />
         <div class="section-cardCS">
             @foreach ($webinar as $item)
-                @if ($webinar->count() === 0)
-                    <div class="cardCS colCS-12">
-                        <img src="{{ asset('vendors/dist/img/webinar-1.png') }}" alt="webinar"
-                            class="cardCS__img colCS-6">
-                        <div class="cardCS__details colCS-6">
-                            <div class="cardCS__header">
-                                <h1>Ada Apa dengan UI/UX</h1>
-                            </div>
-                            <div class="cardCS__text">
-                                <div class="colCS-12">
-                                    <ul>
-                                        <li><i class="fa-solid fa-calendar fa-1x icon"></i>20 July 2022
-                                        </li>
-                                        <li><i class="fa-solid fa-location-dot fa-1x icon"></i>Ruang Podcast</li>
-                                        <li><i class="fa-solid fa-wallet fa-1x icon"></i>
+                <div class="cardCS colCS-12">
+                    <img src="{{ asset('storage/foto/' . $item->foto) }}" alt="webinar" class="cardCS__img colCS-6">
+                    <div class="cardCS__details colCS-6">
+                        <div class="cardCS__header">
+                            <h1>{{ $item->nama_webinar }}</h1>
+                        </div>
+                        <div class="cardCS__text">
+                            <div class="colCS-12">
+                                <ul>
+                                    <li><i
+                                            class="fa-solid fa-calendar fa-1x icon"></i>{{ date('d F Y', strtotime($item->tanggal)) }}
+                                    </li>
+                                    <li><i class="fa-solid fa-location-dot fa-1x icon"></i>{{ $item->lokasi }}</li>
+                                    <li><i class="fa-solid fa-wallet fa-1x icon"></i>
+                                        @if ($item->biaya === 0)
                                             Rp. -
-                                        </li>
-                                    </ul>
-
-                                    <a class="btn-details" data-bs-toggle="modalCS" data-bs-target="#modalKU"
-                                        data-bs-kegiatan="Ada Apa dengan UI/UX"
-                                        data-bs-foto="{{ asset('vendors/dist/img/webinar-1.png') }}"
-                                        data-bs-deskripsi="Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem odit consequatur dolor eius, dignissimos expedita reiciendis et molestias quidem totam?"
-                                        data-bs-link="#">Details</a>
-                                </div>
+                                        @else
+                                            Rp. {{ number_format($item->biaya, 0, '', '.') }}
+                                        @endif
+                                    </li>
+                                </ul>
+                                <a class="btn-details" data-bs-toggle="modalCS" data-bs-target="#modalKU"
+                                    data-bs-kegiatan="{{ $item->nama_webinar }}"
+                                    data-bs-foto="{{ asset('storage/foto/' . $item->foto) }}"
+                                    data-bs-deskripsi="{{ $item->deskripsi }}"
+                                    data-bs-link="{{ $item->link }}">Details</a>
                             </div>
                         </div>
                     </div>
-                    <div class="cardCS colCS-12">
-                        <img src="{{ asset('vendors/dist/img/webinar-4.png') }}" alt="webinar"
-                            class="cardCS__img colCS-6">
-                        <div class="cardCS__details colCS-6">
-                            <div class="cardCS__header">
-                                <h1>UI/UX Design</h1>
-                            </div>
-                            <div class="cardCS__text">
-                                <div class="colCS-12">
-                                    <ul>
-                                        <li><i class="fa-solid fa-calendar fa-1x icon"></i>30 August 2022
-                                        </li>
-                                        <li><i class="fa-solid fa-location-dot fa-1x icon"></i>Ruang Podcast</li>
-                                        <li><i class="fa-solid fa-wallet fa-1x icon"></i>
-                                            Rp. -
-                                        </li>
-                                    </ul>
-
-                                    <a class="btn-details" data-bs-toggle="modalCS" data-bs-target="#modalKU"
-                                        data-bs-kegiatan="UI/UX Design"
-                                        data-bs-foto="{{ asset('vendors/dist/img/webinar-4.png') }}"
-                                        data-bs-deskripsi="Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem odit consequatur dolor eius, dignissimos expedita reiciendis et molestias quidem totam?"
-                                        data-bs-link="#">Details</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="cardCS colCS-12">
-                        <img src="{{ asset('vendors/dist/img/webinar-5.png') }}" alt="webinar"
-                            class="cardCS__img colCS-6">
-                        <div class="cardCS__details colCS-6">
-                            <div class="cardCS__header">
-                                <h1>Keamanan Data dalam E-Commerce</h1>
-                            </div>
-                            <div class="cardCS__text">
-                                <div class="colCS-12">
-                                    <ul>
-                                        <li><i class="fa-solid fa-calendar fa-1x icon"></i>25 August 2022
-                                        </li>
-                                        <li><i class="fa-solid fa-location-dot fa-1x icon"></i>Ruang Podcast</li>
-                                        <li><i class="fa-solid fa-wallet fa-1x icon"></i>
-                                            Rp. -
-                                        </li>
-                                    </ul>
-
-                                    <a class="btn-details" data-bs-toggle="modalCS" data-bs-target="#modalKU"
-                                        data-bs-kegiatan="Keamanan Data dalam E-Commerce"
-                                        data-bs-foto="{{ asset('vendors/dist/img/webinar-5.png') }}"
-                                        data-bs-deskripsi="Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem odit consequatur dolor eius, dignissimos expedita reiciendis et molestias quidem totam?"
-                                        data-bs-link="#">Details</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                @else
-                    <div class="cardCS colCS-12">
-                        <img src="{{ asset('storage/foto/' . $item->foto) }}" alt="webinar"
-                            class="cardCS__img colCS-6">
-                        <div class="cardCS__details colCS-6">
-                            <div class="cardCS__header">
-                                <h1>{{ $item->nama_webinar }}</h1>
-                            </div>
-                            <div class="cardCS__text">
-                                <div class="colCS-12">
-                                    <ul>
-                                        <li><i
-                                                class="fa-solid fa-calendar fa-1x icon"></i>{{ date('d F Y', strtotime($item->tanggal)) }}
-                                        </li>
-                                        <li><i class="fa-solid fa-location-dot fa-1x icon"></i>{{ $item->lokasi }}</li>
-                                        <li><i class="fa-solid fa-wallet fa-1x icon"></i>
-                                            @if ($item->biaya === 0)
-                                                Rp. -
-                                            @else
-                                                Rp. {{ number_format($item->biaya, 0, '', '.') }}
-                                            @endif
-                                        </li>
-                                    </ul>
-                                    <a class="btn-details" data-bs-toggle="modalCS" data-bs-target="#modalKU"
-                                        data-bs-kegiatan="{{ $item->nama_webinar }}"
-                                        data-bs-foto="{{ asset('storage/foto/' . $item->foto) }}"
-                                        data-bs-deskripsi="{{ $item->deskripsi }}"
-                                        data-bs-link="{{ $item->link }}">Details</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                @endif
+                </div>
             @endforeach
         </div>
         <div class="text-center mt-3 py-2 px-2">
