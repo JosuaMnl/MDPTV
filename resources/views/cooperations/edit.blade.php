@@ -7,9 +7,6 @@
         <div class="card-header">
             <h3 class="card-title">Edit Kerjasama</h3>
         </div>
-        {{-- @php
-            dd($cooperations->surat_izin);
-        @endphp --}}
         <div class="card-body">
             <div>
                 <form action="{{ route('cooperations.update', ['cooperation' => $cooperations->id]) }}" method="POST"

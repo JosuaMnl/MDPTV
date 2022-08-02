@@ -1,4 +1,3 @@
-{{-- Memanggil file master yang di folder layouts --}}
 @extends('layouts.master')
 
 @section('title', 'Dashboard')

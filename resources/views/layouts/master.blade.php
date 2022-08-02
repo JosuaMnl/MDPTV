@@ -32,7 +32,6 @@
     <link rel="stylesheet" type="text/css"
         href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 
-
     @hasSection('isActive')
         <link rel="stylesheet"
             href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.3/css/bootstrap.min.css">
@@ -110,14 +109,12 @@
 <body
     class="dark-mode layout-navbar-fixed sidebar-closed sidebar-collapse sidebar-mini-xs layout-fixed sidebar-mini sidebar-mini-md">
     <div class="wrapper">
-
         <div class="preloader flex-column justify-content-center align-items-center">
             <img class="animation__wobble" src="{{ asset('vendors/dist/img/MDP_TV.png') }}" alt="AdminLTELogo"
                 height="180" width="180">
         </div>
 
         <nav class="main-header navbar navbar-expand navbar-dark border-bottom-0">
-
             <ul class="navbar-nav">
                 <li class="nav-item">
                     <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i
@@ -130,9 +127,7 @@
                     <a href="{{ url('/#contact') }}" class="nav-link">Contact</a>
                 </li>
             </ul>
-
             <ul class="navbar-nav ml-auto">
-
                 <li class="nav-item">
                     <a class="nav-link" data-widget="navbar-search" href="#" role="button">
                         <i class="fas fa-search"></i>
@@ -158,15 +153,12 @@
         </nav>
 
         <aside class="main-sidebar sidebar-dark-danger elevation-4">
-
             <a href="#" class="brand-link">
                 <img src="{{ asset('vendors/dist/img/MDP_TV.png') }}" alt="MDPTV Logo"
                     class="brand-image img-circle elevation-3" style="opacity: .8">
                 <span class="brand-text font-weight-light">MDP TV</span>
             </a>
-
             <div class="sidebar">
-
                 <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                     <div class="image">
                         {{-- <img src="{{ asset('vendors/dist/img/user2-160x160.jpg') }}" class="img-circle elevation-2"
@@ -178,7 +170,6 @@
                             {{ Auth::user()->user_levels->user_levels }}</a>
                     </div>
                 </div>
-
                 <div class="form-inline">
                     <div class="input-group" data-widget="sidebar-search">
                         <input class="form-control form-control-sidebar" type="search" placeholder="Search"
@@ -190,7 +181,6 @@
                         </div>
                     </div>
                 </div>
-
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column nav-collapse-hide-child text-sm"
                         data-widget="treeview" role="menu" data-accordion="false">
@@ -292,7 +282,6 @@
                                                 Pengajuan Kerja Sama
                                             </p>
                                 @endif
-
                                 </a>
                             </li>
                         @endif
@@ -353,13 +342,10 @@
                         </li>
                     </ul>
                 </nav>
-
             </div>
-
         </aside>
 
         <div class="content-wrapper">
-
             <div class="content-header">
                 <div class="container-fluid">
                     <div class="row mb-2">
@@ -375,8 +361,6 @@
                     </div>
                 </div>
             </div>
-
-
             <section class="content">
                 <div class="container-fluid">
 
@@ -384,14 +368,9 @@
 
                 </div>
             </section>
-
         </div>
-
-
         <aside class="control-sidebar control-sidebar-dark">
-
         </aside>
-
 
         <footer class="main-footer">
             <strong>Copyright &copy; 2020-2022 <a href="{{ url('/') }}">MDP TV</a>.</strong>
@@ -400,7 +379,10 @@
     </div>
 
     <script src="{{ asset('vendors/plugins/jquery/jquery.min.js') }}"></script>
+    {{-- Toastr --}}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+
+    {{-- Alert --}}
     <script>
         @if (Session::has('success'))
             toastr.options = {
@@ -434,15 +416,18 @@
             toastr.warning("{{ session('warning') }}");
         @endif
     </script>
+
     <script src="{{ asset('vendors/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-
     <script src="{{ asset('vendors/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js') }}"></script>
-
     <script src="{{ asset('vendors/dist/js/adminlte.js?v=3.2.0') }}"></script>
+
+    {{-- SweetAlert --}}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js"></script>
     {{-- <script src="{{ asset('vendors/dist/js/demo.js') }}"></script> --}}
 
     {{-- <script src="{{ asset('vendors/dist/js/pages/dashboard2.js') }}"></script> --}}
+
+    {{-- Datatable --}}
     @hasSection('isActive')
         <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
         <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
@@ -533,7 +518,6 @@
 
     {{-- Select2 --}}
     <script src="{{ asset('vendors/plugins/select2/js/select2.full.min.js') }}"></script>
-
     <script>
         $(function() {
             //Initialize Select2 Elements
@@ -541,6 +525,7 @@
         });
     </script>
 
+    {{-- Master --}}
     <script>
         var txtMaster = document.getElementsByClassName('txtMaster');
         var numItems = document.getElementsByClassName('master');

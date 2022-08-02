@@ -37,14 +37,16 @@
                         <div class="text-danger">{{ $message }}</div>
                     @enderror
                 </div>
-                <label>Role</label>
-                <select class="form-control select2 select2-danger" data-dropdown-css-class="select2-danger"
-                    style="width: 100%;" name="user_levels_id">
-                    <option value="">Pilih Role User</option>
-                    @foreach ($user_levels as $item)
-                        <option value="{{ $item->id }}">{{ $item->user_levels }}</option>
-                    @endforeach
-                </select>
+                <div class="form-group">
+                    <label>Role</label>
+                    <select class="form-control select2 select2-danger" data-dropdown-css-class="select2-danger"
+                        style="width: 100%;" name="user_levels_id">
+                        <option value="">Pilih Role User</option>
+                        @foreach ($user_levels as $item)
+                            <option value="{{ $item->id }}">{{ $item->user_levels }}</option>
+                        @endforeach
+                    </select>
+                </div>
                 <div class="form-group">
                     <label for="password">Password</label>
                     <input type="password" class="form-control" name="password" id="password"

@@ -35,7 +35,7 @@
         <h2 class="text-black mb-6 text-center">Kegiatan</h2>
         <hr style="width:20%; margin: 0 auto;margin-bottom: 15px;border: 2px solid black" />
         <div class="container px-4 px-lg-5">
-            @if ($kegiatan->count() === 0)
+            @if ($kegiatan->count() <= 1)
                 <div class="row gx-0 mb-5 mb-lg-0 justify-content-center">
                     <div class="col-lg-6"><img class="img-fluid efek-imgs"
                             src="{{ asset('vendors/dist/gray/img/lmgeps1.png') }}" alt="..." />
