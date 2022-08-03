@@ -38,7 +38,7 @@
             @if ($kegiatan->count() <= 1)
                 <div class="row gx-0 mb-5 mb-lg-0 justify-content-center">
                     <div class="col-lg-6"><img class="img-fluid efek-imgs"
-                            src="{{ asset('vendors/dist/gray/img/lmgeps1.png') }}" alt="..." />
+                            src="{{ asset('vendors/dist/gray/assets/img/lmgeps1.png') }}" alt="..." />
                     </div>
                     <div class="col-lg-6">
                         <div class="bg-black text-center h-100 project">
@@ -63,7 +63,7 @@
                 <!-- Project Two Row-->
                 <div class="row gx-0 justify-content-center">
                     <div class="col-lg-6"><img class="img-fluid efek-imgs"
-                            src="{{ asset('vendors/dist/gray/img/lmgeps2.png') }}" alt="..." /></div>
+                            src="{{ asset('vendors/dist/gray/assets/img/lmgeps2.png') }}" alt="..." /></div>
                     <div class="col-lg-6 order-lg-first">
                         <div class="bg-black text-center h-100 project">
                             <div class="d-flex h-100">
