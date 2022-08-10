@@ -3,7 +3,7 @@
 @section('title', 'Edit Dokumentasi')
 
 @section('content')
-    <div class="card card-info">
+    <div class="card">
         <div class="card-header">
             <h3 class="card-title">Edit Dokumentasi</h3>
         </div>
@@ -12,19 +12,21 @@
             <form action="{{ route('documentation.update', ['documentation' => $documentations->id]) }}" method="POST">
                 @method('PATCH')
                 @csrf
-
                 <div class="form-group">
                     <label for="periods">Periode</label>
-                    <select name="periods_id" id="periode" class="form-control" readonly="readonly">
-                        <option value="{{ $periods[0]->id == $documentations->periods_id ? 'selected' : null }}">
-                            {{ $periods[0]->tahun_akademik }}</option>
+                    <select name="periods_id" id="periode" class="form-control">
+                        <option value="">Pilih Tahun Akademik</option>
+                        @foreach ($periods as $item)
+                            <option value="{{ $item->id }}"
+                                {{ $item->id == $documentations->periods_id ? 'selected' : null }}>
+                                {{ $item->tahun_akademik }}</option>
+                        @endforeach
                     </select>
                 </div>
                 <div class="form-group">
-                    <label for="periods">Semester</label>
-                    <select name="periods_id" id="semester" class="form-control" readonly="readonly">
-                        <option value="{{ $periods[0]->id }}">{{ $periods[0]->semester }}</option>
-                    </select>
+                    <label for="semester">Semester</label>
+                    <input type="text" name="semester" id="semester" class="form-control"
+                        value="{{ old('semester') ?? $documentations->semester }}">
                 </div>
                 <div class="form-group">
                     <label>Penyelenggara</label>
@@ -50,8 +52,8 @@
                 <div class="form-group">
                     <label>Tanggal Kegiatan</label>
                     <div class="input-group date" id="reservationdate" data-target-input="nearest">
-                        <input type="text" class="form-control datetimepicker-input" name="tanggal_kegiatan" id="tanggal"
-                            data-target="#reservationdate"
+                        <input type="text" class="form-control datetimepicker-input" name="tanggal_kegiatan"
+                            id="tanggal" data-target="#reservationdate"
                             value="{{ old('tanggal_kegiatan') ?? $documentations->tanggal_kegiatan }}" />
                         <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
                             <div class="input-group-text"><i class="fa fa-calendar"></i></div>

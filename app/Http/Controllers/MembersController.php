@@ -18,8 +18,9 @@ class MembersController extends Controller
     public function index()
     {
         //
+        $this->authorize('viewAny', Members::class);
         $members = Members::all();
-        return view('anggota.index')->with('members', $members);
+        return view('members.index')->with('members', $members)->with('scripts', true);
     }
 
     /**
@@ -33,7 +34,7 @@ class MembersController extends Controller
         $study_programs = Study_programs::all();
         $divisions = Divisions::all();
         $positions = Positions::all();
-        return view('anggota.create')->with('study_programs', $study_programs)->with('divisions', $divisions)->with('positions', $positions);
+        return view('members.create')->with('study_programs', $study_programs)->with('divisions', $divisions)->with('positions', $positions);
     }
 
     /**
@@ -45,6 +46,7 @@ class MembersController extends Controller
     public function store(Request $request)
     {
         //
+        $this->authorize('create', Members::class);
         $validateData =$request->validate([
             'nama' => 'required',
             'email' => 'required',
@@ -69,6 +71,7 @@ class MembersController extends Controller
         $member->positions_id = $validateData['positions_id'];
 
         $member->save();//simpan table prodis
+        $request->session()->flash('success', "Data Anggota $member->nama berhasil di simpan");
         return redirect()->route('members.index'); //redirect ke prodi.index
     }
 
@@ -95,7 +98,7 @@ class MembersController extends Controller
         $study_programs = Study_programs::all();
         $divisions = Divisions::all();
         $positions = Positions::all();
-        return view('anggota.edit')->with('members',$member)->with('study_programs', $study_programs)->with('divisions', $divisions)->with('positions', $positions);
+        return view('members.edit')->with('members',$member)->with('study_programs', $study_programs)->with('divisions', $divisions)->with('positions', $positions);
        
     }
 
@@ -109,6 +112,7 @@ class MembersController extends Controller
     public function update(Request $request, Members $member)
     {
         //
+        $this->authorize('update', Members::class);
         $validateData =$request->validate([
             'nama' => 'required',
             'email' => 'required',
@@ -123,7 +127,7 @@ class MembersController extends Controller
 
 
         Members::where('id', $member->id)->update($validateData);
-        $request->session()->flash('info', 'Data anggota berhasil di ubah');
+        $request->session()->flash('success', 'Data Anggota berhasil di edit');
         return redirect()->route('members.index');
     }
 
@@ -136,8 +140,8 @@ class MembersController extends Controller
     public function destroy(Members $member)
     {
         //
-        //dd($member);
+        $this->authorize('delete', Members::class);
         $member->delete();
-        return redirect()->route('members.index')->with('info', "Data anggota $member->nama berhasil dihapus");
+        return redirect()->route('members.index')->with('success', "Data Anggota $member->nama berhasil dihapus");
     }
 }

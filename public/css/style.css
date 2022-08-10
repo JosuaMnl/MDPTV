@@ -1,0 +1,230 @@
+.icon {
+    padding: 2px 18px 0px 2px;
+}
+
+.carousel {
+    max-width: 50em;
+    height: auto;
+
+}
+
+.txt-font {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.col:hover::before {
+    left: 10%;
+}
+
+.efek-img {
+    -webkit-transition-duration: 0.5s;
+    -moz-transition-duration: 0.5s;
+    -moz-transition-duration: 0.5s;
+}
+
+.efek-imgs {
+    -webkit-transition-duration: 0.2s;
+    -moz-transition-duration: 0.2s;
+    -moz-transition-duration: 0.2s;
+}
+
+.efek-img:hover {
+    -webkit-transform: scale(1.2);
+    -moz-transform: scale(1.2);
+    -o-transform: scale(1.2);
+    opacity: 1;
+    z-index: 2;
+}
+
+
+.efek-imgs:hover {
+    -webkit-transform: scale(1.1);
+    -moz-transform: scale(1.1);
+    -o-transform: scale(1.1);
+    opacity: 1;
+    z-index: 2;
+}
+
+.map-wrapper {
+    max-width: 800px;
+    padding: 2%;
+}
+
+.map {
+    width: 70%;
+}
+
+.navbar.navbar-expand-lg.navbar-light.fixed-top.navbar-shrink img #logoMdp {
+    content: url(https://mdp.ac.id/mdp2020/wp-content/uploads/2021/07/logo-umdp-1-300x248-2.png);
+}
+
+/* The Modal (background) */
+.modalCS {
+    display: none;
+    /* Hidden by default */
+    position: fixed;
+    /* Stay in place */
+    z-index: 999999999;
+    /* Sit on top */
+    padding-top: 2vw;
+    padding-bottom: 2vw;
+    /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%;
+    /* Full width */
+    height: 100%;
+    /* Full height */
+    overflow: auto;
+    /* Enable scroll if needed */
+    /* background-color: rgb(0, 0, 0); */
+    /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.568);
+    /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modalCS-content {
+    position: relative;
+    background-color: #fefefe;
+    margin: auto;
+    padding: 0;
+    padding-bottom: 10px;
+    border: 1px solid #888;
+    width: 40%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    -webkit-animation-name: animatetop;
+    -webkit-animation-duration: 0.4s;
+    animation-name: animatetop;
+    animation-duration: 0.4s
+}
+
+.modal-foto {
+    display: block;
+    width: 100%;
+    height: auto;
+    margin: 0 auto;
+}
+
+.modalCS-body p {
+    padding: 20px 30px 0 30px;
+}
+
+/* Add Animation */
+@-webkit-keyframes animatetop {
+    from {
+        top: -300px;
+        opacity: 0
+    }
+
+    to {
+        top: 0;
+        opacity: 1
+    }
+}
+
+@keyframes animatetop {
+    from {
+        top: -300px;
+        opacity: 0
+    }
+
+    to {
+        top: 0;
+        opacity: 1
+    }
+}
+
+/* The Close Button */
+.closeCS {
+    position: absolute;
+    top: 12px;
+    right: 5%;
+    text-decoration: none;
+    color: #000;
+    font-size: 35px;
+    display: inline-block;
+    line-height: 1;
+    transition: all .1s;
+}
+
+.closeCS:hover,
+.closeCS:focus {
+    color: rgb(255, 0, 0);
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modalCS-header {
+    padding: 2px 16px;
+    background-color: #5cb85c;
+    color: white;
+}
+
+/* .modalCS-body {
+            padding: 2px 16px;
+        } */
+
+.modalCS-footer {
+    padding: 2px 16px;
+    background-color: #5cb85c;
+    color: white;
+}
+
+.btnCS {
+    font-family: sans-serif;
+    text-transform: uppercase;
+    text-align: center;
+    color: #eee;
+    background-color: rgb(72, 72, 72);
+    font-weight: 300;
+    border: none;
+    display: inline-block;
+    padding: 10px 15px;
+    margin-left: 40%;
+    transform: translate(-50%);
+    margin-bottom: 30px;
+}
+
+@media screen and (max-width: 500px) {
+    .modalCS {
+        width: 100%;
+        display: none;
+        height: 100vh;
+        background-color: rgba(0, 0, 0, .8);
+    }
+
+    .modalCS-content {
+        width: 80%;
+        background-color: #fff;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, .2);
+    }
+
+    .modal-foto {
+        display: block;
+        width: 100%;
+        /* padding-bottom: 15px; */
+        /* margin: 0 auto; */
+    }
+
+    .modalCS-body p {
+        padding: 15px 20px 0 20px;
+    }
+
+    .closeCS {
+        display: block;
+        width: 100%;
+        padding-left: 90%;
+        color: #000;
+        float: right;
+        font-size: 20px;
+        font-weight: bold;
+    }
+
+    .closeCS:hover,
+    .closeCS:focus {
+        color: rgb(255, 0, 0);
+        text-decoration: none;
+        cursor: pointer;
+    }
+}

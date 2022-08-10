@@ -15,8 +15,9 @@ class UserLevelsController extends Controller
     public function index()
     {
         //
+        $this->authorize('viewAny', User_levels::class);
         $user_levels = User_levels::all();
-        return view('user_levels.index')->with('user_levels', $user_levels);
+        return view('user_levels.index')->with('user_levels', $user_levels)->with('scripts',true);
     }
 
     /**
@@ -39,6 +40,7 @@ class UserLevelsController extends Controller
     public function store(Request $request)
     {
         //
+        $this->authorize('create', User_levels::class);
         $validateData = $request->validate([
             'user_levels' => 'required'
         ]);
@@ -47,6 +49,7 @@ class UserLevelsController extends Controller
         $user_levels->user_levels = $validateData['user_levels'];
 
         $user_levels->save();
+        $request->session()->flash('success', 'Data User Levels berhasil di simpan');
         return redirect()->route('user_levels.index');
     }
 
@@ -83,12 +86,13 @@ class UserLevelsController extends Controller
     public function update(Request $request, User_levels $user_level)
     {
         //
+        $this->authorize('update', User_levels::class);
         $validateData =$request->validate([
             'user_levels' => 'required'
         ]);
 
         User_levels::where('id', $user_level->id)->update($validateData);
-        $request->session()->flash('info', 'Data Program Studi berhasil di ubah');
+        $request->session()->flash('success', 'Data User Levels berhasil di edit');
         return redirect()->route('user_levels.index');
     }
 
@@ -101,7 +105,8 @@ class UserLevelsController extends Controller
     public function destroy(User_levels $user_level)
     {
         //
+        $this->authorize('delete', User_levels::class);
         $user_level->delete();
-        return redirect()->route('user_levels.index')->with('info', "Data $user_level->user_levels berhasil dihapus");
+        return redirect()->route('user_levels.index')->with('success', "Data $user_level->user_levels berhasil dihapus");
     }
 }

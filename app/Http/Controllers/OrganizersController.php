@@ -15,8 +15,9 @@ class OrganizersController extends Controller
     public function index()
     {
         //
+        $this->authorize('viewAny', Organizers::class);
         $organizers = Organizers::all();
-        return view('organizers.index')->with('organizers', $organizers);
+        return view('organizers.index')->with('organizers', $organizers)->with('scripts',true);
     }
 
     /**
@@ -39,6 +40,7 @@ class OrganizersController extends Controller
     public function store(Request $request)
     {
         //
+        $this->authorize('create', Organizers::class);
         $validateData = $request->validate([
             'penyelenggara' => 'required'
         ]);
@@ -47,6 +49,7 @@ class OrganizersController extends Controller
         $organizers->penyelenggara = $validateData['penyelenggara'];
 
         $organizers->save();
+        $request->session()->flash('success', 'Data Penyelenggara berhasil di simpan');
         return redirect()->route('organizers.index');
     }
 
@@ -83,12 +86,13 @@ class OrganizersController extends Controller
     public function update(Request $request, Organizers $organizer)
     {
         //
+        $this->authorize('update', Organizers::class);
         $validateData =$request->validate([
             'penyelenggara' => 'required'
         ]);
 
         Organizers::where('id', $organizer->id)->update($validateData);
-        $request->session()->flash('info', 'Data Penyelenggara berhasil di ubah');
+        $request->session()->flash('success', 'Data Penyelenggara berhasil di edit');
         return redirect()->route('organizers.index');
     }
 
@@ -101,7 +105,8 @@ class OrganizersController extends Controller
     public function destroy(Organizers $organizer)
     {
         //
+        $this->authorize('delete', Organizers::class);
         $organizer->delete();
-        return redirect()->route('organizers.index')->with('info', "Data penyelenggara $organizer->penyelenggara berhasil dihapus");
+        return redirect()->route('organizers.index')->with('success', "Data Penyelenggara $organizer->penyelenggara berhasil dihapus");
     }
 }

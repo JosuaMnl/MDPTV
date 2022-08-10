@@ -19,10 +19,10 @@ return new class extends Migration
             $table->string('nama', 45);
             $table->string('email', 45)->unique();
             $table->char('no_hp', 13);
-            $table->string('alamat', 45);
+            $table->string('alamat', 256);
             $table->enum('jenis_kelamin', ['L', 'P']);
             $table->integer('angkatan');
-            $table->enum('status', ['aktif', 'tidak']);
+            $table->enum('status', ['Aktif', 'Tidak Aktif']);
             $table->foreignId('study_programs_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
             $table->foreignId('divisions_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
             $table->foreignId('positions_id')->constrained()->onDelete('cascade')->onUpdate('cascade');

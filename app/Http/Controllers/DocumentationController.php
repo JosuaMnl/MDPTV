@@ -17,8 +17,9 @@ class DocumentationController extends Controller
     public function index()
     {
         //
+        $this->authorize('viewAny', Documentation::class);
         $documentations = Documentation::all();
-        return view('documentations.index')->with('documentations', $documentations);
+        return view('documentations.index')->with('documentations', $documentations)->with('tables', true);
     }
 
     /**
@@ -31,7 +32,7 @@ class DocumentationController extends Controller
         //
         $organizers = Organizers::all();
         $periods = Periods::all();
-        return view('documentations.create')->with('organizers', $organizers)->with('periods', $periods);
+        return view('documentations.create')->with('organizers', $organizers)->with('periods', $periods)->with('date',true);
     }
 
     /**
@@ -43,10 +44,12 @@ class DocumentationController extends Controller
     public function store(Request $request)
     {
         //
+        $this->authorize('create', Documentation::class);
         $validasi = $request->validate([
             'nama_kegiatan' => 'required',
             'tanggal_kegiatan' => 'required',
             'lokasi' => 'required',
+            'semester' => 'required',
             'keterangan' => 'required',
             'link_dokumentasi' => 'required',
             'periods' => 'required',
@@ -57,12 +60,14 @@ class DocumentationController extends Controller
         $dokumentasi->nama_kegiatan = $validasi['nama_kegiatan'];
         $dokumentasi->tanggal_kegiatan = $validasi['tanggal_kegiatan'];
         $dokumentasi->lokasi = $validasi['lokasi'];
+        $dokumentasi->semester = $validasi['semester'];
         $dokumentasi->keterangan = $validasi['keterangan'];
         $dokumentasi->link_dokumentasi = $validasi['link_dokumentasi'];
         $dokumentasi->periods_id = $validasi['periods'];
         $dokumentasi->organizers_id = $validasi['organizers'];
         $dokumentasi->save();
 
+        $request->session()->flash('success', "Data Dokumentasi $dokumentasi->nama_kegiatan berhasil disimpan");
         return redirect()->route('documentation.index');
     }
 
@@ -101,10 +106,12 @@ class DocumentationController extends Controller
     public function update(Request $request, Documentation $documentation)
     {
         //
+        $this->authorize('update', Documentation::class);
         $validasi = $request->validate([
             'nama_kegiatan' => 'required',
             'tanggal_kegiatan' => 'required',
             'lokasi' => 'required',
+            'semester' => 'required',
             'keterangan' => 'required',
             'link_dokumentasi' => 'required',
             'periods_id' => 'required',
@@ -113,7 +120,7 @@ class DocumentationController extends Controller
         
         Documentation::where('id', $documentation->id)->update($validasi);
         
-        $request->session()->flash('info', 'Data Dokumentasi berhasil di edit');
+        $request->session()->flash('success', "Data Dokumentasi $documentation->nama_kegiatan berhasil di edit");
         return redirect()->route('documentation.index');
     }
 
@@ -126,7 +133,8 @@ class DocumentationController extends Controller
     public function destroy(Documentation $documentation)
     {
         //
+        $this->authorize('delete', Documentation::class);
         $documentation->delete();
-        return redirect()->route('documentation.index')->with('info', "Data Dokumentasi berhasil dihapus");
+        return redirect()->back()->with('success', "Data Dokumentasi $documentation->nama_kegiatan berhasil dihapus");
     }
 }

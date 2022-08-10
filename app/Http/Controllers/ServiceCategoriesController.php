@@ -15,8 +15,9 @@ class ServiceCategoriesController extends Controller
     public function index()
     {
         //
+        $this->authorize('viewAny', Service_categories::class);
         $service_categories = Service_categories::all();
-        return view('service_categories.index')->with('service_categories', $service_categories);
+        return view('service_categories.index')->with('service_categories', $service_categories)->with('scripts',true);
     }
 
     /**
@@ -39,6 +40,7 @@ class ServiceCategoriesController extends Controller
     public function store(Request $request)
     {
         //
+        $this->authorize('create', Service_categories::class);
         $validateData =$request->validate(
             ["nama_layanan"=>"required"]
         );
@@ -47,6 +49,7 @@ class ServiceCategoriesController extends Controller
         $service_categories->nama_layanan = $validateData['nama_layanan'];
 
         $service_categories->save();
+        $request->session()->flash('success', "Data kategori layanan $service_categories->nama_layanan berhasil di simpan");
         return redirect()->route('service_categories.index');
     }
 
@@ -83,12 +86,13 @@ class ServiceCategoriesController extends Controller
     public function update(Request $request, Service_categories $service_category)
     {
         //
+        $this->authorize('update', Service_categories::class);
         $validateData = $request->validate(
             ['nama_layanan'=>'required']
         );
 
         Service_categories::where('id', $service_category->id)->update($validateData);
-        $request->session()->flash('info', 'Data Kategori Layanan berhasil di ubah');
+        $request->session()->flash('success', 'Data Kategori Layanan berhasil di edit');
         return redirect()->route('service_categories.index');
     }
 
@@ -101,7 +105,8 @@ class ServiceCategoriesController extends Controller
     public function destroy(Service_categories $service_category)
     {
         //
+        $this->authorize('delete', Service_categories::class);
         $service_category->delete();
-        return redirect()->route('service_categories.index')->with('info', "Data kategori layanan $service_category->nama_layanan berhasil dihapus");
+        return redirect()->route('service_categories.index')->with('success', "Data kategori layanan $service_category->nama_layanan berhasil dihapus");
     }
 }

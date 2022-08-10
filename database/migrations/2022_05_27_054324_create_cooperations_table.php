@@ -19,10 +19,10 @@ return new class extends Migration
             $table->string('nama_kegiatan', 125);
             $table->date('tanggal_kegiatan');
             $table->char('no_hp', 13);
-            $table->string('lokasi', 125);
-            $table->string('surat_izin', 45);
-            $table->string('surat_kerjasama', 45);
-            $table->enum('status', ['Ya', 'Tidak', 'Sedang Proses']);
+            $table->string('lokasi', 256);
+            $table->string('surat_izin', 256);
+            $table->string('surat_kerjasama', 256);
+            $table->enum('status', ['Disetujui', 'Ditolak', 'Sedang Proses'])->default('Sedang Proses');
             $table->foreignId('organizers_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
             $table->foreignId('users_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
         });

@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->foreignId('cooperations_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
-            $table->foreignId('service_categories')->constrained()->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('service_categories_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

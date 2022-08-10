@@ -2,11 +2,15 @@
 
 @section('title', 'Dokumentasi')
 
+@section('tableDokumentasi', $tables)
+
 @section('content')
     <div class="card">
         <div class="card-header">
             {{-- <h3 class="card-title">Halaman @yield('title')</h3> --}}
-            <a href="{{ url('documentation/create') }}" class="btn btn-info">Tambah</a>
+            @if (Auth::user()->user_levels->user_levels === 'MDP TV')
+                <a href="{{ url('documentation/create') }}" class="btn btn-info">Tambah</a>
+            @endif
             <div class="card-tools">
                 <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
                     <i class="fas fa-minus"></i>
@@ -17,95 +21,73 @@
             </div>
         </div>
         <div class="card-body">
-            <table id="example" class="table table-striped nowrap" style="width:100%">
+            <table id="example" class="table nowrap" style="width:100%">
                 <thead>
                     <tr>
                         <th>Nama Kegiatan</th>
                         <th>Tanggal Kegiatan</th>
                         <th>Lokasi</th>
+                        <th>Semester</th>
                         <th>Keterangan</th>
                         <th>Link Dokumentasi</th>
                         <th>Penyelenggara</th>
                         <th>Action</th>
                         <th>Tahun Akademik</th>
-                        <th>Semester</th>
                     </tr>
                 </thead>
                 <tbody>
-
-                    {{-- @php
-                    dd($documentation);
-                @endphp --}}
                     @foreach ($documentations as $item)
                         <tr>
                             <td>{{ $item->nama_kegiatan }}</td>
                             <td>{{ $item->tanggal_kegiatan }}</td>
                             <td>{{ $item->lokasi }}</td>
+                            <td>{{ $item->semester }}</td>
                             <td>{{ $item->keterangan }}</td>
-                            <td>{{ $item->link_dokumentasi }}</td>
+                            <td><a href="{{ $item->link_dokumentasi }}">Link</a></td>
                             <td>{{ $item->organizers->penyelenggara }}</td>
                             <td>
                                 <a href="{{ url('documentation/' . $item->id . '/edit') }}"
                                     class="btn btn-sm btn-warning">Edit</a>
-                                <button class="btn btn-sm btn-danger btn-hapus" data-id="{{ $item->id }}"
-                                    data-nama-documentation="{{ $item->nama_kegiatan }}" data-toggle="modal"
-                                    data-target="#deleteModal">Hapus</button>
+                                <form method="POST" action="{{ route('documentation.destroy', $item->id) }}"
+                                    style="display: inline">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-sm btn-danger show_confirm"
+                                        data-name="{{ $item->nama_kegiatan }}" data-toggle="tooltip"
+                                        title='Delete'>Delete</button>
+                                </form>
                             </td>
                             <td>{{ $item->periods->tahun_akademik }}</td>
-                            <td>{{ $item->periods->semester }}</td>
                         </tr>
                     @endforeach
-
                 </tbody>
             </table>
         </div>
         <div class="card-footer">
             Footer
         </div>
-        <div class="modal fade" id="deleteModal" style="z-index: 999999999">
-            <div class="modal-dialog">
-                <div class="modal-content bg-danger">
-                    <form action="" method="post" id="formDelete">
-                        @method('DELETE')
-                        @csrf
-                        <div class="modal-header">
-                            <h4 class="modal-title">Konfirmasi Hapus Data</h4>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body" id="mb-konfirmasi">
-                        </div>
-                        <div class="modal-footer justify-content-between">
-                            <button type="button" class="btn btn-outline-light" data-dismiss="modal">Batal</button>
-                            <button type="submit" class="btn btn-outline-light">Ya, Hapus</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
     </div>
-    <script src="{{ asset('vendors/plugins/jquery/jquery.min.js') }}"></script>
-    {{-- Modal --}}
-    <script>
-        // Generate alamat URL untuk proses hapus data program studi
-        $('.btn-hapus').click(function() {
-            let id = $(this).attr('data-id');
-            $('#formDelete').attr('action', '/documentation/' + id);
 
-            // Get value attribute data-nama-prodi
-            let nama_documentation = $(this).attr('data-nama-documentation');
-
-            // Set text ke div id="mb-konfirmasi"
-            $("#mb-konfirmasi").text("Apakah Anda yakin ingin menghapus data dokumentasi " + nama_documentation +
-                " ?");
-        })
-
-
-
-        // Jika tombol ya ditekan, maka submit form hapus
-        $('#formDelete [type="submit"]').click(function() {
-            $('#formDelete').submit();
-        })
-    </script>
+    {{-- Delete Modal --}}
+    @push('modalDelete')
+        <script type="text/javascript">
+            $('.show_confirm').click(function(event) {
+                var form = $(this).closest("form");
+                var name = $(this).data("name");
+                event.preventDefault();
+                swal({
+                        title: 'Apakah Anda yakin ingin menghapus data dokumentasi ' + name + '?',
+                        text: "If you delete this, it will be gone forever.",
+                        icon: "warning",
+                        buttons: true,
+                        dangerMode: true,
+                    })
+                    .then((willDelete) => {
+                        if (willDelete) {
+                            form.submit();
+                        }
+                    });
+            });
+        </script>
+    @endpush
 @endsection
